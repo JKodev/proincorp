@@ -12,4 +12,9 @@ class PorticoController extends Controller
     {
     	return view('app.portico.index');
     }
+
+    public function show($id)
+    {
+        return view('app.portico.show');
+    }
 }

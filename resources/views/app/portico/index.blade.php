@@ -5,21 +5,6 @@
 @section('content')
 <div class="page-content-inner">
 	<div class="row">
-		<div class="col-md-8">
-			<!-- BEGIN MARKERS PORTLET-->
-			<div class="portlet light portlet-fit ">
-				<div class="portlet-title">
-					<div class="caption">
-						<i class=" icon-layers font-blue"></i>
-						<span class="caption-subject font-blue bold uppercase">Mapa</span>
-					</div>
-				</div>
-				<div class="portlet-body">
-					<div id="gmap_marker" class="gmaps"> </div>
-				</div>
-			</div>
-			<!-- END MARKERS PORTLET-->
-		</div>
 		<div class="col-md-4">
 			<div class="portlet light portlet-fit">
 				<div class="portlet-title">
@@ -53,10 +38,26 @@
 						<span class="fa fa-car"></span>
 						Calicanto AQP -> CV
 					</a>
-					
+
 				</div>
 			</div>
 		</div>
+		<div class="col-md-8">
+			<!-- BEGIN MARKERS PORTLET-->
+			<div class="portlet light portlet-fit ">
+				<div class="portlet-title">
+					<div class="caption">
+						<i class=" icon-layers font-blue"></i>
+						<span class="caption-subject font-blue bold uppercase">Mapa</span>
+					</div>
+				</div>
+				<div class="portlet-body">
+					<div id="gmap_marker" class="gmaps"> </div>
+				</div>
+			</div>
+			<!-- END MARKERS PORTLET-->
+		</div>
+
 	</div>
 </div>
 @endsection
