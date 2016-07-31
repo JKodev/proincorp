@@ -41,6 +41,11 @@ Route::group([
                             'as'    =>  'app.reports.portico.show',
                             'uses'  =>  'PorticoController@show'
                         ]);
+
+						Route::get('/{id}/report/{report_id}', [
+							'as'    =>  'app.reports.portico.report',
+							'uses'  =>  'PorticoController@report'
+						]);
 				});
 
 				Route::group([

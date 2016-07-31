@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => 'sqlsrv',
 
     /*
     |--------------------------------------------------------------------------
@@ -46,19 +46,13 @@ return [
 
     'connections' => [
 
-        'sqlite' => [
-            'driver' => 'sqlite',
-            'database' => env('DB_DATABASE', database_path('database.sqlite')),
-            'prefix' => '',
-        ],
-
-        'mysql' => [
+        'tmsng' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => 'localhost',
+            'port' => '3306',
+            'database' => 'tmsng',
+            'username' => 'root',
+            'password' => '',
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',
@@ -66,17 +60,30 @@ return [
             'engine' => null,
         ],
 
-        'pgsql' => [
-            'driver' => 'pgsql',
-            'host' => env('DB_HOST', 'localhost'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+        'tmsng_norestore' => [
+            'driver' => 'mysql',
+            'host' => 'localhost',
+            'port' => '3306',
+            'database' => 'tmsng_norestore',
+            'username' => 'root',
+            'password' => '',
             'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
             'prefix' => '',
-            'schema' => 'public',
+            'strict' => false,
+            'engine' => null,
         ],
+
+        'sqlsrv' => [
+            'driver' => 'sqlsrv',
+            'host' => 'localhost',
+            'port' => '1433',
+            'database' => 'ANTENA',
+            'username' => 'sysmin',
+            'password' => 'Jona*46890151',
+            'prefix' => '',
+            'schema' => 'dbo'
+        ]
 
     ],
 

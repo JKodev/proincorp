@@ -22,6 +22,8 @@
     <link href="{{ asset('assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" rel="stylesheet" type="text/css" />
     @show
     <!-- END GLOBAL MANDATORY STYLES -->
+	@section('css_level_plugins')
+	@show
     <!-- BEGIN THEME GLOBAL STYLES -->
     @section('css_theme')
     <link href="{{ asset('assets/global/css/components-md.min.css') }}" rel="stylesheet" id="style_components" type="text/css" />
@@ -71,11 +73,11 @@
                                             </a>
                                             <ul class="dropdown-menu dropdown-menu-default">
                                                 <li>
-                                                    <a href="page_user_profile_1.html">
+                                                    <a href="#">
                                                         <i class="icon-user"></i> Cambiar Contraseña </a>
                                                     </li>
                                                     <li>
-                                                        <a href="page_user_login_1.html">
+                                                        <a href="#">
                                                             <i class="icon-key"></i> Cerrar Sesión </a>
                                                         </li>
                                                     </ul>
@@ -91,7 +93,7 @@
                                 <div class="page-header-menu">
                                     <div class="container">
                                         <!-- BEGIN HEADER SEARCH BOX -->
-                                        <form class="search-form" action="page_general_search.html" method="GET">
+                                        <form class="search-form" action="#" method="GET">
                                             <div class="input-group">
                                                 <input type="text" class="form-control" placeholder="ID vehículo" name="query">
                                                 <span class="input-group-btn">
@@ -108,27 +110,27 @@
                                         <div class="hor-menu  ">
                                             <ul class="nav navbar-nav">
                                                 <li class=" ">
-                                                    <a href="#"> 
+                                                    <a href="{!! route('app.dashboard') !!}">
                                                         Principal
                                                     </a>
                                                 </li>
                                                 <li class=" ">
-                                                    <a href="#"> 
-                                                        Porticos
+                                                    <a href="{!! route('app.reports.portico.index') !!}">
+                                                        Pórticos
                                                     </a>
                                                 </li>
                                                 <li class=" ">
-                                                    <a href="#"> 
+                                                    <a href="{!! route('app.reports.empresa.index') !!}">
                                                         Empresas
                                                     </a>
                                                 </li>
                                                 <li class=" ">
-                                                    <a href="#"> 
+                                                    <a href="{!! route('app.reports.vehiculo.index') !!}">
                                                         Vehículos
                                                     </a>
                                                 </li>
                                                 <li class=" ">
-                                                    <a href="#"> 
+                                                    <a href="{!! route('app.reports.camaras.index') !!}">
                                                         Cámaras
                                                     </a>
                                                 </li>

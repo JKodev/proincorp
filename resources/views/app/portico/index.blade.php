@@ -14,31 +14,12 @@
 					</div>
 				</div>
 				<div class="portlet-body">
-					<a href="#" class="btn btn-block btn-lg green-jungle">
+				@foreach($camaras as $camara)
+					<a href="{{ route('app.reports.portico.show', array('id' => $camara->id)) }}" class="btn btn-block btn-lg {{ $colors[$camara->id % count($colors)] }}">
 						<span class="fa fa-car"></span>
-						Puente Tingo AQP -> CV
+						{{ $camara->cameraName }}
 					</a>
-					<a href="#" class="btn btn-block btn-lg green-jungle">
-						<span class="fa fa-car"></span>
-						Puente Tingo CV -> AQP
-					</a>
-					<a href="#" class="btn btn-block btn-lg red-flamingo">
-						<span class="fa fa-car"></span>
-						Palacio AQP -> CV
-					</a>
-					<a href="#" class="btn btn-block btn-lg red-flamingo">
-						<span class="fa fa-car"></span>
-						Palacio CV -> AQP
-					</a>
-					<a href="#" class="btn btn-block btn-lg yellow-saffron">
-						<span class="fa fa-car"></span>
-						Calicanto CV -> AQP
-					</a>
-					<a href="#" class="btn btn-block btn-lg yellow-saffron">
-						<span class="fa fa-car"></span>
-						Calicanto AQP -> CV
-					</a>
-
+				@endforeach
 				</div>
 			</div>
 		</div>
