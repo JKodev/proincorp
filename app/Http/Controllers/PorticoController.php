@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Helpers\CamaraStaticHelper;
 use App\Http\Requests;
 use App\Models\Camara;
 
@@ -21,6 +21,7 @@ class PorticoController extends Controller
 
     public function show($id)
     {
+    	CamaraStaticHelper::getZones($id);
         return view('app.portico.show');
     }
 
