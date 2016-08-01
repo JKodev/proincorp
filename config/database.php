@@ -78,7 +78,7 @@ return [
             'driver' => 'sqlsrv',
             'host' => 'localhost',
             'port' => '1433',
-            'database' => 'ANTENA',
+            'database' => 'ANTENAS',
             'username' => 'sysmin',
             'password' => 'Jona*46890151',
             'prefix' => '',
