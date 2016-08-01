@@ -10,6 +10,6 @@ class CamaraStaticHelper
 	{
 		$detector_config = DetectorConfig::where('detectorId', $camara_id)->first();
 		$xml = new \SimpleXMLElement($detector_config->content);
-		dd($xml->TrafficData->Zones);
+		dd($xml->TrafficData);
 	}
 }
