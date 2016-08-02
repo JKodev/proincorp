@@ -14,6 +14,7 @@ class CamaraStaticHelper
 
 		$dict = array();
 		foreach ($zones as $zone) {
+			dd($zone);
 			$name = $zone->Characteristics->Characteristic['name'];
 			if (!array_key_exists($name, $dict)) {
 				$dict[$name] = array();
