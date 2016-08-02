@@ -9,14 +9,14 @@ var TableDatatablesResponsive = function () {
 		    "columnDefs": [
 			    { "visible": false, "targets": 3 }
 		    ],
-		    "order": [[ 4, 'asc' ]],
+		    "order": [[ 3, 'asc' ]],
 		    "displayLength": 25,
 		    "drawCallback": function ( settings ) {
 			    var api = this.api();
 			    var rows = api.rows( {page:'current'} ).nodes();
 			    var last=null;
 
-			    api.column(4, {page:'current'} ).data().each( function ( group, i ) {
+			    api.column(3, {page:'current'} ).data().each( function ( group, i ) {
 				    if ( last !== group ) {
 					    $(rows).eq( i ).before(
 						    '<tr class="group"><td colspan="3">'+group+'</td></tr>'
