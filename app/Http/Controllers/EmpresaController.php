@@ -17,4 +17,13 @@ class EmpresaController extends Controller
     		'empresas' => $empresas
     	));
     }
+
+    public function report($id)
+    {
+    	$empresa = Empresa::where('ID_Empresa', $id)->get();
+
+	    return view('app.empresa.report', array(
+	    	'empresa' => $empresa
+	    ));
+    }
 }

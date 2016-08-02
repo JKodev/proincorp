@@ -38,26 +38,10 @@
 						<td>{{ $empresa->Des_Empresa }}</td>
 						<td>
 							<div class="btn-group pull-right">
-								<button class="btn green btn-xs btn-outline dropdown-toggle" data-toggle="dropdown">Reports
-									<i class="fa fa-angle-down"></i>
-								</button>
-								<ul class="dropdown-menu pull-right">
-									<li>
-										<a href="javascript:;">
-											<i class="fa fa-print"></i> Print 
-										</a>
-									</li>
-									<li>
-										<a href="javascript:;">
-											<i class="fa fa-file-pdf-o"></i> Save as PDF 
-										</a>
-									</li>
-									<li>
-										<a href="javascript:;">
-											<i class="fa fa-file-excel-o"></i> Export to Excel 
-										</a>
-									</li>
-								</ul>
+								<a href="{{ route('app.reports.empresa.report', array('id' => $empresa->ID_Empresa)) }}" class="btn green btn-xs btn-outline">
+									<i class="fa fa-columns"></i>
+									Reporte
+								</a>
 							</div>
 						</td>
 					</tr>

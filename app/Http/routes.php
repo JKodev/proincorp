@@ -56,6 +56,11 @@ Route::group([
 				    		'as'	=>	'app.reports.empresa.index',
 				    		'uses'	=>	'EmpresaController@index'
 				    	]);
+
+						Route::get('/report', [
+							'as'    =>  'app.reports.empresa.report',
+							'uses'  =>  'EmpresaController@report'
+						]);
 				});
 
 				Route::group([
