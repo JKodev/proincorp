@@ -3,13 +3,16 @@ namespace App\Helpers;
 
 use App\Models\Camara;
 use App\Models\DetectorConfig;
+use Laravie\Parser\Xml\Document;
+use Laravie\Parser\Xml\Reader;
 
 class CamaraStaticHelper
 {
 	public static function getZones($camara_id)
 	{
 		$detector_config = DetectorConfig::where('detectorId', $camara_id)->first();
-		$xmls = XmlParser::extract($detector_config->content);
+		$xmls = new Reader(new Document());
+		$xmls->extract($detector_config->content);
 		dd($xmls);
 		dd($detector_config->toArray());
 		$xml = new \SimpleXMLElement($detector_config->content);
