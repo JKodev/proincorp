@@ -5,7 +5,7 @@ var TableDatatablesResponsive = function () {
 
 	    var table2 = $('#row_group');
 
-	    var rTable = table2.datatable({
+	    var rTable = table2.dataTable({
 		    "columnDefs": [
 			    { "visible": false, "targets": 2 }
 		    ],
