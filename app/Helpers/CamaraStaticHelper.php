@@ -10,11 +10,11 @@ class CamaraStaticHelper
 	{
 		$detector_config = DetectorConfig::where('detectorId', $camara_id)->first();
 		$xml = new \SimpleXMLElement($detector_config->content);
-		$zones = $xml->TrafficData->TrafficData->Zones;
-		dd($zones);
+		$zones = $xml->TrafficData->TrafficData->Zones->Zone;
+		//dd($zones);
 		$dict = array();
 		foreach ($zones as $zone) {
-			dd($zone);
+			//dd($zone);
 			$name = $zone->Characteristics->Characteristic['name'];
 			if (!array_key_exists($name, $dict)) {
 				$dict[$name] = array();
