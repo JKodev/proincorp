@@ -3,6 +3,42 @@ var TableDatatablesResponsive = function () {
     var initTable1 = function () {
         var table = $('#sample_1');
 
+	    var table2 = $('#row_group');
+
+	    var rTable = table2.datatable({
+		    "columnDefs": [
+			    { "visible": false, "targets": 2 }
+		    ],
+		    "order": [[ 3, 'asc' ]],
+		    "displayLength": 25,
+		    "drawCallback": function ( settings ) {
+			    var api = this.api();
+			    var rows = api.rows( {page:'current'} ).nodes();
+			    var last=null;
+
+			    api.column(3, {page:'current'} ).data().each( function ( group, i ) {
+				    if ( last !== group ) {
+					    $(rows).eq( i ).before(
+						    '<tr class="group"><td colspan="5">'+group+'</td></tr>'
+					    );
+
+					    last = group;
+				    }
+			    } );
+		    }
+	    });
+
+	    // Order by the grouping
+	    $('#row_group tbody').on( 'click', 'tr.group', function () {
+		    var currentOrder = table.order()[0];
+		    if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
+			    table.order( [ 3, 'desc' ] ).draw();
+		    }
+		    else {
+			    table.order( [ 3, 'asc' ] ).draw();
+		    }
+	    } );
+
         var oTable = table.dataTable({
             // Internationalisation. For more info refer to http://datatables.net/manual/i18n
             "language": {
