@@ -47,21 +47,6 @@
 							<td>V9W955</td>
 							<td>1_1 PUENTE TINGO AQP-CV</td>
 						</tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 						<tr>
 							<td>11/07/16 01:09 PM</td>
 							<td>CAMIONETA</td>

@@ -20,6 +20,7 @@ class EmpresaController extends Controller
 
     public function report($id)
     {
+    	dd($id);
     	$empresa = Empresa::where('ID_Empresa', $id)->get();
 
 	    return view('app.empresa.report', array(
