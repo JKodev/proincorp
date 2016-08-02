@@ -20,8 +20,8 @@ class EmpresaController extends Controller
 
     public function report($id)
     {
-    	$empresa = Empresa::where('ID_Empresa', $id)->get();
-		dd($empresa);
+    	$empresa = Empresa::where('ID_Empresa', $id)->first();
+		//dd($empresa);
 	    return view('app.empresa.report', array(
 	    	'empresa' => $empresa,
 		    'title' => $empresa->Nom_Empresa
