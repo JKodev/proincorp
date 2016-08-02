@@ -11,7 +11,7 @@ class CamaraStaticHelper
 		$detector_config = DetectorConfig::where('detectorId', $camara_id)->first();
 		$xml = new \SimpleXMLElement($detector_config->content);
 		$zones = $xml->TrafficData->TrafficData->Zones;
-
+		dd($zones);
 		$dict = array();
 		foreach ($zones as $zone) {
 			dd($zone);
