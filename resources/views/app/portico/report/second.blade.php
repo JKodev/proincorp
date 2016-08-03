@@ -31,7 +31,7 @@
 
 @section('js_level_plugins')
 	<script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
-	<script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
+	<script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
 	<script type="text/javascript" src="http://www.amcharts.com/lib/3/plugins/export/export.js"></script>
 @endsection
 
@@ -39,150 +39,46 @@
 	<script type="text/javascript">
 		AmCharts.makeChart("chartdiv",
 				{
-					"type": "serial",
-					"categoryField": "Hora",
-					"rotate": true,
-					"startDuration": 1,
-					"theme": "default",
+					"type": "pie",
+					"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+					"labelRadius": 10,
+					"titleField": "category",
+					"valueField": "column-1",
 					"export": {
 						"enabled": true
 					},
-					"categoryAxis": {
-						"gridPosition": "start"
-					},
-					"trendLines": [],
-					"graphs": [
-						{
-							"balloonText": "[[title]] a las [[Hora]]: [[value]]",
-							"bullet": "round",
-							"id": "AmGraph-1",
-							"title": "Portico dia",
-							"valueField": "Vehiculos"
-						}
-					],
-					"guides": [],
-					"valueAxes": [
-						{
-							"id": "ValueAxis-1"
-						}
-					],
 					"allLabels": [],
 					"balloon": {},
 					"legend": {
 						"enabled": true,
-						"useGraphSettings": true
+						"align": "center",
+						"markerType": "circle"
 					},
-					"titles": [
-						{
-							"id": "Title-1",
-							"size": 15,
-							"text": "Autos Dia"
-						}
-					],
+					"titles": [],
 					"dataProvider": [
 						{
-							"Hora": "0:30",
-							"Vehiculos": "5"
+							"category": "Automovil",
+							"column-1": "7"
 						},
 						{
-							"Hora": "10:00",
-							"Vehiculos": "4"
+							"category": "Caminiones",
+							"column-1": "3"
 						},
 						{
-							"Hora": "10:30",
-							"Vehiculos": "7"
+							"category": "Camioneta",
+							"column-1": "49"
 						},
 						{
-							"Hora": "11:00",
-							"Vehiculos": "11"
+							"category": "Microbus",
+							"column-1": "67"
 						},
 						{
-							"Hora": "11:30",
-							"Vehiculos": "9"
+							"category": "Minibus",
+							"column-1": "19"
 						},
 						{
-							"Hora": "12:00",
-							"Vehiculos": "2"
-						},
-						{
-							"Hora": "13:00",
-							"Vehiculos": "2"
-						},
-						{
-							"Hora": "13:30",
-							"Vehiculos": "1"
-						},
-						{
-							"Hora": "14:00",
-							"Vehiculos": "3"
-						},
-						{
-							"Hora": "14:30",
-							"Vehiculos": "13"
-						},
-						{
-							"Hora": "15:00",
-							"Vehiculos": "18"
-						},
-						{
-							"Hora": "15:30",
-							"Vehiculos": "9"
-						},
-						{
-							"Hora": "16:00",
-							"Vehiculos": "11"
-						},
-						{
-							"Hora": "16:30",
-							"Vehiculos": "9"
-						},
-						{
-							"Hora": "17:00",
-							"Vehiculos": "3"
-						},
-						{
-							"Hora": "3:00",
-							"Vehiculos": "2"
-						},
-						{
-							"Hora": "4:30",
-							"Vehiculos": "5"
-						},
-						{
-							"Hora": "5:30",
-							"Vehiculos": "21"
-						},
-						{
-							"Hora": "6:00",
-							"Vehiculos": "37"
-						},
-						{
-							"Hora": "6:30",
-							"Vehiculos": "145"
-						},
-						{
-							"Hora": "7:00",
-							"Vehiculos": "43"
-						},
-						{
-							"Hora": "7:30",
-							"Vehiculos": "16"
-						},
-						{
-							"Hora": "8:00",
-							"Vehiculos": "23"
-						},
-						{
-							"Hora": "8:30",
-							"Vehiculos": "14"
-						},
-						{
-							"Hora": "9:00",
-							"Vehiculos": "12"
-						},
-						{
-							"Hora": "9:30",
-							"Vehiculos": "6"
+							"category": "Omnibus",
+							"column-1": "49"
 						}
 					]
 				}
