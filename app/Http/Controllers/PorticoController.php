@@ -33,6 +33,7 @@ class PorticoController extends Controller
 
     public function report($id, $report_id)
     {
+    	dd($report_id);
     	switch ($report_id) {
 		    case 1:
 		    	return view('app.portico.report.first', array('title' => 'Autos día'));
