@@ -14,7 +14,7 @@ class PorticoController extends Controller
     {
     	$colors = ["green-jungle", "blue-sharp", "red-thunderbird", "yellow-gold", "purple-seance", "blue-ebonyclay", "green-tuorquoise", "gray-salsa", "red-sunglo", "yellow-soft", "purple-medium"];
     	//$camaras = Camara::where('currentConfigurationIndex', '-99')->orderBy('cameraName', 'ASC')->get();
-	    $lectores = Lector::all();
+	    $lectores = Lector::orderBy('dsc_lector_movimiento')->get();
     	return view('app.portico.index', array(
     		'lectores' => $lectores,
     		'colors' => $colors
