@@ -49,6 +49,7 @@ class PorticoController extends Controller
 		    case "2":
 		    	$variables['results'] = ReportHelper::tipo_vehiculo_porcentual($id, '2016-05-26', '2016-05-28');
 		    	$variables['title'] = "Tipo de Vehículo";
+				$view = 'app.portico.report.second';
 		    break;
 		    case "3":
 		    	return view('app.portico.report.third');
