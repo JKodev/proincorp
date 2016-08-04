@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -83,4 +84,22 @@ Route::group([
 				    	]);
 				});
 		});
+});
+
+Route::group([
+	'prefix'    =>  'service'
+], function () {
+
+	Route::group([
+		'prefix'    =>  'reports'
+	], function () {
+		Route::group([
+			'prefix'    =>  'portico'
+		], function () {
+
+			Route::get('/', function() {
+
+			});
+		});
+	});
 });

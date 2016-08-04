@@ -157,6 +157,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
 	    Orchestra\Parser\XmlServiceProvider::class,
+	    Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*
