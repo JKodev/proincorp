@@ -14,7 +14,7 @@
 					<div class="number">1500</div>
 					<div class="desc"> Autos Día</div>
 				</div>
-				<a class="more" href="{{ route('app.reports.portico.report', array('id' => $id, 'report_id' => 1)) }}">
+				<a class="more" href="{{ route('app.reports.portico.report', array('id' => $lector->id_lector_movimiento, 'report_id' => 1)) }}">
 					Ver Reporte
 					<i class="m-icon-swapright m-icon-white"></i>
 				</a>
@@ -29,7 +29,7 @@
 					<div class="number"> 500</div>
 					<div class="desc">Vehículos por Tipo</div>
 				</div>
-				<a class="more" href="{{ route('app.reports.portico.report', array('id' => $id, 'report_id' => 2)) }}">
+				<a class="more" href="{{ route('app.reports.portico.report', array('id' => $lector->id_lector_movimiento, 'report_id' => 2)) }}">
 					Ver Reporte
 					<i class="m-icon-swapright m-icon-white"></i>
 				</a>
