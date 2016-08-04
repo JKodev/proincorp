@@ -10,26 +10,24 @@ use App\Models\Camara;
 
 class PorticoController extends Controller
 {
+	private $colors = ["green-jungle", "blue-sharp", "red-thunderbird", "yellow-gold", "purple-seance", "blue-ebonyclay", "green-turquoise", "grey-salsa", "red-sunglo", "yellow-soft", "purple-medium"];
     public function index()
     {
-    	$colors = ["green-jungle", "blue-sharp", "red-thunderbird", "yellow-gold", "purple-seance", "blue-ebonyclay", "green-turquoise", "grey-salsa", "red-sunglo", "yellow-soft", "purple-medium"];
-    	//$camaras = Camara::where('currentConfigurationIndex', '-99')->orderBy('cameraName', 'ASC')->get();
-	    $lectores = Lector::orderBy('dsc_lector_movimiento')->get();
+    	$lectores = Lector::orderBy('dsc_lector_movimiento')->get();
     	return view('app.portico.index', array(
     		'lectores' => $lectores,
-    		'colors' => $colors
+    		'colors' => $this->colors
     	));
     }
 
     public function show($id)
     {
-    	/*
-    	$zones = CamaraStaticHelper::getZones($id);
-	    dd($zones);
-        */
+    	$lectores = Lector::orderBy('dsc_lector_movimiento')->get();
     	$lector = Lector::where('id_lector_movimiento', $id)->first();
     	return view('app.portico.show', array(
-		    'lector' => $lector
+		    'lector' => $lector,
+		    'lectores' => $lectores,
+		    'colors' => $this->colors
 	    ));
 
     }
