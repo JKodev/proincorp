@@ -42,8 +42,8 @@
 					"type": "pie",
 					"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
 					"labelRadius": 10,
-					"titleField": "category",
-					"valueField": "column-1",
+					"titleField": "tipo",
+					"valueField": "valor",
 					"export": {
 						"enabled": true
 					},
@@ -56,30 +56,12 @@
 					},
 					"titles": [],
 					"dataProvider": [
+						@foreach($results as $result)
 						{
-							"category": "Automovil",
-							"column-1": "7"
+							"tipo": "{{ $result->Tip_Vehiculo }}",
+							"valor": "{{ $result->Expr1 }}"
 						},
-						{
-							"category": "Caminiones",
-							"column-1": "3"
-						},
-						{
-							"category": "Camioneta",
-							"column-1": "49"
-						},
-						{
-							"category": "Microbus",
-							"column-1": "67"
-						},
-						{
-							"category": "Minibus",
-							"column-1": "19"
-						},
-						{
-							"category": "Omnibus",
-							"column-1": "49"
-						}
+						@endforeach
 					]
 				}
 		);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ReportHelper;
 use App\Models\Lector;
 use Illuminate\Http\Request;
 use App\Helpers\CamaraStaticHelper;
@@ -39,7 +40,11 @@ class PorticoController extends Controller
 		    	return view('app.portico.report.first', array('title' => 'Autos día'));
 		    break;
 		    case "2":
-		    	return view('app.portico.report.second', array('title' => 'Tipo de Vehículo'));
+		    	$results = ReportHelper::tipo_vehiculo_porcentual($id, '2016-05-26', '2016-05-28');
+		    	return view('app.portico.report.second', array(
+		    		'title' => 'Tipo de Vehículo',
+				    'results' => $results)
+			    );
 		    break;
 		    case "3":
 		    	return view('app.portico.report.third');
