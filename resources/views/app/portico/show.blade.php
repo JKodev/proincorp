@@ -1,6 +1,6 @@
 @extends('app.portico.index')
 
-@section('title', $lector->dsc_lector_movimiento)
+@section('title', preg_replace('/(\d+)\_(\d+)/', " ", $lector->dsc_lector_movimiento))
 
 @section('content_portico')
 
