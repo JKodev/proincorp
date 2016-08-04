@@ -35,16 +35,20 @@ class PorticoController extends Controller
 
     public function report($id, $report_id)
     {
+    	$lector = Lector::find($id);
+	    $view = '';
+	    $variables = array(
+	    	'title' => ''
+	    );
+
     	switch ($report_id) {
 		    case "1":
-		    	return view('app.portico.report.first', array('title' => 'Autos día'));
+				$view = 'app.portico.report.first';
+				$variables['title'] = "Autos día";
 		    break;
 		    case "2":
-		    	$results = ReportHelper::tipo_vehiculo_porcentual($id, '2016-05-26', '2016-05-28');
-		    	return view('app.portico.report.second', array(
-		    		'title' => 'Tipo de Vehículo',
-				    'results' => $results)
-			    );
+		    	$variables['results'] = ReportHelper::tipo_vehiculo_porcentual($id, '2016-05-26', '2016-05-28');
+		    	$variables['title'] = "Tipo de Vehículo";
 		    break;
 		    case "3":
 		    	return view('app.portico.report.third');
@@ -55,5 +59,8 @@ class PorticoController extends Controller
 		    default:
 		    	break;
 	    }
+	    $variables['title'] .= ' - '.preg_replace('/(\d+)\_(\d+)/', " ", $lector->dsc_lector_movimiento);
+
+	    return view($view, $variables);
     }
 }
