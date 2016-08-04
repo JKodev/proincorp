@@ -14,10 +14,10 @@
 					</div>
 				</div>
 				<div class="portlet-body">
-				@foreach($camaras as $camara)
-					<a href="{{ route('app.reports.portico.show', array('id' => $camara->id)) }}" class="btn btn-block btn-lg {{ $colors[$camara->id % count($colors)] }}">
+				@foreach($lectores as $lector)
+					<a href="{{ route('app.reports.portico.show', array('id' => $lector->id_lector_movimiento)) }}" class="btn btn-block btn-lg {{ $colors[$lector->id_lector_movimiento % count($colors)] }}">
 						<span class="fa fa-car"></span>
-						{{ $camara->cameraName }}
+						{{ $lector->dsc_lector_movimiento }}
 					</a>
 				@endforeach
 				</div>

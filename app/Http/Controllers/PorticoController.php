@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lector;
 use Illuminate\Http\Request;
 use App\Helpers\CamaraStaticHelper;
 use App\Http\Requests;
@@ -12,9 +13,10 @@ class PorticoController extends Controller
     public function index()
     {
     	$colors = ["green-jungle", "blue-sharp", "red-thunderbird", "yellow-gold", "purple-seance", "blue-ebonyclay", "green-tuorquoise", "gray-salsa", "red-sunglo", "yellow-soft", "purple-medium"];
-    	$camaras = Camara::where('currentConfigurationIndex', '-99')->orderBy('cameraName', 'ASC')->get();
+    	//$camaras = Camara::where('currentConfigurationIndex', '-99')->orderBy('cameraName', 'ASC')->get();
+	    $lectores = Lector::all();
     	return view('app.portico.index', array(
-    		'camaras' => $camaras,
+    		'lectores' => $lectores,
     		'colors' => $colors
     	));
     }
