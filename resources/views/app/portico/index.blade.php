@@ -15,7 +15,7 @@
 				</div>
 				<div class="portlet-body">
 				@foreach($lectores as $lector)
-					<a href="{{ route('app.reports.portico.show', array('id' => $lector->id_lector_movimiento)) }}" class="btn btn-block btn-lg {{ $colors[intval((explode("_", $lector->dsc_lector_movimiento))[0]) % count($colors)] }}">
+					<a href="{{ route('app.reports.portico.show', array('id' => $lector->id_lector_movimiento)) }}" class="btn btn-block btn-lg {{ $colors[intval(current(explode("_", $lector->dsc_lector_movimiento))) % count($colors)] }}">
 						<span class="fa fa-car"></span>
 						{{ $lector->dsc_lector_movimiento }}
 					</a>
