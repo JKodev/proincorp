@@ -33,7 +33,9 @@
 					</div>
 				</div>
 				<div class="portlet-body">
+					@section('content_portico')
 					<div id="gmap_marker" class="gmaps"> </div>
+					@show
 				</div>
 			</div>
 			<!-- END MARKERS PORTLET-->

@@ -27,8 +27,10 @@ class PorticoController extends Controller
     	$zones = CamaraStaticHelper::getZones($id);
 	    dd($zones);
         */
+    	$lector = Lector::find($id);
     	return view('app.portico.show', array(
-    		'id' => $id
+    		'id' => $id,
+		    'lector' => $lector
 	    ));
 
     }
