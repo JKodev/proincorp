@@ -94,11 +94,12 @@
 				'url': n_route,
 				'dataType': 'json',
 				'success': function (response) {
+					console.log(response);
 					data = response;
 				}
 			});
 
-			return JSON.parse(data);
+			return data;
 		};
 
 		var chart = AmCharts.makeChart("chartdiv",
