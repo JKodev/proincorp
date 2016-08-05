@@ -97,9 +97,10 @@ Route::group([
 			'prefix'    =>  'portico'
 		], function () {
 
-			Route::get('/', function() {
-
-			});
+			Route::get('/{id}/{start_date}/{end_date}/', [
+				'as'    =>  'service.reports.portico.tipos-vehiculos',
+				'uses'  =>  'PorticoController@serviceTipoVehiculo'
+			]);
 		});
 	});
 });
