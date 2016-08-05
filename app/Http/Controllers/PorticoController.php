@@ -73,8 +73,7 @@ class PorticoController extends Controller
 	    $e_date = date("Y-m-d 23:59:59", $end_date);
 		$data = ReportHelper::tipo_vehiculo_porcentual($id, $s_date, $e_date);
 	    $serialize = SerializeHelper::fromArray($data, array("Tip_Vehiculo", "sum"));
-		dd($data);
-	    return $data;
-	    //return response()->json($serialize);
+
+	    return response()->json($serialize);
     }
 }

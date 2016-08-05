@@ -112,7 +112,7 @@
 					"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
 					"labelRadius": 10,
 					"titleField": "Tip_Vehiculo",
-					"valueField": "Expr1",
+					"valueField": "sum",
 					"export": {
 						"enabled": true
 					},
