@@ -89,13 +89,16 @@
 			var n_route = route.replace('{start_date}', start_unix);
 			n_route = n_route.replace('{end_date}', end_unix);
 
-			var data = "";
+			var data = [];
 			$.ajax({
 				'url': n_route,
 				'dataType': 'json',
 				'async': false,
 				'success': function (response) {
 					console.log(response);
+					if (response.length == 0) {
+						toastr.warning("No hay datos para esta fecha", "No se encontraron datos.");
+					}
 					data = response;
 				}
 			});
