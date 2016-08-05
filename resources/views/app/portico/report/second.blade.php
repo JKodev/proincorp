@@ -121,12 +121,16 @@
 					},
 					"titles": [],
 
-					"dataProvider": getData()
+					//"dataProvider": getData()
 				}
 		);
+		chart.dataProvider = getData();
+		chart.validateData();
 
 		$('#show-report').click(function () {
-			chart.dataProvider = getData();
+			var d = getData();
+			console.log(d);
+			chart.dataProvider = d;
 			chart.validateData();
 			chart.animateAgain();
 		});
