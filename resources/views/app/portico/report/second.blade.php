@@ -89,7 +89,7 @@
 			var n_route = route.replace('{start_date}', start_unix);
 			n_route = n_route.replace('{end_date}', end_unix);
 
-			var data = [];
+			var data = "";
 			$.ajax({
 				'url': n_route,
 				'dataType': 'json',
@@ -98,7 +98,7 @@
 				}
 			});
 
-			return data;
+			return JSON.parse(data);
 		};
 
 		var chart = AmCharts.makeChart("chartdiv",
