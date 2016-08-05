@@ -12,7 +12,6 @@ class ReportHelper
 	public static function tipo_vehiculo_porcentual($lector_id, $start_date, $end_date)
 	{
 		$lector = Lector::find($lector_id);
-		dd($lector);
 		$query = DB::connection('sqlsrv')
 			->table('TipoVehiculo_Portico')
 			->select(DB::raw('sum([Expr1]) as sum, [Tip_Vehiculo]'))
