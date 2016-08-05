@@ -93,6 +93,7 @@
 			$.ajax({
 				'url': n_route,
 				'dataType': 'json',
+				'async': false,
 				'success': function (response) {
 					console.log(response);
 					data = response;
