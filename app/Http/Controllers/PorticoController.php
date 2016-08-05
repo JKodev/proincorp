@@ -48,7 +48,7 @@ class PorticoController extends Controller
 				$variables['title'] = "Autos día";
 		    break;
 		    case "2":
-		    	$variables['results'] = ReportHelper::tipo_vehiculo_porcentual($id, '2016-05-27 00:00:00', '2016-05-27 23:59:59');
+		    	//$variables['results'] = ReportHelper::tipo_vehiculo_porcentual($id, '2016-05-27 00:00:00', '2016-05-27 23:59:59');
 		    	$variables['title'] = "Tipo de Vehículo";
 				$variables['id'] = $id;
 				$view = 'app.portico.report.second';
@@ -73,7 +73,7 @@ class PorticoController extends Controller
 	    $e_date = date("Y-m-d 23:59:59", $end_date);
 		$data = ReportHelper::tipo_vehiculo_porcentual($id, $s_date, $e_date);
 	    $serialize = SerializeHelper::fromArray($data, array("Tip_Vehiculo", "sum"));
-
+		dd($data);
 	    return response()->json($serialize);
     }
 }
