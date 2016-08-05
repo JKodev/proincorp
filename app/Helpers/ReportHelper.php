@@ -17,7 +17,7 @@ class ReportHelper
 			->where('dsc_lector_movimiento', $lector->dsc_lector_movimiento)
 			->whereBetween('FECHA', [$start_date, $end_date])
 			->groupBy('Tip_Vehiculo')
-			->selectRaw('*, sum(Expr1) as sum')
+			->selectRaw('Tip_Vehiculo, sum(Expr1) as sum')
 			->get();
 		return $query;
 	}
