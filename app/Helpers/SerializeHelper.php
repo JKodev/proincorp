@@ -15,6 +15,6 @@ class SerializeHelper
 			}
 			$results[] = $result;
 		}
-		return json_encode($results);
+		return $results;
 	}
 }
