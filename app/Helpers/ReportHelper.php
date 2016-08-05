@@ -14,7 +14,7 @@ class ReportHelper
 		$lector = Lector::find($lector_id);
 		$query = DB::connection('sqlsrv')
 			->table('TipoVehiculo_Portico')
-			//->sum('Expr1')
+			->sum('Expr1')
 			->where('dsc_lector_movimiento', $lector->dsc_lector_movimiento)
 			->whereBetween('FECHA', [$start_date, $end_date])
 			->groupBy('Tip_Vehiculo')
