@@ -30,7 +30,7 @@
 										<label class="control-label col-md-3">Reporte por Fechas</label>
 										<div class="col-md-4">
 											<div class="input-group input-large date-picker input-daterange"
-											     data-date="10/11/2012" data-date-format="mm/dd/yyyy">
+											     data-date="{{ date('d/m/Y') }}" data-date-format="dd/mm/yyyy">
 												<input type="text" class="form-control" id="from" name="from">
 												<span class="input-group-addon"> a </span>
 												<input type="text" class="form-control" id="to" name="to"></div>
