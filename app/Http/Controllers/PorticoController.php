@@ -50,6 +50,7 @@ class PorticoController extends Controller
 		    case "2":
 		    	$variables['results'] = ReportHelper::tipo_vehiculo_porcentual($id, '2016-05-27 00:00:00', '2016-05-27 23:59:59');
 		    	$variables['title'] = "Tipo de Vehículo";
+				$variables['id'] = $id;
 				$view = 'app.portico.report.second';
 		    break;
 		    case "3":
