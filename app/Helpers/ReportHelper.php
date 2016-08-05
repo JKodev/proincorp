@@ -14,7 +14,6 @@ class ReportHelper
 		$lector = Lector::find($lector_id);
 		$query = DB::connection('sqlsrv')
 			->table('TipoVehiculo_Portico')
-			->groupBy('Tip_Vehiculo')
 			->select(DB::raw('sum(Expr1) as sum, Tip_Vehiculo'))
 			->where('dsc_lector_movimiento', $lector->dsc_lecto_movimiento)
 			->get();
