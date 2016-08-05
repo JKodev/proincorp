@@ -73,7 +73,7 @@
 			});
 		}
 
-		var route = '/service/reports/{{ $id }}/{start_date}/{end_date}/';
+		var route = '/service/reports/portico/{{ $id }}/{start_date}/{end_date}/';
 		var getData = function () {
 			var start = $('#from').val();
 			var end = $('#to').val();
