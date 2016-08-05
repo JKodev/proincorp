@@ -12,9 +12,12 @@
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [
+	'as'    =>  'app.init',
+	'uses'  =>  function() {
+		return view('welcome');
+	}
+]);
 
 Route::group([
 	'prefix'	=>	'app'
