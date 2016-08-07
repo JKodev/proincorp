@@ -59,6 +59,7 @@
 	<script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
 	<script type="text/javascript" src="http://www.amcharts.com/lib/3/pie.js"></script>
 	<script type="text/javascript" src="http://www.amcharts.com/lib/3/plugins/export/export.js"></script>
+	<script type="text/javascript" src="https://www.amcharts.com/lib/3/lang/es.js"></script>
 	<script src="{{ asset('assets/global/plugins/moment.min.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}" type="text/javascript"></script>
 @endsection
@@ -66,6 +67,37 @@
 @section('js_level_scripts')
 	<script src="{{ asset('assets/pages/scripts/components-date-time-pickers.js') }}" type="text/javascript"></script>
 	<script type="text/javascript">
+		AmCharts.translations[ "export" ][ "es" ] = {
+			"fallback.save.text": "CTRL + C para copiar los datos en el portapapeles.",
+			"fallback.save.image": "Click Derecho -> Guardar imagen como... para guardar la imagen.",
+
+			"capturing.delayed.menu.label": "@{{duration}}",
+			"capturing.delayed.menu.title": "Click a Cancelar",
+
+			"menu.label.print": "Imprimir",
+			"menu.label.undo": "Deshacer",
+			"menu.label.redo": "Rehacer",
+			"menu.label.cancel": "Cancelar",
+
+			"menu.label.save.image": "Descargar como...",
+			"menu.label.save.data": "Guardar como...",
+
+			"menu.label.draw": "Anotar ...",
+			"menu.label.draw.change": "Cambiar ...",
+			"menu.label.draw.add": "Agregar ...",
+			"menu.label.draw.shapes": "Forma ...",
+			"menu.label.draw.colors": "Color ...",
+			"menu.label.draw.widths": "Tamaño ...",
+			"menu.label.draw.opacities": "Opacidad ...",
+			"menu.label.draw.text": "Texto",
+
+			"menu.label.draw.modes": "Modo ...",
+			"menu.label.draw.modes.pencil": "Lapiz",
+			"menu.label.draw.modes.line": "Linea",
+			"menu.label.draw.modes.arrow": "Flecha",
+
+			"label.saved.from": "Saved from: "
+		}
 		$(document).ready(function () {
 			if (jQuery().datepicker) {
 				$('.date-picker').datepicker({
@@ -117,6 +149,7 @@
 
 			var chart = AmCharts.makeChart("chartdiv",
 					{
+						"language": "es",
 						"type": "pie",
 						"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
 						"labelRadius": 10,
