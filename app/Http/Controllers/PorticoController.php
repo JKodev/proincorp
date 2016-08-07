@@ -81,6 +81,8 @@ class PorticoController extends Controller
 
     public function serviceTipoVehiculoEmpresa(Request $request, $id)
     {
-	    dd($request->all());
+    	$data = ReportHelper::tipo_vehiculo_empresa($id, $request->all());
+
+	    return response()->json($data);
     }
 }
