@@ -93,7 +93,7 @@ class ReportHelper
 		$results = array();
 
 		while ($hour_end != '00:00:00') {
-			$date = \DateTime::createFromFormat('d/m/Y')->format('d/m/Y');
+			$date = \DateTime::createFromFormat('d/m/Y', $fecha)->format('d/m/Y');
 			$start_date = $date.' '.$hour_start;
 			$end_date = $date.' '.$hour_end;
 			$query = DB::connection('sqlsrv')
