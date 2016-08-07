@@ -39,7 +39,9 @@ class PorticoController extends Controller
     	$lector = Lector::find($id);
 	    $view = '';
 	    $variables = array(
-	    	'title' => ''
+	    	'title' => '',
+		    'id' => $id,
+		    'report_id' => $report_id
 	    );
 
     	switch ($report_id) {
@@ -50,13 +52,11 @@ class PorticoController extends Controller
 		    case "2":
 		    	//$variables['results'] = ReportHelper::tipo_vehiculo_porcentual($id, '2016-05-27 00:00:00', '2016-05-27 23:59:59');
 		    	$variables['title'] = "Tipo de Vehículo";
-				$variables['id'] = $id;
 				$view = 'app.portico.report.second';
 		    break;
 		    case "3":
 		    	$view = 'app.portico.report.third';
 				$variables['title'] = "Tipo de Vehículo Empresa";
-				$variables['id'] = $id;
 		    break;
 		    case "4":
 		    	return view('app.portico.report.fourth');

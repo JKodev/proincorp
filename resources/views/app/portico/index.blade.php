@@ -2,6 +2,13 @@
 
 @section('title', 'Reporte de Portico')
 
+@section('breadcrumb')
+	<li>
+		<a href="{{ route('app.reports.portico.index') }}">Porticos</a>
+		<i class="fa fa-circle"></i>
+	</li>
+@endsection
+
 @section('content')
 <div class="page-content-inner">
 	<div class="row">

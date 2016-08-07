@@ -52,7 +52,7 @@
                             <div class="container">
                                 <!-- BEGIN LOGO -->
                                 <div class="page-logo">
-                                    <a href="index.html">
+                                    <a href="{{ route('app.dashboard') }}">
                                     <img src="{{ asset('assets/pages/img/logos/logo.jpg') }}" alt="logo" class="logo-default">
                                     </a>
                                 </div>
@@ -169,12 +169,12 @@
                                             <!-- BEGIN PAGE BREADCRUMBS -->
                                             <ul class="page-breadcrumb breadcrumb">
                                                 <li>
-                                                    <a href="#">Principal</a>
+                                                    <a href="{{ route('app.dashboard') }}">Principal</a>
                                                     <i class="fa fa-circle"></i>
                                                 </li>
-                                                <li>
-                                                    <span>@yield('title')</span>
-                                                </li>
+	                                            @section('breadcrumb')
+
+												@show
                                             </ul>
                                             <!-- END PAGE BREADCRUMBS -->
                                             <!-- BEGIN PAGE CONTENT INNER -->
