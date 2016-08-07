@@ -100,7 +100,6 @@
 						toastr.info("Obteniendo información del servidor...");
 					},
 					'success': function (response) {
-						console.log(response);
 						if (response.length == 0) {
 							toastr.warning("No hay datos para esta fecha, pruebe con una fecha distinta.", "No se encontraron datos.");
 						} else {
@@ -136,13 +135,11 @@
 						},
 						"titles": [],
 
-						//"dataProvider": getData()
+						"dataProvider": []
 					}
 			);
 			var initChart = function () {
-				var d = getData();
-				console.log(d);
-				chart.dataProvider = d;
+				chart.dataProvider = getData();
 				toastr.info("Creando Gráfico con los datos...");
 				chart.titles = [];
 				var title = "Del " + $("#from").val() + " al " + $("#to").val();
