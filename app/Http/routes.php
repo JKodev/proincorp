@@ -112,7 +112,7 @@ Route::group([
 
 			Route::get('/vehiculos-dia/{id}/{date}', [
 				'as'    =>  'service.reports.portico.vehiculos-dia',
-				'uses'  =>  'App\Http\Controllers\PorticoController@serviceVehiculosDia'
+				'uses'  =>  'PorticoController@serviceVehiculosDia'
 			]);
 		});
 	});
