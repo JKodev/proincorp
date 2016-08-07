@@ -40,9 +40,11 @@ class ReportHelper
 
 		if (array_key_exists('date_from', $parameters) && array_key_exists('date_to', $parameters)) {
 			if (!empty($parameters['date_from']) && !empty($parameters['date_to'])) {
+				$start_date = \DateTime::createFromFormat("d/m/Y", $parameters['date_from']);
+				$end_date = \DateTime::createFromFormat("d/m/Y", $parameters['date_to']);
 				$query->whereBetween('FECHA', array(
-					$parameters['date_from'],
-					$parameters['date_to']
+					$start_date->format('Y-m-d H:i:s'),
+					$end_date->format('Y-m-d H:i:s')
 				));
 			}
 		}

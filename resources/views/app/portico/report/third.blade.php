@@ -36,9 +36,9 @@
 								<tr role="row" class="filter">
 									<td>
 										<div class="input-group date date-picker margin-bottom-5"
-										     data-date-format="yyyy-mm-dd">
+										     data-date-format="dd/mm/yyyy">
 											<input type="text" class="form-control form-filter input-sm" readonly
-											       name="date_from" placeholder="From">
+											       name="date_from" placeholder="Desde">
 											<span class="input-group-btn">
                                                 <button class="btn btn-sm default"
                                                         type="button">
@@ -46,9 +46,9 @@
                                                 </button>
                                             </span>
 										</div>
-										<div class="input-group date date-picker" data-date-format="yyyy-mm-dd">
+										<div class="input-group date date-picker" data-date-format="dd/mm/yyyy">
 											<input type="text" class="form-control form-filter input-sm" readonly
-											       name="date_to" placeholder="To">
+											       name="date_to" placeholder="Hasta">
 											<span class="input-group-btn">
                                                 <button class="btn btn-sm default"
                                                         type="button">
