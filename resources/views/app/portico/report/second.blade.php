@@ -66,7 +66,7 @@
 @section('js_level_scripts')
 	<script src="{{ asset('assets/pages/scripts/components-date-time-pickers.js') }}" type="text/javascript"></script>
 	<script type="text/javascript">
-		jQuery(document).ready(function () {
+		$(document).ready(function () {
 			if (jQuery().datepicker) {
 				$('.date-picker').datepicker({
 					rtl: App.isRTL(),
