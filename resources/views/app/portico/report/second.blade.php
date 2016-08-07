@@ -149,6 +149,7 @@
 			console.log(d);
 			chart.dataProvider = d;
 			toastr.success("Creando Gráfico con los datos...");
+			chart.titles = [];
 			chart.validateData();
 			chart.animateAgain();
 			var title = "Del " + $("#from").val() + " al " + $("#to").val();
