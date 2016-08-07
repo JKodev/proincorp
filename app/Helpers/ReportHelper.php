@@ -60,10 +60,10 @@ class ReportHelper
 		}
 
 		$total = $query->count();
-		$rests = $query->skip($parameters['start'])->take($parameters['length']);
-		$filtered = $rests->count();
+		$query->skip($parameters['start'])->take($parameters['length']);
+		$filtered = $query->count();
 
-		$results = $rests->get();
+		$results = $query->get();
 
 		$array_data = [];
 		foreach ($results as $result) {
