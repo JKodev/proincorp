@@ -113,6 +113,7 @@
 					"labelRadius": 10,
 					"titleField": "Tip_Vehiculo",
 					"valueField": "sum",
+					"groupPercent": 5,
 					"export": {
 						"enabled": true
 					},
@@ -137,6 +138,8 @@
 			chart.dataProvider = d;
 			chart.validateData();
 			chart.animateAgain();
+			var title = "Del " + $("#from").val() + " al " + $("#to").val();
+			chart.addTitle(title);
 		});
 	</script>
 @endsection
