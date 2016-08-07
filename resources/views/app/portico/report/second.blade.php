@@ -154,7 +154,6 @@
 			//initChartFunct();
 
 			$('#show-report').on("click", function () {
-				toastr.error("hey");
 				initChartFunct();
 			});
 		});
