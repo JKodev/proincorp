@@ -44,7 +44,8 @@ class PorticoController extends Controller
 		    'id' => $id,
 		    'report_id' => $report_id,
 		    'lector' => $lector,
-		    'lectores' => $lectores
+		    'lectores' => $lectores,
+		    'colors' => $this->colors
 	    );
 
     	switch ($report_id) {
