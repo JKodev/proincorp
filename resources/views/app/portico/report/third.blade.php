@@ -141,6 +141,9 @@
 					"pageLength": 10, // default record count per page
 					"ajax": {
 						"url": "{{ route('service.reports.portico.tipos-vehiculos.empresa', array('id' => $id)) }}", // ajax source
+						"data": function (data) {
+							data._token = '{{ csrf_token() }}';
+						}
 					},
 					"order": [
 						[1, "asc"]
