@@ -66,7 +66,7 @@ class ReportHelper
 			'recordsFiltered'   =>  $query->count()
 		);
 
-		$results = $query->skip($parameters['start'])->take($parameters['length'])->get();
+		$results = $query->skip($start)->take($length)->get();
 
 		foreach ($results as $result) {
 			$data['data'][] = array(
