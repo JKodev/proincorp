@@ -43,8 +43,8 @@ class ReportHelper
 				$start_date = \DateTime::createFromFormat("d/m/Y", $parameters['date_from']);
 				$end_date = \DateTime::createFromFormat("d/m/Y", $parameters['date_to']);
 				$query->whereBetween('FECHA', array(
-					$start_date->format('Y-m-d H:i:s'),
-					$end_date->format('Y-m-d H:i:s')
+					$start_date->format('d/m/Y 00:00:00'),
+					$end_date->format('d/m/Y 00:00:00')
 				));
 			}
 		}
