@@ -94,12 +94,24 @@
 				'url': n_route,
 				'dataType': 'json',
 				'async': false,
+				'beforeSend': function () {
+					toastr.success("Obteniendo información del servidor...", "", { timeOut: 100000 });
+				},
 				'success': function (response) {
+					toastr.clear();
 					console.log(response);
 					if (response.length == 0) {
-						toastr.warning("No hay datos para esta fecha", "No se encontraron datos.");
+						toastr.warning("No hay datos para esta fecha, pruebe con una fecha distinta.", "No se encontraron datos.");
+					} else {
+						toastr.success("Se ha cargado la información de forma correcta.", "Exito");
 					}
 					data = response;
+				},
+				'error': function (error) {
+					toastr.error("No se ha podido obtener la información desde el servidor.<br>Intentelo en unos minutos.", "Error de petición.");
+				},
+				'complete': function () {
+					toastr.clear();
 				}
 			});
 
@@ -136,6 +148,7 @@
 			var d = getData();
 			console.log(d);
 			chart.dataProvider = d;
+			toastr.success("Creando Gráfico con los datos...");
 			chart.validateData();
 			chart.animateAgain();
 			var title = "Del " + $("#from").val() + " al " + $("#to").val();
