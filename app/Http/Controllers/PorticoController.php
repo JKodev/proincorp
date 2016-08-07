@@ -37,12 +37,14 @@ class PorticoController extends Controller
     public function report($id, $report_id)
     {
     	$lector = Lector::find($id);
+	    $lectores = Lector::all();
 	    $view = '';
 	    $variables = array(
 	    	'title' => '',
 		    'id' => $id,
 		    'report_id' => $report_id,
-		    'lector' => $lector
+		    'lector' => $lector,
+		    'lectores' => $lectores
 	    );
 
     	switch ($report_id) {
