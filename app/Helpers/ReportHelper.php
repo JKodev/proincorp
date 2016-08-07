@@ -30,7 +30,7 @@ class ReportHelper
 		return $query;
 	}
 
-	public static function tipo_vehiculo_empresa($lector_id, $parameters)
+	public static function tipo_vehiculo_empresa($lector_id, $length, $start, $draw, $parameters)
 	{
 		$lector = Lector::find($lector_id);
 
@@ -38,7 +38,7 @@ class ReportHelper
 			->table('LECTURAS_DETALLADAS_LEC_VISIBLE')
 			->where('IP', $lector->ip_lector_movimiento);
 
-		if (in_array('date_from', $parameters) && in_array('date_to', $parameters)) {
+		if (array_key_exists('date_from', $parameters) && array_key_exists('date_to', $parameters)) {
 			if (!empty($parameters['date_from']) && !empty($parameters['date_to'])) {
 				$query->whereBetween('FECHA', array(
 					$parameters['date_from'],
@@ -47,42 +47,38 @@ class ReportHelper
 			}
 		}
 
-		if (in_array('empresa', $parameters)) {
+		if (array_key_exists('empresa', $parameters)) {
 			if (!empty($parameters['empresa'])) {
 				$query->where('RAZON_SOCIAL', 'LIKE', '%'.strtoupper($parameters['empresa']).'%');
 			}
 		}
 
-		if (in_array('placa',$parameters)) {
+		if (array_key_exists('placa', $parameters)) {
 			if (!empty($parameters['placa'])) {
 				$query->where('PLACA', 'LIKE', '%'.strtoupper($parameters['placa']).'%');
 			}
 		}
 
-		$total = $query->count();
-		$query->skip($parameters['start'])->take($parameters['length']);
-		$filtered = $query->count();
+		$data = array(
+			'data'  => array(),
+			'draw'  =>  $draw,
+			'recordsTotal'  =>  $query->count(),
+			'recordsFiltered'   =>  $query->count()
+		);
 
-		$results = $query->get();
+		$results = $query->skip($parameters['start'])->take($parameters['length'])->get();
 
-		$array_data = [];
 		foreach ($results as $result) {
-			$dt = array(
+			$data['data'][] = array(
 				$result->FECHA,
 				$result->PLACA,
 				self::buscarVehiculoXPlaca($result->PLACA)->Gru_Vehiculo,
 				$result->RAZON_SOCIAL,
 				'-'
 			);
-			array_push($array_data, $dt);
 		}
 
-		$data = array(
-			'data'  => $array_data,
-			'draw'  =>  4,
-			'recordsTotal'  =>  $total,
-			'recordsFiltered'   =>  $filtered
-		);
+
 		return $data;
 	}
 }
