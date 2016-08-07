@@ -109,10 +109,19 @@
 				rtl: App.isRTL(),
 				autoclose: true
 			});
+
 			var grid = new Datatable();
+			var ajaxParams = {};
+			var table = $("#datatable_ajax");
+
+			var setAjaxParams = function(){
+				$('textarea.form-filter, select.form-filter, input.form-filter:not([type="radio"],[type="checkbox"])', table).each(function() {
+					ajaxParams[$(this).attr("name")] = $(this).val();
+				});
+			};
 
 			grid.init({
-				src: $("#datatable_ajax"),
+				src: table,
 				onSuccess: function (grid, response) {
 					// grid:        grid object
 					// response:    json object of server side ajax response
@@ -126,7 +135,30 @@
 				},
 				loadingMessage: 'Cargando...',
 				dataTable: { // here you can define a typical datatable settings from http://datatables.net/usage/options
-
+					"language": {
+						"sProcessing":     "Procesando...",
+						"sLengthMenu":     "Mostrar _MENU_ registros",
+						"sZeroRecords":    "No se encontraron resultados",
+						"sEmptyTable":     "Ningún dato disponible en esta tabla",
+						"sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+						"sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+						"sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+						"sInfoPostFix":    "",
+						"sSearch":         "Buscar:",
+						"sUrl":            "",
+						"sInfoThousands":  ",",
+						"sLoadingRecords": "Cargando...",
+						"oPaginate": {
+							"sFirst":    "Primero",
+							"sLast":     "Último",
+							"sNext":     "Siguiente",
+							"sPrevious": "Anterior"
+						},
+						"oAria": {
+							"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+							"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+						}
+					},
 					// Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
 					// setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/scripts/datatable.js).
 					// So when dropdowns used the scrollable div should be removed.
@@ -142,9 +174,27 @@
 					"ajax": {
 						"url": "{{ route('service.reports.portico.tipos-vehiculos.empresa', array('id' => $id)) }}", // ajax source
 						"data": function (data) {
+							setAjaxParams();
 							data._token = '{{ csrf_token() }}';
+							data.filters = {};
+							$.each(ajaxParams, function(key, value) {
+								data.filters[key] = value;
+							});
+							console.log(data);
+							App.blockUI({
+								message: "Cargando...",
+								target: table.parents(".table-container"),
+								overlayColor: 'none',
+								cenrerY: true,
+								boxed: true
+							});
 						}
 					},
+					buttons: [
+						{ extend: 'print', className: 'btn dark btn-outline' },
+						{ extend: 'pdf', className: 'btn green btn-outline' },
+						{ extend: 'csv', className: 'btn purple btn-outline ' }
+					],
 					"order": [
 						[1, "asc"]
 					]// set first column as a default sort by asc
