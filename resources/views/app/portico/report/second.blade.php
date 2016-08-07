@@ -138,7 +138,7 @@
 						"dataProvider": []
 					}
 			);
-			chart.dataProvider = [];
+			chart.dataProvider = getData();
 			chart.validateData();
 
 			var initChartFunct = function () {
@@ -151,7 +151,7 @@
 				chart.animateAgain();
 			};
 
-			initChartFunct();
+			//initChartFunct();
 
 			$('#show-report').on("click", function () {
 				toastr.error("hey");
