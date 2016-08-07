@@ -105,7 +105,7 @@ Route::group([
 				'uses'  =>  'PorticoController@serviceTipoVehiculoPorcentual'
 			]);
 
-			Route::get('/empresa/{id}/', [
+			Route::post('/empresa/{id}/', [
 				'as'    =>  'service.reports.portico.tipos-vehiculos.empresa',
 				'uses'  =>  'PorticoController@serviceTipoVehiculoEmpresa'
 			]);
