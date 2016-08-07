@@ -99,7 +99,6 @@
 					toastr.success("Obteniendo información del servidor...", "", { timeOut: 100000 });
 				},
 				'success': function (response) {
-					toastr.clear();
 					console.log(response);
 					if (response.length == 0) {
 						toastr.warning("No hay datos para esta fecha, pruebe con una fecha distinta.", "No se encontraron datos.");
