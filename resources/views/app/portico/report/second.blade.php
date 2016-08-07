@@ -31,9 +31,10 @@
 										<div class="col-md-4">
 											<div class="input-group input-large date-picker input-daterange"
 											     data-date="{{ date('d/m/Y') }}" data-date-format="dd/mm/yyyy">
-												<input type="text" class="form-control" id="from" name="from">
+												<input type="text" value="{{ date('d/m/Y') }}" class="form-control" id="from" name="from">
 												<span class="input-group-addon"> a </span>
-												<input type="text" class="form-control" id="to" name="to"></div>
+												<input type="text" value="{{ date('d/m/Y') }}" class="form-control" id="to" name="to">
+											</div>
 											<span class="help-block"> Seleccione rango de fechas </span>
 										</div>
 										<div class="col-md-3">
