@@ -138,7 +138,7 @@
 						"dataProvider": []
 					}
 			);
-			var initChart = function () {
+			var initChartFunct = function () {
 				chart.dataProvider = getData();
 				toastr.info("Creando Gráfico con los datos...");
 				chart.titles = [];
@@ -148,11 +148,11 @@
 				chart.animateAgain();
 			};
 
-			initChart();
+			initChartFunct();
 
 			$('#show-report').on("click", function () {
 				toastr.error("hey");
-				initChart();
+				initChartFunct();
 			});
 		});
 	</script>
