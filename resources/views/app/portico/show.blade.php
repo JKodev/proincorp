@@ -52,7 +52,7 @@
 					<div class="number">1000</div>
 					<div class="desc"> Carros de Empresas</div>
 				</div>
-				<a class="more" href="javascript:;"> Ver Reporte
+				<a class="more" href="{{ route('app.reports.portico.report', array('id' => $lector->id_lector_movimiento, 'report_id' => 3)) }}"> Ver Reporte
 					<i class="m-icon-swapright m-icon-white"></i>
 				</a>
 			</div>
@@ -68,7 +68,7 @@
 					<div class="number"> 5000</div>
 					<div class="desc"> Vehículos con tags</div>
 				</div>
-				<a class="more" href="javascript:;"> Ver Reporte
+				<a class="more" href="{{ route('app.reports.portico.report', array('id' => $lector->id_lector_movimiento, 'report_id' => 4)) }}"> Ver Reporte
 					<i class="m-icon-swapright m-icon-white"></i>
 				</a>
 			</div>
