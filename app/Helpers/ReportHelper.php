@@ -97,7 +97,7 @@ class ReportHelper
 			$start_date = $date.' '.$hour_start;
 			$end_date = $date.' '.$hour_end;
 			$query = DB::connection('sqlsrv')
-				->table('SDTR_LECTURAS_VISIBLES')
+				->table('SDTR_LECTURAS_VISIBLE')
 				->where('ip_lector_movimiento', $lector->ip_lector_movimiento)
 				->whereBetween('fecha_hora_lectura', [$start_date, $end_date]);
 
