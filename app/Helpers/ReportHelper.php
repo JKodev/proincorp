@@ -59,8 +59,11 @@ class ReportHelper
 			}
 		}
 
+		$total = $query->count();
+		$rests = $query->skip($parameters['start'])->take($parameters['length']);
+		$filtered = $rests->count();
 
-		$results = $query->skip($parameters['start'])->take($parameters['length'])->get();
+		$results = $rests->get();
 
 		$array_data = [];
 		foreach ($results as $result) {
@@ -77,8 +80,8 @@ class ReportHelper
 		$data = array(
 			'data'  => $array_data,
 			'draw'  =>  4,
-			'recordsTotal'  =>  $results->count(),
-			'recordsFiltered'   =>  $results->count()
+			'recordsTotal'  =>  $total,
+			'recordsFiltered'   =>  $filtered
 		);
 		return $data;
 	}
