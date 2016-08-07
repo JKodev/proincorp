@@ -54,7 +54,6 @@ class PorticoController extends Controller
 				$variables['title'] = "Autos día";
 		    break;
 		    case "2":
-		    	//$variables['results'] = ReportHelper::tipo_vehiculo_porcentual($id, '2016-05-27 00:00:00', '2016-05-27 23:59:59');
 		    	$variables['title'] = "Tipo de Vehículo";
 				$view = 'app.portico.report.second';
 		    break;
@@ -90,6 +89,14 @@ class PorticoController extends Controller
 	    $parameters = $request->filters;
 
     	$data = ReportHelper::tipo_vehiculo_empresa($id, $length, $start, $draw, $parameters);
+
+	    return response()->json($data);
+    }
+
+    public function serviceVehiculosDia($id, $date)
+    {
+    	$f_date = date("d/m/Y", $date);
+	    $data = ReportHelper::autos_dia($id, $f_date);
 
 	    return response()->json($data);
     }

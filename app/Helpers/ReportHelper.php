@@ -83,4 +83,37 @@ class ReportHelper
 
 		return $data;
 	}
+
+	public static function autos_dia($lector_id, $fecha)
+	{
+		$lector = Lector::find($lector_id);
+		$hour_start = '00:00:00';
+		$hour_end = '00:30:00';
+
+		$results = array();
+
+		while ($hour_end != '00:00:00') {
+			$date = \DateTime::createFromFormat('d/m/Y')->format('d/m/Y');
+			$start_date = $date.' '.$hour_start;
+			$end_date = $date.' '.$hour_end;
+			$query = DB::connection('sqlsrv')
+				->table('SDTR_LECTURAS_VISIBLES')
+				->where('ip_lector_movimiento', $lector->ip_lector_movimiento)
+				->whereBetween('fecha_hora_lectura', [$start_date, $end_date]);
+
+			$total = $query->count();
+
+			$results[] = array(
+				'hour'  =>  $hour_end,
+				'total' =>  $total
+			);
+			$hour_start = $hour_end;
+			$timestamp = strtotime($hour_end) + 1800;
+
+			$hour_end = date('H:i:s', $timestamp);
+
+		}
+
+		return $results;
+	}
 }

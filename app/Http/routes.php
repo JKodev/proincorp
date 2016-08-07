@@ -109,6 +109,11 @@ Route::group([
 				'as'    =>  'service.reports.portico.tipos-vehiculos.empresa',
 				'uses'  =>  'PorticoController@serviceTipoVehiculoEmpresa'
 			]);
+
+			Route::get('/vehiculos-dia/{id}/{date}', [
+				'as'    =>  'service.reports.portico.vehiculos-dia',
+				'uses'  =>  'App\Http\Controllers\PorticoController@serviceVehiculosDia'
+			]);
 		});
 	});
 });

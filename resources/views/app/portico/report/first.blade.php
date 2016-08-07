@@ -1,9 +1,17 @@
-@extends('layout')
+@extends('app.portico.show')
 
 @section('title', $title)
 
 @section('css_level_plugins')
 	<link rel="stylesheet" href="http://www.amcharts.com/lib/3/plugins/export/export.css">
+@endsection
+
+@section('breadcrumb')
+	@parent
+	<li>
+		<a href="{{ route('app.reports.portico.report', array('id' => $id, 'report_id' => $report_id)) }}">{{ $title }}</a>
+		<i class="fa fa-circle"></i>
+	</li>
 @endsection
 
 @section('content')
