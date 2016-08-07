@@ -41,7 +41,8 @@ class PorticoController extends Controller
 	    $variables = array(
 	    	'title' => '',
 		    'id' => $id,
-		    'report_id' => $report_id
+		    'report_id' => $report_id,
+		    'lector' => $lector
 	    );
 
     	switch ($report_id) {

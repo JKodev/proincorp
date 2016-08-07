@@ -5,7 +5,7 @@
 @section('breadcrumb')
 	@parent
 	<li>
-		<a href="{{ route('app.reports.portico.show', array('id' => $lector->id_lector_movimiento)) }}">preg_replace('/(\d+)\_(\d+)/', " ", $lector->dsc_lector_movimiento</a>
+		<a href="{{ route('app.reports.portico.show', array('id' => $lector->id_lector_movimiento)) }}">{{ preg_replace('/(\d+)\_(\d+)/', " ", $lector->dsc_lector_movimiento) }}</a>
 		<i class="fa fa-circle"></i>
 	</li>
 @endsection
