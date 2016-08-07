@@ -109,9 +109,6 @@
 				},
 				'error': function (error) {
 					toastr.error("No se ha podido obtener la información desde el servidor.<br>Intentelo en unos minutos.", "Error de petición.");
-				},
-				'complete': function () {
-					toastr.clear();
 				}
 			});
 
