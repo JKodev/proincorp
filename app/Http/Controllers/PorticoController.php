@@ -68,7 +68,6 @@ class PorticoController extends Controller
 		    default:
 		    	break;
 	    }
-	    $variables['title'] .= ' - '.preg_replace('/(\d+)\_(\d+)/', " ", $lector->dsc_lector_movimiento);
 
 	    return view($view, $variables);
     }
