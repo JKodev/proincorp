@@ -21,4 +21,16 @@ class ReportHelper
 			->get();
 		return $query;
 	}
+
+	public static function tipo_vehiculo_empresa($lector_id)
+	{
+		$lector = Lector::find($lector_id);
+
+		$query = DB::connection('sqlsrv')
+			->table('LECTURAS_DETALLADAS_LEC_VISIBLE')
+			->where('IP', $lector->ip_lector_movimiento)
+			//->whereBetween('FECHA', [$start_date, $end_date])
+			->get();
+		return $query;
+	}
 }

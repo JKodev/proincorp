@@ -54,7 +54,9 @@ class PorticoController extends Controller
 				$view = 'app.portico.report.second';
 		    break;
 		    case "3":
-		    	return view('app.portico.report.third');
+		    	$view = 'app.portico.report.third';
+				$variables['title'] = "Tipo de Vehículo Empresa";
+				$variables['id'] = $id;
 		    break;
 		    case "4":
 		    	return view('app.portico.report.fourth');
@@ -67,7 +69,7 @@ class PorticoController extends Controller
 	    return view($view, $variables);
     }
 
-    public function serviceTipoVehiculo($id, $start_date, $end_date)
+    public function serviceTipoVehiculoPorcentual($id, $start_date, $end_date)
     {
     	$s_date = date("Y-m-d 00:00:00", $start_date);
 	    $e_date = date("Y-m-d 23:59:59", $end_date);
@@ -75,5 +77,10 @@ class PorticoController extends Controller
 	    $serialize = SerializeHelper::fromArray($data, array("Tip_Vehiculo", "sum"));
 
 	    return response()->json($serialize);
+    }
+
+    public function serviceTipoVehiculoEmpresa(Request $request, $id)
+    {
+	    dd($request->all());
     }
 }

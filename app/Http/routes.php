@@ -100,9 +100,14 @@ Route::group([
 			'prefix'    =>  'portico'
 		], function () {
 
-			Route::get('/{id}/{start_date}/{end_date}/', [
-				'as'    =>  'service.reports.portico.tipos-vehiculos',
-				'uses'  =>  'PorticoController@serviceTipoVehiculo'
+			Route::get('/porcentual/{id}/{start_date}/{end_date}/', [
+				'as'    =>  'service.reports.portico.tipos-vehiculos.porcentual',
+				'uses'  =>  'PorticoController@serviceTipoVehiculoPorcentual'
+			]);
+
+			Route::get('/empresa/{id}/', [
+				'as'    =>  'service.reports.portico.tipos-vehiculos.empresa',
+				'uses'  =>  'PorticoController@serviceTipoVehiculoEmpresa'
 			]);
 		});
 	});
