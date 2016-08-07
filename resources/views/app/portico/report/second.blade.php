@@ -145,16 +145,16 @@
 		chart.validateData();
 
 		$('#show-report').click(function () {
+			toastr.info("Obtiendo información");
 			var d = getData();
 			console.log(d);
 			chart.dataProvider = d;
 			toastr.success("Creando Gráfico con los datos...");
-			chart.titles = [];
-			chart.validateNow();
-			chart.validateData();
-			chart.animateAgain();
 			var title = "Del " + $("#from").val() + " al " + $("#to").val();
 			chart.addTitle(title);
+			chart.validateData();
+			chart.animateAgain();
+
 		});
 	</script>
 @endsection
