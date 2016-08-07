@@ -66,94 +66,96 @@
 @section('js_level_scripts')
 	<script src="{{ asset('assets/pages/scripts/components-date-time-pickers.js') }}" type="text/javascript"></script>
 	<script type="text/javascript">
-		if (jQuery().datepicker) {
-			$('.date-picker').datepicker({
-				rtl: App.isRTL(),
-				orientation: "left",
-				autoclose: true
-			});
-		}
-
-		var route = '{{  route('app.init') }}/service/reports/portico/{{ $id }}/{start_date}/{end_date}/';
-		var getData = function () {
-			var start = $('#from').val();
-			var end = $('#to').val();
-			if (start == '' || start === null) {
-				start = '{{ date('d/m/Y') }}';
-			}
-			if (end == '' || end === null) {
-				end = '{{ date('d/m/Y') }}';
+		jQuery(document).ready(function () {
+			if (jQuery().datepicker) {
+				$('.date-picker').datepicker({
+					rtl: App.isRTL(),
+					orientation: "left",
+					autoclose: true
+				});
 			}
 
-			var start_unix = moment(start, "DD/MM/YYYY").unix();
-			var end_unix = moment(end, "DD/MM/YYYY").unix();
-			var n_route = route.replace('{start_date}', start_unix);
-			n_route = n_route.replace('{end_date}', end_unix);
+			var route = '{{  route('app.init') }}/service/reports/portico/{{ $id }}/{start_date}/{end_date}/';
+			var getData = function () {
+				var start = $('#from').val();
+				var end = $('#to').val();
+				if (start == '' || start === null) {
+					start = '{{ date('d/m/Y') }}';
+				}
+				if (end == '' || end === null) {
+					end = '{{ date('d/m/Y') }}';
+				}
 
-			var data = [];
-			$.ajax({
-				'url': n_route,
-				'dataType': 'json',
-				'async': false,
-				'beforeSend': function () {
-					toastr.info("Obteniendo información del servidor...");
-				},
-				'success': function (response) {
-					console.log(response);
-					if (response.length == 0) {
-						toastr.warning("No hay datos para esta fecha, pruebe con una fecha distinta.", "No se encontraron datos.");
-					} else {
-						toastr.success("Se ha cargado la información de forma correcta.", "Exito");
+				var start_unix = moment(start, "DD/MM/YYYY").unix();
+				var end_unix = moment(end, "DD/MM/YYYY").unix();
+				var n_route = route.replace('{start_date}', start_unix);
+				n_route = n_route.replace('{end_date}', end_unix);
+
+				var data = [];
+				$.ajax({
+					'url': n_route,
+					'dataType': 'json',
+					'async': false,
+					'beforeSend': function () {
+						toastr.info("Obteniendo información del servidor...");
+					},
+					'success': function (response) {
+						console.log(response);
+						if (response.length == 0) {
+							toastr.warning("No hay datos para esta fecha, pruebe con una fecha distinta.", "No se encontraron datos.");
+						} else {
+							toastr.success("Se ha cargado la información de forma correcta.", "Exito");
+						}
+						data = response;
+					},
+					'error': function (error) {
+						toastr.error("No se ha podido obtener la información desde el servidor.<br>Intentelo en unos minutos.", "Error de petición.");
 					}
-					data = response;
-				},
-				'error': function (error) {
-					toastr.error("No se ha podido obtener la información desde el servidor.<br>Intentelo en unos minutos.", "Error de petición.");
-				}
-			});
+				});
 
-			return data;
-		};
+				return data;
+			};
 
-		var chart = AmCharts.makeChart("chartdiv",
-				{
-					"type": "pie",
-					"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
-					"labelRadius": 10,
-					"titleField": "Tip_Vehiculo",
-					"valueField": "sum",
-					"groupPercent": 5,
-					"export": {
-						"enabled": true
-					},
-					"allLabels": [],
-					"balloon": {},
-					"legend": {
-						"enabled": true,
-						"align": "center",
-						"markerType": "circle"
-					},
-					"titles": [],
+			var chart = AmCharts.makeChart("chartdiv",
+					{
+						"type": "pie",
+						"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+						"labelRadius": 10,
+						"titleField": "Tip_Vehiculo",
+						"valueField": "sum",
+						"groupPercent": 5,
+						"export": {
+							"enabled": true
+						},
+						"allLabels": [],
+						"balloon": {},
+						"legend": {
+							"enabled": true,
+							"align": "center",
+							"markerType": "circle"
+						},
+						"titles": [],
 
-					//"dataProvider": getData()
-				}
-		);
-		var initChart = function () {
-			var d = getData();
-			console.log(d);
-			chart.dataProvider = d;
-			toastr.info("Creando Gráfico con los datos...");
-			chart.titles = [];
-			var title = "Del " + $("#from").val() + " al " + $("#to").val();
-			chart.addTitle(title);
-			chart.validateData();
-			chart.animateAgain();
-		};
+						//"dataProvider": getData()
+					}
+			);
+			var initChart = function () {
+				var d = getData();
+				console.log(d);
+				chart.dataProvider = d;
+				toastr.info("Creando Gráfico con los datos...");
+				chart.titles = [];
+				var title = "Del " + $("#from").val() + " al " + $("#to").val();
+				chart.addTitle(title);
+				chart.validateData();
+				chart.animateAgain();
+			};
 
-		initChart();
-
-		$('#show-report').click(function () {
 			initChart();
+
+			$('#show-report').click(function () {
+				initChart();
+			});
 		});
 	</script>
 @endsection
