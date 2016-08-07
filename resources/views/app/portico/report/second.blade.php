@@ -96,7 +96,7 @@
 				'dataType': 'json',
 				'async': false,
 				'beforeSend': function () {
-					toastr.success("Obteniendo información del servidor...", "", { timeOut: 100000 });
+					toastr.info("Obteniendo información del servidor...",);
 				},
 				'success': function (response) {
 					console.log(response);
@@ -138,21 +138,22 @@
 					//"dataProvider": getData()
 				}
 		);
-		chart.dataProvider = getData();
-		chart.validateData();
-
-		$('#show-report').click(function () {
-			toastr.info("Obtiendo información");
+		var initChart = function () {
 			var d = getData();
 			console.log(d);
 			chart.dataProvider = d;
-			toastr.success("Creando Gráfico con los datos...");
+			toastr.info("Creando Gráfico con los datos...");
 			chart.titles = [];
 			var title = "Del " + $("#from").val() + " al " + $("#to").val();
 			chart.addTitle(title);
 			chart.validateData();
 			chart.animateAgain();
+		};
 
+		initChart();
+
+		$('#show-report').click(function () {
+			initChart();
 		});
 	</script>
 @endsection
