@@ -138,6 +138,9 @@
 						"dataProvider": []
 					}
 			);
+			chart.dataProvider = [];
+			chart.validateData();
+
 			var initChartFunct = function () {
 				chart.dataProvider = getData();
 				toastr.info("Creando Gráfico con los datos...");

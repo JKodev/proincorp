@@ -38,7 +38,7 @@
     <link href="{{ asset('assets/layouts/layout3/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
     @show
     <!-- END THEME LAYOUT STYLES -->
-    <link rel="shortcut icon" href="favicon.ico" /> </head>
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" /> </head>
     <!-- END HEAD -->
 
     <body class="page-container-bg-solid page-md">
