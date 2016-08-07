@@ -150,7 +150,7 @@
 
 			initChart();
 
-			$('#show-report').click(function () {
+			$('#show-report').on("click", function () {
 				toastr.error("hey");
 				initChart();
 			});
