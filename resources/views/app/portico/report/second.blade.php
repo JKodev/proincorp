@@ -151,6 +151,7 @@
 			initChart();
 
 			$('#show-report').click(function () {
+				toastr.error("hey");
 				initChart();
 			});
 		});
