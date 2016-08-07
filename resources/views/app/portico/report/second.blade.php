@@ -96,7 +96,7 @@
 				'dataType': 'json',
 				'async': false,
 				'beforeSend': function () {
-					toastr.info("Obteniendo información del servidor...",);
+					toastr.info("Obteniendo información del servidor...");
 				},
 				'success': function (response) {
 					console.log(response);
