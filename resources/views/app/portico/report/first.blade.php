@@ -207,7 +207,10 @@
 			//initChartFunct();
 
 			$('#show-report').on("click", function () {
-				initChartFunct();
+				toastr.info("Obteniendo información del servidor. Un momento por favor.");
+				setTimeout(function () {
+					initChartFunct();
+				}, 1000);
 			});
 		});
 
