@@ -63,6 +63,7 @@
 	<script type="text/javascript" src="http://www.amcharts.com/lib/3/amcharts.js"></script>
 	<script type="text/javascript" src="http://www.amcharts.com/lib/3/serial.js"></script>
 	<script type="text/javascript" src="http://www.amcharts.com/lib/3/plugins/export/export.js"></script>
+	<script type="text/javascript" src="https://www.amcharts.com/lib/3/lang/es.js"></script>
 	<script src="{{ asset('assets/global/plugins/moment.min.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"
 	        type="text/javascript"></script>
@@ -146,6 +147,7 @@
 				return data;
 			};
 			var chart = AmCharts.makeChart("chartdiv", {
+				"language": "es",
 				"type": "serial",
 				"categoryField": "Hora",
 				"rotate": true,
