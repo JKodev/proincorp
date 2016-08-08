@@ -141,6 +141,7 @@
 				loadingMessage: 'Cargando...',
 				dataTable: { // here you can define a typical datatable settings from http://datatables.net/usage/options
 					"language": {
+						"metronicAjaxRequestGeneralError": "No se pudo completar la petición. Por favor, revise su conexión de internet.",
 						"sProcessing":     "Procesando...",
 						"sLengthMenu":     "Mostrar _MENU_ registros",
 						"sZeroRecords":    "No se encontraron resultados",
@@ -162,6 +163,19 @@
 						"oAria": {
 							"sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
 							"sSortDescending": ": Activar para ordenar la columna de manera descendente"
+						},
+						"lengthMenu": "<span class='seperator'>|</span>Mostrar _MENU_ registros",
+						"info": "<span class='seperator'>|</span>Encontrados _TOTAL_ registros",
+						"infoEmpty": "No se encontraron registros para mostrar",
+						"emptyTable": "No hay datos disponibles en la tabla",
+						"zeroRecords": "No se encontraron datos.",
+						"paginate": {
+							"previous": "Anterior",
+							"next": "Siguiente",
+							"last": "Último",
+							"first": "Primero",
+							"page": "Página",
+							"pageOf": "de"
 						}
 					},
 					// Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
@@ -203,35 +217,6 @@
 					"order": [
 						[1, "asc"]
 					]// set first column as a default sort by asc
-				}
-			});
-
-			// handle group actionsubmit button click
-			grid.getTableWrapper().on('click', '.table-group-action-submit', function (e) {
-				e.preventDefault();
-				var action = $(".table-group-action-input", grid.getTableWrapper());
-				if (action.val() != "" && grid.getSelectedRowsCount() > 0) {
-					grid.setAjaxParam("customActionType", "group_action");
-					grid.setAjaxParam("customActionName", action.val());
-					grid.setAjaxParam("id", grid.getSelectedRows());
-					grid.getDataTable().ajax.reload();
-					grid.clearAjaxParams();
-				} else if (action.val() == "") {
-					App.alert({
-						type: 'danger',
-						icon: 'warning',
-						message: 'Please select an action',
-						container: grid.getTableWrapper(),
-						place: 'prepend'
-					});
-				} else if (grid.getSelectedRowsCount() === 0) {
-					App.alert({
-						type: 'danger',
-						icon: 'warning',
-						message: 'No record selected',
-						container: grid.getTableWrapper(),
-						place: 'prepend'
-					});
 				}
 			});
 		});
