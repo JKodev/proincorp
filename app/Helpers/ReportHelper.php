@@ -104,8 +104,8 @@ class ReportHelper
 			$total = $query->count();
 
 			$results[] = array(
-				'hour'  =>  $hour_end,
-				'total' =>  $total
+				'Hora'  =>  $hour_end,
+				'Vehiculos' =>  $total
 			);
 			$hour_start = $hour_end;
 			$timestamp = strtotime($hour_end) + 1800;

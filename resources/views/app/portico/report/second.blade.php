@@ -105,7 +105,7 @@
 			"menu.label.draw.modes.arrow": "Flecha",
 
 			"label.saved.from": "Saved from: "
-		}
+		};
 		$(document).ready(function () {
 			if (jQuery().datepicker) {
 				$('.date-picker').datepicker({
