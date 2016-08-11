@@ -158,7 +158,7 @@ class ReportHelper
 			);
 
 			$timestamp = strtotime($timer) + (60 * $interval);
-			$timer = date('H:i:s', $timestamp);
+			$timer = date('Y-m-d H:i:s', $timestamp);
 		}
 	}
 
