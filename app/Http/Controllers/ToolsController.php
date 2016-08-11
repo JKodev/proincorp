@@ -40,9 +40,9 @@ class ToolsController extends Controller
 			$name = strtoupper($separate[1]);
 
 			$lectores = Lector::where('dsc_lector_movimiento', 'LIKE', '%'.$name.'%');
-
-			if ($lectores->count() > 0) {
-				echo "Se registraran $lectores->count() lectores<br>";
+			$total = $lectores->count();
+			if ($total > 0) {
+				echo "Se registraran $total lectores<br>";
 				$lectores_reg = $lectores->get();
 				foreach ($lectores_reg as $lector) {
 					echo "Se registrará el lector <strong>$lector->dsc_lector_movimiento</strong><br>";
@@ -52,8 +52,8 @@ class ToolsController extends Controller
 					$find = $head
 						->where('id_camara', $camara->id)
 						->where('id_lector_movimiento', $lector->id_lector_movimiento);
-
-					if ($find->count() == 0) {
+					$total_find = $find->count();
+					if ($total_find == 0) {
 						$ruta = 'CV - Arequipa';
 						if (strpos($lector->dsc_lector_movimiento, 'AQP-CV') !== false) {
 							$ruta = 'Arequipa - CV';
@@ -67,7 +67,7 @@ class ToolsController extends Controller
 						);
 						echo "Se ha registrado el lector: <strong>$lector->dsc_lector_movimiento</strong> en la ruta <strong>$ruta</strong><br>";
 					} else {
-						echo "Se han encontrado $find->count() registros para el lector <strong>$lector->dsc_lector_movimiento</strong>.<br>";
+						echo "Se han encontrado $total_find registros para el lector <strong>$lector->dsc_lector_movimiento</strong>.<br>";
 					}
 				}
 			} else {
