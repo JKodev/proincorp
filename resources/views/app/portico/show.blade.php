@@ -34,6 +34,7 @@
 					<i class="fa fa-pie-chart fa-icon-medium"></i>
 				</div>
 				<div class="details">
+					<div class="number"> {{ $totals['vehiculos_tipo'] }}</div>
 					<div class="desc">Vehículos por Tipo</div>
 				</div>
 				<a class="more" href="{{ route('app.reports.portico.report', array('id' => $lector->id_lector_movimiento, 'report_id' => 2)) }}">
@@ -48,6 +49,7 @@
 					<i class="fa fa-area-chart fa-icon-medium"></i>
 				</div>
 				<div class="details">
+					<div class="number"> {{ $totals['vehiculos_empresa'] }}</div>
 					<div class="desc"> Vehículos de Empresas</div>
 				</div>
 				<a class="more" href="{{ route('app.reports.portico.report', array('id' => $lector->id_lector_movimiento, 'report_id' => 3)) }}"> Ver Reporte
@@ -63,6 +65,7 @@
 					<i class="fa fa-bar-chart fa-icon-medium"></i>
 				</div>
 				<div class="details">
+					<div class="number"> {{ $totals['camaras'] }}</div>
 					<div class="desc"> Reporte lectura de Cámaras</div>
 				</div>
 				<a class="more" href="{{ route('app.reports.portico.camaras', array('id' => $lector->id_lector_movimiento)) }}"> Ver Reporte
@@ -76,6 +79,7 @@
 					<i class="fa fa-bar-chart fa-icon-medium"></i>
 				</div>
 				<div class="details">
+					<div class="number"> {{ $totals['tags'] }}</div>
 					<div class="desc"> Reporte lectura de Tags</div>
 				</div>
 				<a class="more" href="{{ route('app.reports.portico.tags', array('id' => $lector->id_lector_movimiento)) }}"> Ver Reporte
@@ -89,6 +93,7 @@
 					<i class="fa fa-bar-chart fa-icon-medium"></i>
 				</div>
 				<div class="details">
+					<div class="number"> {{ $totals['general'] }}</div>
 					<div class="desc"> Reporte lectura General</div>
 				</div>
 				<a class="more" href="{{ route('app.reports.portico.general', array('id' => $lector->id_lector_movimiento)) }}"> Ver Reporte
