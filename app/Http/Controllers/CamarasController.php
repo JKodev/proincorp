@@ -41,6 +41,7 @@ class CamarasController extends Controller
 	    }
 
 	    return view('app.camaras.show', [
+	    	'camaras'   =>  $camaras,
 		    'camara'    =>  $camara,
 		    'ubicacion' =>  $ubicacion,
 		    'colors'    =>  $this->colors
