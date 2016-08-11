@@ -15,12 +15,16 @@
 Route::get('/', [
 	'as'    =>  'app.init',
 	'uses'  =>  function() {
-		return view('welcome');
+		if (Auth::check()) {
+			return redirect()->route('app.dashboard');
+		}
+		return redirect()->route('auth.login.getLogin');
 	}
 ]);
 
 Route::group([
-	'prefix'	=>	'app'
+	'prefix'	=>	'app',
+	'middleware'    =>  'auth'
 	], function () {
 
 		Route::get('/', [
@@ -110,6 +114,7 @@ Route::group([
 });
 
 Route::group([
+	'middleware'    =>  'auth',
 	'prefix'    =>  'service'
 ], function () {
 
@@ -154,6 +159,7 @@ Route::group([
 });
 
 Route::group([
+	'middleware'    =>  'auth',
 	'prefix'    =>  'tools'
 ], function () {
 
@@ -162,3 +168,7 @@ Route::group([
 		'uses'  =>  'ToolsController@migrate'
 	]);
 });
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
