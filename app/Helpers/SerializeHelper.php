@@ -26,7 +26,7 @@ class SerializeHelper
 
 		for ($i=0; $i < $len; $i++) {
 			$array = array(
-				'time'  =>  $data[$keys[0]][$i]
+				'hour'  =>  $data[$keys[0]][$i]['hour']
 			);
 			foreach ($keys as $key) {
 				$array[$key] = $data[$key][$i]['mount'];
