@@ -11,8 +11,10 @@ class CamarasController extends Controller
 {
     public function index()
     {
-    	$camaras = Camara::all();
+    	$camaras = Camara::where('currentConfigurationIndex', -99)->get();
 
-	    return view();
+	    return view('app.camaras.index', [
+	    	'camaras'   =>  $camaras
+	    ]);
     }
 }
