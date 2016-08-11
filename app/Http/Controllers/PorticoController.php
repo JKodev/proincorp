@@ -77,6 +77,7 @@ class PorticoController extends Controller
 	    $lectores = Lector::all();
     	return view('app.portico.report.tags', array(
     		'title'     =>  'Reporte por Tags',
+		    'id'        =>  $id,
     		'lector'    =>  $lector,
 		    'lectores'  =>  $lectores,
 		    'colors'    =>  $this->colors
