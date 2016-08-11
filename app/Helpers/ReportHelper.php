@@ -333,7 +333,7 @@ class ReportHelper
 
 	private static function totalTags($lector, $start_date, $end_date)
 	{
-		$camara = self::getCameraFromLector($lector);
+		$camara = self::getCameraFromLector($lector->id_lector_movimiento);
 
 		$lectores = DB::connection('sqlsrv')
 			->table('TB_LECTOR_CAMARA')
