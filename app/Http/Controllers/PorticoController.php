@@ -39,6 +39,7 @@ class PorticoController extends Controller
 
     public function report($id, $report_id)
     {
+	    $totals = ReportHelper::totalAllReports($id, date('d/m/Y 00:00:00'), date('d/m/Y 23:59:59'));
     	$lector = Lector::find($id);
 	    $lectores = Lector::all();
 	    $view = '';
@@ -48,7 +49,8 @@ class PorticoController extends Controller
 		    'report_id' => $report_id,
 		    'lector' => $lector,
 		    'lectores' => $lectores,
-		    'colors' => $this->colors
+		    'colors' => $this->colors,
+		    'totals'    =>  $totals
 	    );
 
     	switch ($report_id) {
