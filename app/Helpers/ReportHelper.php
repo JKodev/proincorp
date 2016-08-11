@@ -251,9 +251,10 @@ class ReportHelper
 		$data = array();
 
 		foreach ($lectores as $lector) {
+			$lect = Lector::find($lector->id_lector_movimiento);
 			$registers = DB::connection('sqlsrv')
 				->table('SDTR_LECTURAS_VISIBLE')
-				->where('ip_lector_movimiento', $lector->ip_lector_movimiento)
+				->where('ip_lector_movimiento', $lect->ip_lector_movimiento)
 				->whereBetween('fecha_hora_lectura', [$start_date, $end_date])
 				->get();
 			$route_name = $lector->ruta;
