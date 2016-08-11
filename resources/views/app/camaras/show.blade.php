@@ -112,6 +112,8 @@
 			*/
 		};
 		mapMarker();
+		@else
+			toastr.error("Lo sentimos, no hemos podido cargar la ubicación de la cámara.");
 		@endif
 	</script>
 @endsection
