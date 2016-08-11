@@ -142,13 +142,14 @@ class ReportHelper
 	}
 
 	/**
-	 * @param $data array
-	 * @param $key string
-	 * @param $interval integer
+	 * @param $data
+	 * @param $key
+	 * @param $interval
+	 * @param $date
 	 */
-	private static function generateSimpleInterval(&$data, $key, $interval)
+	private static function generateSimpleInterval(&$data, $key, $interval, $date)
 	{
-		$timer = '00:10:00';
+		$timer = $date.' 00:10:00';
 		$lenght = intval((60*24) / $interval);
 		for($i=0; $i < $lenght; $i++) {
 			$data[$key][$i] = array(
@@ -162,13 +163,14 @@ class ReportHelper
 	}
 
 	/**
-	 * @param $data array
-	 * @param $interval integer
+	 * @param $data
+	 * @param $interval
+	 * @param $date
 	 */
-	private static function generateCompleteInterval(&$data, $interval)
+	private static function generateCompleteInterval(&$data, $interval, $date)
 	{
 		foreach ($data as $item=>$value) {
-			self::generateSimpleInterval($data, $item, $interval);
+			self::generateSimpleInterval($data, $item, $interval, $date);
 		}
 	}
 
@@ -191,7 +193,8 @@ class ReportHelper
 			->get();
 
 		$data = self::getZonesArray($zones);
-		self::generateCompleteInterval($data, 10);
+		$format_unix_date = \DateTime::createFromFormat('d/m/Y', $date)->format('Y-m-d');
+		self::generateCompleteInterval($data, 10, $format_unix_date);
 
 		$valid_format = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date);
 
@@ -238,8 +241,8 @@ class ReportHelper
 			$route_name = $lector->ruta;
 
 			$data[$route_name] = array();
-
-			self::generateSimpleInterval($data, $route_name, 10);
+			$formar_unix_date = \DateTime::createFromFormat('d/m/Y', $date)->format('Y-m-d');
+			self::generateSimpleInterval($data, $route_name, 10, $formar_unix_date);
 
 			$valid_format = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date);
 
