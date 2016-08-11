@@ -10,7 +10,7 @@
 @section('breadcrumb')
 	@parent
 	<li>
-		<a href="{{ route('app.reports.portico.tags', array('id' => $id)) }}">{{ $title }}</a>
+		<a href="{{ route('app.reports.portico.general', array('id' => $id)) }}">{{ $title }}</a>
 		<i class="fa fa-circle"></i>
 	</li>
 @endsection

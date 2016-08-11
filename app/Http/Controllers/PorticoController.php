@@ -99,7 +99,7 @@ class PorticoController extends Controller
 	    $lector = Lector::find($id);
 	    $lectores = Lector::all();
 	    return view('app.portico.report.camaras', array(
-		    'title'     =>  'Reporte por Tags',
+		    'title'     =>  'Reporte por Cámaras',
 		    'id'        =>  $id,
 		    'lector'    =>  $lector,
 		    'lectores'  =>  $lectores,
@@ -121,7 +121,7 @@ class PorticoController extends Controller
 	    $lector = Lector::find($id);
 	    $lectores = Lector::all();
 	    return view('app.portico.report.general', array(
-		    'title'     =>  'Reporte por Tags',
+		    'title'     =>  'Reporte General',
 		    'id'        =>  $id,
 		    'lector'    =>  $lector,
 		    'lectores'  =>  $lectores,
