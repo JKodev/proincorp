@@ -78,7 +78,7 @@
 				'</div>';
 
 			var map = new google.maps.Map(document.getElementById('gmap_marker'), {
-				zoom: 4,
+				zoom: 12,
 				center: position
 			});
 
