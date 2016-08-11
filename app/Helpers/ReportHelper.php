@@ -149,7 +149,7 @@ class ReportHelper
 	 */
 	private static function generateSimpleInterval(&$data, $key, $interval, $date)
 	{
-		$timer = $date.' 00:10:00';
+		$timer = $date.' 00:00:00';
 		$lenght = intval((60*24) / $interval);
 		for($i=0; $i < $lenght; $i++) {
 			$data[$key][$i] = array(
