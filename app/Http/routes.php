@@ -169,6 +169,16 @@ Route::group([
 	]);
 });
 
-Route::auth();
-
-Route::get('/home', 'HomeController@index');
+// Authentication routes...
+Route::get('login', [
+	'as'    =>  'auth.login.getLogin',
+	'uses'  => 'Auth\AuthController@showLoginForm'
+]);
+Route::post('login', [
+	'as'    =>  'auth.login.postLogin',
+	'uses'  =>  'Auth\AuthController@login'
+]);
+Route::get('logout', [
+	'as'    =>  'auth.logout.getLogout',
+	'uses'  =>  'Auth\AuthController@logout'
+]);
