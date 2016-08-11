@@ -49,7 +49,7 @@
 					<i class="fa fa-area-chart fa-icon-medium"></i>
 				</div>
 				<div class="details">
-					<div class="number"> {{ $totals['vehiculos_empresa'] }}</div>
+					<div class="number"> {{ $totals['vehiculos_empresas'] }}</div>
 					<div class="desc"> Vehículos de Empresas</div>
 				</div>
 				<a class="more" href="{{ route('app.reports.portico.report', array('id' => $lector->id_lector_movimiento, 'report_id' => 3)) }}"> Ver Reporte
