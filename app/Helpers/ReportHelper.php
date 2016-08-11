@@ -312,7 +312,7 @@ class ReportHelper
 		$cam = DB::connection('sqlsrv')
 			->table('TB_LECTOR_CAMARA')
 			->where('id_lector_movimiento', $lector_id)
-			->first();
+			->get();
 		dd($cam);
 		$camara = Camara::find($cam->id_camara);
 
