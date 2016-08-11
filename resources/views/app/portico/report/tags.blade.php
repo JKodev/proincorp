@@ -152,6 +152,9 @@
 						"minPeriod": "ss",
 						"parseDates": true
 					},
+					"export": {
+						"enabled": true
+					},
 					"chartCursor": {
 						"enabled": true,
 						"categoryBalloonDateFormat": "JJ:NN:SS"
