@@ -169,13 +169,13 @@
 						"bullet": "round",
 						"id": "AmGraph-1",
 						"title": "Arequipa - CV",
-						"valueField": "mount-1"
+						"valueField": "Arequipa - CV"
 					},
 					{
 						"bullet": "round",
 						"id": "AmGraph-1",
 						"title": "CV - Arequipa",
-						"valueField": "mount-2"
+						"valueField": "CV - Arequipa"
 					}
 				],
 				"guides": [],
