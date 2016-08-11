@@ -20,6 +20,21 @@ class SerializeHelper
 
 	public static function parseToChart($data)
 	{
-		dd($data);
+		$n_data = array();
+		$keys = array_keys($data);
+		$len = count($data[$keys[0]]);
+
+		for ($i=0; $i < $len; $i++) {
+			$array = array(
+				'time'  =>  $data[$keys[0]][$i]
+			);
+			foreach ($keys as $key) {
+				$array[$key] = $data[$key][$i]['mount'];
+			}
+
+			$n_data[] = $array;
+		}
+		dd($n_data);
+		return $n_data;
 	}
 }
