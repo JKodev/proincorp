@@ -322,6 +322,7 @@ class ReportHelper
 
 	private static function totalCamaras($lector, $start_date, $end_date)
 	{
+		dd($lector);
 		$detector = self::getCameraFromLector($lector->id);
 		$query = DB::connection('sqlsrv')
 			->table('TB_DATOS_CAMARA')
