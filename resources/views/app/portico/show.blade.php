@@ -80,9 +80,9 @@
 				</div>
 				<div class="details">
 					<div class="number"> 5000</div>
-					<div class="desc"> Vehículos con tags</div>
+					<div class="desc"> Reporte lectura de Tags</div>
 				</div>
-				<a class="more" href="{{ route('app.reports.portico.report', array('id' => $lector->id_lector_movimiento, 'report_id' => 4)) }}"> Ver Reporte
+				<a class="more" href="{{ route('app.reports.portico.tags', array('id' => $lector->id_lector_movimiento)) }}"> Ver Reporte
 					<i class="m-icon-swapright m-icon-white"></i>
 				</a>
 			</div>
