@@ -40,7 +40,7 @@
 <!-- BEGIN LOGO -->
 <div class="logo">
 	<a href="{{ route('app.init') }}">
-		<img src="{{ asset('assets/pages/img/logos/logo.jpg') }}" alt="" />
+		<img src="{{ asset('assets/pages/img/logos/proincorp-logo.png') }}" alt="" />
 	</a>
 </div>
 <!-- END LOGO -->
