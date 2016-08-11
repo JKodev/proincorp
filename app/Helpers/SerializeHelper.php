@@ -17,4 +17,9 @@ class SerializeHelper
 		}
 		return $results;
 	}
+
+	public static function parseToChart($data)
+	{
+		dd($data);
+	}
 }

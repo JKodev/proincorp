@@ -73,5 +73,19 @@
 				</a>
 			</div>
 		</div>
+		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-bottom-10">
+			<div class="dashboard-stat purple-seance">
+				<div class="visual">
+					<i class="fa fa-bar-chart fa-icon-medium"></i>
+				</div>
+				<div class="details">
+					<div class="number"> 5000</div>
+					<div class="desc"> Vehículos con tags</div>
+				</div>
+				<a class="more" href="{{ route('app.reports.portico.report', array('id' => $lector->id_lector_movimiento, 'report_id' => 4)) }}"> Ver Reporte
+					<i class="m-icon-swapright m-icon-white"></i>
+				</a>
+			</div>
+		</div>
 	</div>
 @endsection

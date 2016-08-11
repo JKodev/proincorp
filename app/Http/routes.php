@@ -50,6 +50,21 @@ Route::group([
 							'as'    =>  'app.reports.portico.report',
 							'uses'  =>  'PorticoController@report'
 						]);
+
+						Route::get('/{id}/tags', [
+							'as'    =>  'app.reports.portico.tags',
+							'uses'  =>  'PorticoController@tags'
+						]);
+
+						Route::get('/{id}/camaras', [
+							'as'    =>  'app.reports.portico.camaras',
+							'uses'  =>  'PorticoController@camaras'
+						]);
+
+						Route::get('/{id}/general', [
+							'as'    =>  'app.reports.portico.general',
+							'uses'  =>  'PorticoController@general'
+						]);
 				});
 
 				Route::group([
@@ -114,6 +129,21 @@ Route::group([
 				'as'    =>  'service.reports.portico.vehiculos-dia',
 				'uses'  =>  'PorticoController@serviceVehiculosDia'
 			]);
+
+			Route::get('/tags/{id}/{date}', [
+				'as'    =>  'service.reports.portico.tags',
+				'uses'  =>  'PorticoController@serviceTags'
+			]);
 		});
 	});
+});
+
+Route::group([
+	'prefix'    =>  'tools'
+], function () {
+
+	Route::get('migrate', [
+		'as'    =>  'tools.migrate',
+		'uses'  =>  'ToolsController@migrate'
+	]);
 });

@@ -71,6 +71,21 @@ class PorticoController extends Controller
 	    return view($view, $variables);
     }
 
+    public function tags($id)
+    {
+    	return view('app.portico.report.tags');
+    }
+
+    public function camaras($id)
+    {
+    	return view('app.portico.report.camaras');
+    }
+
+    public function general($id)
+    {
+    	return view('app.portico.report.general');
+    }
+
     public function serviceTipoVehiculoPorcentual($id, $start_date, $end_date)
     {
     	$s_date = date("Y-m-d 00:00:00", $start_date);
@@ -99,5 +114,15 @@ class PorticoController extends Controller
 	    $data = ReportHelper::autos_dia($id, $f_date);
 
 	    return response()->json($data);
+    }
+
+    public function serviceTags($id, $date)
+    {
+    	$f_date = date("d/m/Y", $date);
+	    $data = ReportHelper::informe_tags($id, $f_date);
+
+	    $serialize = SerializeHelper::parseToChart($data);
+
+	    return response()->json($serialize);
     }
 }
