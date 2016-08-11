@@ -30,6 +30,7 @@ class CamarasController extends Controller
 		    ->table('TBL_CAMARA_UBICACION')
 		    ->where('cod_camara', $camara->id)
 	        ->first();
+	    dd($cam_ubication);
 
 	    $ubicacion = DB::connection('sqlsrv')
 		    ->table('TB_UBICACION')
