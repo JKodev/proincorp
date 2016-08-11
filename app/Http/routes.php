@@ -140,7 +140,7 @@ Route::group([
 				'uses'  =>  'PorticoController@serviceCamaras'
 			]);
 
-			Route::get('/general/{id}/{date}', [
+			Route::get('/general/{id}/{date}/{direction}', [
 				'as'    =>  'service.reports.portico.general',
 				'uses'  =>  'PorticoController@serviceGeneral'
 			]);
