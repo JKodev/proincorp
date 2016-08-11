@@ -146,22 +146,18 @@
 			var chart = AmCharts.makeChart("chartdiv", {
 				"language": "es",
 				"type": "serial",
-				"categoryField": "hour",
+				"categoryField": "date",
 				"dataDateFormat": "HH:NN:SS",
-				"rotate": true,
-				"startDuration": 1,
-				"theme": "default",
-				"export": {
-					"enabled": true
-				},
 				"categoryAxis": {
 					"minPeriod": "mm",
-					"parseDates": true,
-					"gridPosition": "start"
+					"parseDates": true
 				},
 				"chartCursor": {
 					"enabled": true,
 					"categoryBalloonDateFormat": "JJ:NN"
+				},
+				"chartScrollbar": {
+					"enabled": true
 				},
 				"trendLines": [],
 				"graphs": [
@@ -172,8 +168,8 @@
 						"valueField": "Arequipa - CV"
 					},
 					{
-						"bullet": "round",
-						"id": "AmGraph-1",
+						"bullet": "square",
+						"id": "AmGraph-2",
 						"title": "CV - Arequipa",
 						"valueField": "CV - Arequipa"
 					}
@@ -181,7 +177,8 @@
 				"guides": [],
 				"valueAxes": [
 					{
-						"id": "ValueAxis-1"
+						"id": "ValueAxis-1",
+						"title": "Axis title"
 					}
 				],
 				"allLabels": [],
