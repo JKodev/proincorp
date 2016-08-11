@@ -147,7 +147,7 @@
 				"language": "es",
 				"type": "serial",
 				"categoryField": "date",
-				"dataDateFormat": "HH:NN:SS",
+				"dataDateFormat": "YYYY-MM-DD JJ:NN:SS",
 				"categoryAxis": {
 					"minPeriod": "mm",
 					"parseDates": true
@@ -165,13 +165,13 @@
 						"bullet": "round",
 						"id": "AmGraph-1",
 						"title": "Arequipa - CV",
-						"valueField": "Arequipa - CV"
+						"valueField": "Arequipa-CV"
 					},
 					{
 						"bullet": "square",
 						"id": "AmGraph-2",
 						"title": "CV - Arequipa",
-						"valueField": "CV - Arequipa"
+						"valueField": "CV-Arequipa"
 					}
 				],
 				"guides": [],
