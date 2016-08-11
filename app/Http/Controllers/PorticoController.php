@@ -163,12 +163,16 @@ class PorticoController extends Controller
 	    return response()->json($serialize);
     }
 
-    public function serviceGeneral($id, $date)
+    public function serviceGeneral($id, $date, $direction)
     {
+    	$dir = 'Arequipa - CV';
+    	if ($direction == 1) {
+    		$dir = 'CV - Arequipa';
+	    }
 	    $f_date = date("d/m/Y", $date);
 	    $data = ReportHelper::informe_general($id, $f_date);
-
-	    $serialize = SerializeHelper::parseToChart($data);
+		//dd($data);
+	    $serialize = SerializeHelper::parseGeneralToChart($data, $dir);
 
 	    return response()->json($serialize);
     }

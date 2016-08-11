@@ -38,4 +38,22 @@ class SerializeHelper
 
 		return $n_data;
 	}
+
+	public static function parseGeneralToChart($data, $direction) {
+		$n_data = array();
+		$keys = array_keys($data);
+		$len = count($data[$keys[0]][$direction]);
+
+		for ($i=0; $i < $len; $i++) {
+			$array = array(
+				'hour'  =>  $data[$keys[0]][$direction][$i]['hour']
+			);
+
+			foreach ($keys as $key) {
+				$array[$key] = $data[$key][$direction][$i]['mount'];
+			}
+			$n_data[] = $array;
+		}
+		return $n_data;
+	}
 }
