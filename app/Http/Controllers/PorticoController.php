@@ -125,4 +125,24 @@ class PorticoController extends Controller
 
 	    return response()->json($serialize);
     }
+
+    public function serviceCamaras($id, $date)
+    {
+    	$f_date = date("d/m/Y", $date);
+	    $data = ReportHelper::informe_camaras($id, $f_date);
+
+	    $serialize = SerializeHelper::parseToChart($data);
+
+	    return response()->json($serialize);
+    }
+
+    public function serviceGeneral($id, $date)
+    {
+	    $f_date = date("d/m/Y", $date);
+	    $data = ReportHelper::informe_general($id, $f_date);
+
+	    $serialize = SerializeHelper::parseToChart($data);
+
+	    return response()->json($serialize);
+    }
 }

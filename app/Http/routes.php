@@ -134,6 +134,16 @@ Route::group([
 				'as'    =>  'service.reports.portico.tags',
 				'uses'  =>  'PorticoController@serviceTags'
 			]);
+
+			Route::get('/camaras/{id}/{date}', [
+				'as'    =>  'service.reports.portico.camaras',
+				'uses'  =>  'PorticoController@serviceCamaras'
+			]);
+
+			Route::get('/general/{id}/{date}', [
+				'as'    =>  'service.reports.portico.general',
+				'uses'  =>  'PorticoController@serviceGeneral'
+			]);
 		});
 	});
 });
