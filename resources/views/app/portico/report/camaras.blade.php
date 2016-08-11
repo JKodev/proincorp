@@ -145,6 +145,7 @@
 			};
 			var chart = AmCharts.makeChart("chartdiv",
 				{
+					"language": "es",
 					"type": "serial",
 					"categoryField": "hour",
 					"dataDateFormat": "YYYY-MM-DD JJ:NN:SS",
