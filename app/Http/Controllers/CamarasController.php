@@ -31,14 +31,14 @@ class CamarasController extends Controller
 		    ->where('cod_camara', $camara->id)
 	        ->first();
 
-	    if ($cam_ubication === null) {
-	    	abort(404);
+	    if ($cam_ubication !== null) {
+		    $ubicacion = DB::connection('sqlsrv')
+			    ->table('TB_UBICACION')
+			    ->where('codigo', $cam_ubication->cod_ubicacion)
+			    ->first();
+	    } else {
+	    	$ubicacion = null;
 	    }
-
-	    $ubicacion = DB::connection('sqlsrv')
-		    ->table('TB_UBICACION')
-		    ->where('codigo', $cam_ubication->cod_ubicacion)
-		    ->first();
 
 	    return view('app.camaras.show', [
 		    'camara'    =>  $camara,
