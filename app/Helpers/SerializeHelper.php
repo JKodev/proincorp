@@ -29,7 +29,8 @@ class SerializeHelper
 				'hour'  =>  $data[$keys[0]][$i]['hour']
 			);
 			foreach ($keys as $key) {
-				$array[$key] = $data[$key][$i]['mount'];
+				$k = str_replace(' ', '', $key);
+				$array[$k] = $data[$key][$i]['mount'];
 			}
 
 			$n_data[] = $array;
