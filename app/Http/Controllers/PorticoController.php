@@ -108,9 +108,26 @@ class PorticoController extends Controller
 	    ));
     }
 
+	/**
+	 * @param $id integer
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
     public function general($id)
     {
-    	return view('app.portico.report.general');
+	    $camara = DB::connection('sqlsrv')
+		    ->table('TB_LECTOR_CAMARA')
+		    ->where('id_lector_movimiento', $id)
+		    ->first();
+	    $lector = Lector::find($id);
+	    $lectores = Lector::all();
+	    return view('app.portico.report.general', array(
+		    'title'     =>  'Reporte por Tags',
+		    'id'        =>  $id,
+		    'lector'    =>  $lector,
+		    'lectores'  =>  $lectores,
+		    'colors'    =>  $this->colors,
+		    'camara'    =>  $camara
+	    ));
     }
 
     public function serviceTipoVehiculoPorcentual($id, $start_date, $end_date)
