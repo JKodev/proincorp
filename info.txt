@@ -1,0 +1,20 @@
+NOTA:
+	Editar el archivo 'config/database.php' colocando los puertos, nombre de bases de datos,
+	usuario y contraseña respectivo para todas las bases de datos, incluyendo las mysql.
+
+NOTA 2:
+	Antes de ejecutar el paso 3, cambiar el nombre de la cámara 
+		'Cam06_Halcon21' a 'Cam06_Halcon 21' 
+	en 'tmsng' en la tabla 'detector', si no, no podrá migrar los datos de forma correcta.
+
+1.- Ejecutar lo que hay en el sql.
+2.- Ejecutar los comandos:
+	php artisan migrate
+	php artisan db:seed
+3.- Ingresar a la ruta:
+	/tools/migrate
+4.- Logearse con los siguientes datos:
+	Usuario: admin
+	Contraseña: admin123
+
+5.- Sonreir y disfrutar de la vida.
