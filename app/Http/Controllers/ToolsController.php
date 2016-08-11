@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Camara;
 use App\Models\Lector;
+use DB;
 
 class ToolsController extends Controller
 {
