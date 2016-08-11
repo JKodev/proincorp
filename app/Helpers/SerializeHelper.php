@@ -34,7 +34,7 @@ class SerializeHelper
 
 			$n_data[] = $array;
 		}
-		dd($n_data);
+
 		return $n_data;
 	}
 }
