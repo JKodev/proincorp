@@ -14,16 +14,29 @@ class ToolsController extends Controller
 		$camaras = Camara::where('currentConfigurationIndex', -99)->get();
 
 		foreach ($camaras as $camara) {
-			DB::connection('sqlsrv')
-				->table('TB_CAMARAS')
-				->insert(
+			$base = DB::connection('sqlsrv')
+				->table('TB_CAMARAS');
+
+			$search = $base->where([
+				['id_camara', '=', $camara->id],
+				['nombre', '=', $camara->cameraName],
+				['ip', '=', $camara->ipaddress]
+			]);
+
+			if ($search->count() == 0) {
+				$base->insert(
 					[
 						'id_camara' =>  $camara->id,
 						'nombre'    =>  $camara->cameraName,
 						'ip'        =>  $camara->ipaddress
 					]
 				);
-			$name = strtoupper($camara->cameraName);
+			}
+
+			$separate = explode("_", $camara->cameraName);
+			$name = strtoupper($separate[1]);
+
+			echo "Se ha creado la camara: <strong>".$camara->cameraName."</strong><br>";
 
 			$lectores = Lector::where('dsc_lector_movimiento', 'LIKE', '%'.$name.'%');
 
@@ -48,8 +61,11 @@ class ToolsController extends Controller
 								'ruta'  =>  $ruta
 							]
 						);
+						echo "Se ha registrado el lector: <strong>$lector->dsc_lector_movimiento</strong> en la ruta <strong>$ruta</strong><br>";
 					}
 				}
+			} else {
+				echo "No se ha encontrado lectores coincidentes con la cámara: <strong>".$camara->cameraName."</strong><br>";
 			}
 		}
 	}
