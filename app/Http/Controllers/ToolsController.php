@@ -42,7 +42,10 @@ class ToolsController extends Controller
 			$lectores = Lector::where('dsc_lector_movimiento', 'LIKE', '%'.$name.'%');
 
 			if ($lectores->count() > 0) {
-				foreach ($lectores as $lector) {
+				echo "Se registraran $lectores->count() lectores<br>";
+				$lectores_reg = $lectores->get();
+				foreach ($lectores_reg as $lector) {
+					echo "Se registrará el lector <strong>$lector->dsc_lector_movimiento</strong><br>";
 					$head = DB::connection('sqlsrv')
 						->table('TB_LECTOR_CAMARA');
 
@@ -64,7 +67,7 @@ class ToolsController extends Controller
 						);
 						echo "Se ha registrado el lector: <strong>$lector->dsc_lector_movimiento</strong> en la ruta <strong>$ruta</strong><br>";
 					} else {
-						echo "Se han encontrado $find->count() registros para el lector <strong>$lector->dsc_lector_movimiento</strong>.";
+						echo "Se han encontrado $find->count() registros para el lector <strong>$lector->dsc_lector_movimiento</strong>.<br>";
 					}
 				}
 			} else {
