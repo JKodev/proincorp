@@ -19,6 +19,7 @@
 					<i class="fa fa-columns fa-icon-medium"></i>
 				</div>
 				<div class="details">
+					<div class="number"> {{ $totals['autos_dia'] }}</div>
 					<div class="desc"> Autos Día</div>
 				</div>
 				<a class="more" href="{{ route('app.reports.portico.report', array('id' => $lector->id_lector_movimiento, 'report_id' => 1)) }}">

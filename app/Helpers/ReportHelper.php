@@ -271,4 +271,103 @@ class ReportHelper
 
 		return $data;
 	}
+
+	private static function totalAutosDia($lector, $start_date, $end_date)
+	{
+		$query = DB::connection('sqlsrv')
+			->table('SDTR_LECTURAS_VISIBLE')
+			->where('ip_lector_movimiento', $lector->ip_lector_movimiento)
+			->whereBetween('fecha_hora_lectura', [$start_date, $end_date]);
+
+		$total = $query->count();
+
+		return $total;
+	}
+
+	private static function totalVehiculosTipo($lector, $start_date, $end_date)
+	{
+		$query = DB::connection('sqlsrv')
+			->table('TipoVehiculo_Portico')
+			->where('dsc_lector_movimiento', $lector->dsc_lector_movimiento)
+			->whereBetween('FECHA', [$start_date, $end_date]);
+		$total = $query->sum('Expr1');
+
+		return $total;
+	}
+
+	private static function totalVehiculosEmpresas($lector, $start_date, $end_date)
+	{
+		$query = DB::connection('sqlsrv')
+			->table('LECTURAS_DETALLADAS_LEC_VISIBLE')
+			->where('IP', $lector->ip_lector_movimiento)
+			->whereBetween('FECHA', [$start_date, $end_date]);
+
+		$total = $query->count();
+
+		return $total;
+	}
+
+	private static function getCameraFromLector($lector)
+	{
+		$camera = DB::connection('sqlsrv')
+			->table('TB_LECTOR_CAMARA')
+			->where('id_lector_movimiento', $lector->id)
+			->first();
+		$camara = Camara::find($camera->id_camara);
+
+		return $camara;
+	}
+
+	private static function totalCamaras($lector, $start_date, $end_date)
+	{
+		$detector = self::getCameraFromLector($lector);
+		$query = DB::connection('sqlsrv')
+			->table('TB_DATOS_CAMARA')
+			->where('id_indicador', $detector->id)
+			->whereBetween('hora', [$start_date, $end_date]);
+
+		$total = $query->sum('cantidad');
+
+		return $total;
+	}
+
+	private static function totalTags($lector, $start_date, $end_date)
+	{
+		$camara = self::getCameraFromLector($lector);
+
+		$lectores = DB::connection('sqlsrv')
+			->table('TB_LECTOR_CAMARA')
+			->where('id_camara', $camara->id)
+			->get();
+
+		$total = 0;
+
+		foreach ($lectores as $lector) {
+			$lect = Lector::find($lector->id_lector_movimiento);
+			$registers = DB::connection('sqlsrv')
+				->table('SDTR_LECTURAS_VISIBLE')
+				->where('ip_lector_movimiento', $lect->ip_lector_movimiento)
+				->whereBetween('fecha_hora_lectura', [$start_date, $end_date]);
+
+			$total += $registers->count();
+		}
+
+		return $total;
+	}
+
+	public static function totalAllReports($lector_id, $start_date, $end_date)
+	{
+		$lector = Lector::find($lector_id);
+		$data = array(
+			'autos_dia' =>  self::totalAutosDia($lector, $start_date, $end_date),
+			'vehiculos_tipo'    =>  self::totalVehiculosTipo($lector, $start_date, $end_date),
+			'vehiculos_empresas'    =>  self::totalVehiculosEmpresas($lector, $start_date, $end_date),
+			'camaras'   =>  self::totalCamaras($lector, $start_date, $end_date),
+			'tags'      =>  self::totalTags($lector, $start_date, $end_date)
+		);
+
+		$data['general'] = $data['camaras'] + $data['tags'];
+
+		return $data;
+	}
 }
