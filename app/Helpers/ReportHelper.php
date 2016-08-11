@@ -307,11 +307,11 @@ class ReportHelper
 		return $total;
 	}
 
-	private static function getCameraFromLector($lector)
+	private static function getCameraFromLector($lector_id)
 	{
 		$camera = DB::connection('sqlsrv')
 			->table('TB_LECTOR_CAMARA')
-			->where('id_lector_movimiento', $lector->id)
+			->where('id_lector_movimiento', $lector_id)
 			->first();
 		$camara = Camara::find($camera->id_camara);
 
@@ -320,7 +320,7 @@ class ReportHelper
 
 	private static function totalCamaras($lector, $start_date, $end_date)
 	{
-		$detector = self::getCameraFromLector($lector);
+		$detector = self::getCameraFromLector($lector->id);
 		$query = DB::connection('sqlsrv')
 			->table('TB_DATOS_CAMARA')
 			->where('id_indicador', $detector->id)
