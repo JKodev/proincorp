@@ -60,7 +60,6 @@
 @endsection
 
 @section('js_level_scripts')
-	<script src="{{ asset('assets/pages/scripts/maps-google.js') }}" type="text/javascript"></script>
 	<script>
 		@if ($ubicacion !== null)
 		var mapMarker = function () {
