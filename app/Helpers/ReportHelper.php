@@ -309,6 +309,7 @@ class ReportHelper
 
 	private static function getCameraFromLector($lector_id)
 	{
+		dd($lector_id);
 		$cam = DB::connection('sqlsrv')
 			->table('TB_LECTOR_CAMARA')
 			->where('id_lector_movimiento', $lector_id)
