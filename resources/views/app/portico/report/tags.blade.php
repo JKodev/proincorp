@@ -182,7 +182,7 @@
 					"valueAxes": [
 						{
 							"id": "ValueAxis-1",
-							"title": "Axis title"
+							"title": "Cantidad de Vehículos"
 						}
 					],
 					"allLabels": [],
