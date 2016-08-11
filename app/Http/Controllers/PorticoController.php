@@ -86,7 +86,15 @@ class PorticoController extends Controller
 
     public function camaras($id)
     {
-    	return view('app.portico.report.camaras');
+	    $lector = Lector::find($id);
+	    $lectores = Lector::all();
+	    return view('app.portico.report.camaras', array(
+		    'title'     =>  'Reporte por Tags',
+		    'id'        =>  $id,
+		    'lector'    =>  $lector,
+		    'lectores'  =>  $lectores,
+		    'colors'    =>  $this->colors
+	    ));
     }
 
     public function general($id)
