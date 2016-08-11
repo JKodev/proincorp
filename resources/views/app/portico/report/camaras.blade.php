@@ -112,7 +112,7 @@
 				});
 			}
 
-			var route = '{{  route('app.init') }}/service/reports/portico/camaras/{{ $id }}/{date}/';
+			var route = '{{  route('app.init') }}/service/reports/portico/camaras/{{ $camara->id_camara }}/{date}/';
 
 			var getData = function () {
 				var date = $('#date').val();

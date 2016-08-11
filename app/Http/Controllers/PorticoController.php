@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\ReportHelper;
 use App\Helpers\SerializeHelper;
 use App\Models\Lector;
+use DB;
 use Illuminate\Http\Request;
 use App\Helpers\CamaraStaticHelper;
 use App\Http\Requests;
@@ -73,6 +74,10 @@ class PorticoController extends Controller
 
     public function tags($id)
     {
+	    $camara = DB::connection('sqlsrv')
+		    ->table('TB_LECTOR_CAMARA')
+		    ->where('id_lector_movimiento', $id)
+		    ->first();
     	$lector = Lector::find($id);
 	    $lectores = Lector::all();
     	return view('app.portico.report.tags', array(
@@ -80,12 +85,17 @@ class PorticoController extends Controller
 		    'id'        =>  $id,
     		'lector'    =>  $lector,
 		    'lectores'  =>  $lectores,
-		    'colors'    =>  $this->colors
+		    'colors'    =>  $this->colors,
+		    'camara'    =>  $camara
 	    ));
     }
 
     public function camaras($id)
     {
+    	$camara = DB::connection('sqlsrv')
+		    ->table('TB_LECTOR_CAMARA')
+		    ->where('id_lector_movimiento', $id)
+		    ->first();
 	    $lector = Lector::find($id);
 	    $lectores = Lector::all();
 	    return view('app.portico.report.camaras', array(
@@ -93,7 +103,8 @@ class PorticoController extends Controller
 		    'id'        =>  $id,
 		    'lector'    =>  $lector,
 		    'lectores'  =>  $lectores,
-		    'colors'    =>  $this->colors
+		    'colors'    =>  $this->colors,
+		    'camara'    =>  $camara
 	    ));
     }
 
