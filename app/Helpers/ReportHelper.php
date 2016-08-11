@@ -192,28 +192,6 @@ class ReportHelper
 
 		$data = self::getZonesArray($zones);
 		self::generateCompleteInterval($data, 10);
-		/*
-		foreach ($data as $k=>$v) {
-			$timer = '00:10:00';
-			for ($i=0; $i < 144; $i++) {
-				$data[$k][$i] = array(
-					'hour'      => $timer,
-					'mount'     => 0
-				);
-
-				//$tmp = array(
-				//	$i  =>  array(
-				//		'hour'      => $timer,
-				//		'mount'     => 0
-				//	)
-				//);
-				//array_push($data, $tmp);
-
-				$timestamp = strtotime($timer) + 600;
-				$timer = date('H:i:s', $timestamp);
-			}
-		}
-		*/
 
 		$valid_format = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date);
 
@@ -221,7 +199,7 @@ class ReportHelper
 
 		foreach ($registers as $register) {
 			$register_date = $register->hora;
-			$format_date = \DateTime::createFromFormat('d/m/Y H:i:s', $register_date);
+			$format_date = \DateTime::createFromFormat('Y-m-d H:i:s.u', $register_date);
 			$timestamp = $format_date->getTimestamp();
 
 			$position = intval(($timestamp - $unix_start_date) / 600);
