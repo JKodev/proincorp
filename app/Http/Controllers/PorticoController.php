@@ -78,6 +78,7 @@ class PorticoController extends Controller
 
     public function tags($id)
     {
+	    $totals = ReportHelper::totalAllReports($id, date('d/m/Y 00:00:00'), date('d/m/Y 23:59:59'));
 	    $camara = DB::connection('sqlsrv')
 		    ->table('TB_LECTOR_CAMARA')
 		    ->where('id_lector_movimiento', $id)
@@ -90,12 +91,14 @@ class PorticoController extends Controller
     		'lector'    =>  $lector,
 		    'lectores'  =>  $lectores,
 		    'colors'    =>  $this->colors,
-		    'camara'    =>  $camara
+		    'camara'    =>  $camara,
+		    'totals'    =>  $totals
 	    ));
     }
 
     public function camaras($id)
     {
+	    $totals = ReportHelper::totalAllReports($id, date('d/m/Y 00:00:00'), date('d/m/Y 23:59:59'));
     	$camara = DB::connection('sqlsrv')
 		    ->table('TB_LECTOR_CAMARA')
 		    ->where('id_lector_movimiento', $id)
@@ -108,7 +111,8 @@ class PorticoController extends Controller
 		    'lector'    =>  $lector,
 		    'lectores'  =>  $lectores,
 		    'colors'    =>  $this->colors,
-		    'camara'    =>  $camara
+		    'camara'    =>  $camara,
+		    'totals'    =>  $totals
 	    ));
     }
 
@@ -118,6 +122,7 @@ class PorticoController extends Controller
 	 */
     public function general($id)
     {
+	    $totals = ReportHelper::totalAllReports($id, date('d/m/Y 00:00:00'), date('d/m/Y 23:59:59'));
 	    $camara = DB::connection('sqlsrv')
 		    ->table('TB_LECTOR_CAMARA')
 		    ->where('id_lector_movimiento', $id)
@@ -130,7 +135,8 @@ class PorticoController extends Controller
 		    'lector'    =>  $lector,
 		    'lectores'  =>  $lectores,
 		    'colors'    =>  $this->colors,
-		    'camara'    =>  $camara
+		    'camara'    =>  $camara,
+		    'totals'    =>  $totals
 	    ));
     }
 
