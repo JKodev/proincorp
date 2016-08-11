@@ -31,12 +31,13 @@ class ToolsController extends Controller
 						'ip'        =>  $camara->ipaddress
 					]
 				);
+				echo "Se ha creado la camara: <strong>".$camara->cameraName."</strong><br>";
+			} else  {
+				echo "La camara: <strong>".$camara->cameraName."</strong> ya esta registrada.<br> ";
 			}
 
 			$separate = explode("_", $camara->cameraName);
 			$name = strtoupper($separate[1]);
-
-			echo "Se ha creado la camara: <strong>".$camara->cameraName."</strong><br>";
 
 			$lectores = Lector::where('dsc_lector_movimiento', 'LIKE', '%'.$name.'%');
 
@@ -62,6 +63,8 @@ class ToolsController extends Controller
 							]
 						);
 						echo "Se ha registrado el lector: <strong>$lector->dsc_lector_movimiento</strong> en la ruta <strong>$ruta</strong><br>";
+					} else {
+						echo "Se han encontrado $find->count() registros para el lector <strong>$lector->dsc_lector_movimiento</strong>.";
 					}
 				}
 			} else {
