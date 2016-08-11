@@ -12,9 +12,8 @@
 				<div class="widget-thumb-wrap">
 					<i class="widget-thumb-icon bg-green fa fa-map-marker"></i>
 					<div class="widget-thumb-body">
-						<span class="widget-thumb-body-stat" data-counter="counterup" data-value="7,644">7,644</span>
 						<span class="widget-thumb-subtitle">
-							<a href="#">
+							<a href="{{ route('app.reports.portico.index') }}">
 								<i class="fa fa-line-chart"></i>
 								Ver Reportes
 							</a>
@@ -31,11 +30,10 @@
 				<div class="widget-thumb-wrap">
 					<i class="widget-thumb-icon bg-red fa fa-industry"></i>
 					<div class="widget-thumb-body">
-						<span class="widget-thumb-body-stat" data-counter="counterup" data-value="1,293">1,293</span>
 						<span class="widget-thumb-subtitle">
-							<a href="#">
+							<a href="{{ route('app.reports.empresa.index') }}">
 								<i class="fa fa-line-chart"></i>
-								Ver Reportes
+								Ver Empresas
 							</a>
 						</span>
 					</div>
@@ -50,11 +48,10 @@
 				<div class="widget-thumb-wrap">
 					<i class="widget-thumb-icon bg-purple fa fa-truck"></i>
 					<div class="widget-thumb-body">
-						<span class="widget-thumb-body-stat" data-counter="counterup" data-value="815">815</span>
 						<span class="widget-thumb-subtitle">
-							<a href="#">
+							<a href="{{ route('app.reports.vehiculo.index') }}">
 								<i class="fa fa-line-chart"></i>
-								Ver Reportes
+								Ver Vehículos
 							</a>
 						</span>
 					</div>
@@ -69,12 +66,10 @@
 				<div class="widget-thumb-wrap">
 					<i class="widget-thumb-icon bg-blue fa fa-video-camera"></i>
 					<div class="widget-thumb-body">
-						
-						<span class="widget-thumb-body-stat" data-counter="counterup" data-value="5,071">5,071</span>
 						<span class="widget-thumb-subtitle">
-							<a href="#">
+							<a href="{{ route('app.reports.camaras.index') }}">
 								<i class="fa fa-line-chart"></i>
-								Ver Reportes
+								Ver Cámaras
 							</a>
 						</span>
 					</div>
