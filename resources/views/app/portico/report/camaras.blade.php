@@ -112,7 +112,7 @@
 				});
 			}
 
-			var route = '{{  route('app.init') }}/service/reports/portico/tags/{{ $id }}/{date}/';
+			var route = '{{  route('app.init') }}/service/reports/portico/camaras/{{ $id }}/{date}/';
 
 			var getData = function () {
 				var date = $('#date').val();
@@ -191,7 +191,7 @@
 						{
 							"id": "Title-1",
 							"size": 15,
-							"text": "Reporte flujo vehicular tags {{ date('d/m/Y') }}"
+							"text": "Reporte flujo vehicular cámaras  {{ date('d/m/Y') }}"
 						}
 					],
 					"dataProvider": []
@@ -205,7 +205,7 @@
 				chart.dataProvider = getData();
 				toastr.info("Creando Gráfico con los datos...");
 				chart.titles = [];
-				var title = "Reporte flujo vehicular tags " + $("#date").val();
+				var title = "Reporte flujo vehicular cámaras  " + $("#date").val();
 				chart.addTitle(title, 15);
 				chart.validateData();
 				chart.animateAgain();
