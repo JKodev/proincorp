@@ -90,6 +90,11 @@ Route::group([
 				    		'as'	=>	'app.reports.camaras.index',
 				    		'uses'	=>	'CamarasController@index'
 				    	]);
+
+						Route::get('/{id}', [
+							'as'    =>  'app.reports.camaras.show',
+							'uses'  =>  'CamarasController@show'
+						]);
 				});
 
 				Route::group([
