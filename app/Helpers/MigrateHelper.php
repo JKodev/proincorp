@@ -18,7 +18,7 @@ class MigrateHelper
 			$d_settings = $detectorSettings->get();
 
 			foreach ($d_settings as $d_setting) {
-				$xml = XmlParser::extract($d_setting->content);
+				$xml = simplexml_load_string($d_setting->content);
 				dd($xml);
 				$json = json_encode($xml);
 				$array = json_decode($json);
