@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Helpers\MigrateHelper;
 use Illuminate\Console\Command;
+use Log;
 
 class MigrateInfomation extends Command
 {
@@ -12,7 +13,7 @@ class MigrateInfomation extends Command
      *
      * @var string
      */
-    protected $signature = 'proincorp:migrate {time=10 : Intervalo de tiempo en minutos.}';
+    protected $signature = 'proincorp:migrate';
 
     /**
      * The console command description.
@@ -38,6 +39,12 @@ class MigrateInfomation extends Command
      */
     public function handle()
     {
+	    $messages = MigrateHelper::migrate();
+	    foreach ($messages as $message) {
+	    	Log::notice($message);
+		    $this->info($message);
+	    }
+    	/*
         $time = intval($this->argument('time'));
 	    while (true) {
 			$messages = MigrateHelper::migrate();
@@ -46,5 +53,6 @@ class MigrateInfomation extends Command
 		    }
 		    sleep($time*60);
 	    }
+    	*/
     }
 }
