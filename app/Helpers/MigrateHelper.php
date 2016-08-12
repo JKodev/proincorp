@@ -19,6 +19,7 @@ class MigrateHelper
 
 			foreach ($d_settings as $d_setting) {
 				$xml = XmlParser::extract($d_setting->content);
+				dd($xml);
 				$json = json_encode($xml);
 				$array = json_decode($json);
 				dd($array);
