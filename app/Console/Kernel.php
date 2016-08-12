@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-    	$schedule->command('proincorp:migrate')->everyMinute();
+    	$schedule->command('proincorp:migrate')->everyTenMinutes();
         // $schedule->command('inspire')
         //          ->hourly();
     }
