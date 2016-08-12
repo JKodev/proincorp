@@ -76,7 +76,7 @@ class MigrateHelper
 
 		$query = DB::connection('tmsng_norestore')
 			->table('zoneintegrationdataper10m')
-			->where('end_date', '>', $fechaParaActualizar);
+			->where('end_time', '>', $fechaParaActualizar);
 
 		if ($query->count() > 0) {
 			$messages[] = "Actualizando ".$query->count()." registros.";
