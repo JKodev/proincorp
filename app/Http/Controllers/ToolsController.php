@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Helpers\MigrateHelper;
 use App\Models\Camara;
 use App\Models\Lector;
 use DB;
@@ -73,6 +74,14 @@ class ToolsController extends Controller
 			} else {
 				echo "No se ha encontrado lectores coincidentes con la cámara: <strong>".$camara->cameraName."</strong><br>";
 			}
+		}
+	}
+
+	public function command()
+	{
+		$messages = MigrateHelper::migrate();
+		foreach ($messages as $message) {
+			echo $message."<br>";
 		}
 	}
 }

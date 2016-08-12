@@ -21,6 +21,7 @@ class MigrateHelper
 				$xml = XmlParser::extract($d_setting->content);
 				$json = json_encode($xml);
 				$array = json_decode($json);
+				dd($array);
 				$cantZonas = count($array->TrafficData->TrafficData->Zones->Zone);
 
 				for ($i=0; $i < $cantZonas; $i++) {

@@ -167,6 +167,10 @@ Route::group([
 		'as'    =>  'tools.migrate',
 		'uses'  =>  'ToolsController@migrate'
 	]);
+	Route::get('proincorp/migrate', [
+		'as'    =>  'tools.proincorp.migrate',
+		'uses'  =>  'ToolsController@command'
+	]);
 });
 
 // Authentication routes...
