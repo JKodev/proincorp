@@ -25,11 +25,12 @@ class VehiculoController extends Controller
     }
 
 	/**
-	 * @param $id integer
+	 * @param Request $request
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
 	 */
-    public function show($id)
+    public function show(Request $request)
     {
+    	$id = $request->input('id');
     	$empresa = null;
 
         $vehiculo = Vehiculo::find($id);

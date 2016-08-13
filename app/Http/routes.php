@@ -110,7 +110,7 @@ Route::group([
 				    		'uses'	=>	'VehiculoController@index'
 				    	]);
 
-						Route::get('/{id}', [
+						Route::get('/show', [
 							'as'    =>  'app.reports.vehiculo.show',
 							'uses'  =>  'VehiculoController@show'
 						]);
