@@ -11,6 +11,18 @@
 	      rel="stylesheet" type="text/css"/>
 @endsection
 
+@section('breadcrumb')
+	@parent
+	<li>
+		<a href="{{ route('app.reports.vehiculo.index') }}">Vehículos</a>
+		<i class="fa fa-circle"></i>
+	</li>
+	<li>
+		<a href="{{ route('app.reports.vehiculo.show', array('id' => $id)) }}">{{ $title }}</a>
+		<i class="fa fa-circle"></i>
+	</li>
+@endsection
+
 @section('content')
 	<div class="page-content-inner">
 		<div class="row">

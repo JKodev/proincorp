@@ -7,6 +7,14 @@
 <link href="{{ asset("assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css") }}" rel="stylesheet" type="text/css" />
 @endsection
 
+@section('breadcrumb')
+	@parent
+	<li>
+		<a href="{{ route('app.reports.vehiculo.index') }}">Vehículos</a>
+		<i class="fa fa-circle"></i>
+	</li>
+@endsection
+
 @section('content')
 <div class="page-content-inner">
 	<!-- BEGIN EXAMPLE TABLE PORTLET-->
