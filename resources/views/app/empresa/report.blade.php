@@ -255,7 +255,7 @@
 								last = group;
 							}
 						} );
-					}
+					},
 					"ajax": {
 						"url": "{{ route('service.reports.empresa.report', array('id' => $id)) }}", // ajax source
 						"data": function (data) {
