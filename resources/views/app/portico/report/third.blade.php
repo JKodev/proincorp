@@ -8,7 +8,6 @@
 	      rel="stylesheet" type="text/css"/>
 	<link href="{{ asset('assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}"
 	      rel="stylesheet" type="text/css"/>
-	<link href="{{ asset('assets/global/plugins/typeahead/typeahead.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('breadcrumb')
@@ -106,9 +105,6 @@
 	        type="text/javascript"></script>
 	<script src="{{ asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"
 	        type="text/javascript"></script>
-	<script src="{{ asset('assets/global/plugins/typeahead/handlebars.min.js') }}" type="text/javascript"></script>
-	<script src="{{ asset('assets/global/plugins/typeahead/typeahead.bundle.min.js') }}" type="text/javascript"></script>
-
 @endsection
 
 @section('js_level_scripts')

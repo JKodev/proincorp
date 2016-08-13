@@ -70,4 +70,25 @@ class VehiculoController extends Controller
 
 	    return response()->json($data);
     }
+
+    public function serviceFind(Request $request)
+    {
+	    $query = strtoupper($request->input('query'));
+
+	    $vehiculos = Vehiculo::where('ID_Vehiculo', 'LIKE', "%$query%")->get();
+
+	    $data = array();
+	    foreach ($vehiculos as $vehiculo) {
+		    $data[] = array(
+			    'value'     =>  $vehiculo->ID_Vehiculo,
+			    'model'     =>  $vehiculo->Mod_Vehiculo,
+			    'type'      =>  $vehiculo->Tip_Vehiculo,
+			    'brand'     =>  $vehiculo->Mar_Vehiculo,
+			    'group'     =>  $vehiculo->Gru_Vehiculo,
+			    'tokens'    =>  explode(' ', $vehiculo->ID_Vehiculo)
+		    );
+	    }
+
+	    return response()->json($data);
+    }
 }

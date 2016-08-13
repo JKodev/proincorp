@@ -33,11 +33,13 @@
 	@show
 <!-- BEGIN THEME GLOBAL STYLES -->
 	@section('css_theme')
+		<link href="{{ asset('assets/global/plugins/typeahead/typeahead.css') }}" rel="stylesheet" type="text/css"/>
 		<link href="{{ asset('assets/global/plugins/bootstrap-toastr/toastr.min.css') }}" rel="stylesheet"
 		      type="text/css"/>
 		<link href="{{ asset('assets/global/css/components-md.min.css') }}" rel="stylesheet" id="style_components"
 		      type="text/css"/>
 		<link href="{{ asset('assets/global/css/plugins-md.min.css') }}" rel="stylesheet" type="text/css"/>
+
 	@show
 <!-- END THEME GLOBAL STYLES -->
 	<!-- BEGIN THEME LAYOUT STYLES -->
@@ -108,12 +110,13 @@
 						<!-- BEGIN HEADER SEARCH BOX -->
 						<form class="search-form" action="#" method="GET">
 							<div class="input-group">
-								<input type="text" class="form-control" placeholder="ID vehículo" name="query">
+								<input type="text" class="form-control" id="vehiculo" placeholder="ID vehículo"
+								       name="query">
 								<span class="input-group-btn">
-                                                    <a href="javascript:;" class="btn submit">
-                                                        <i class="icon-magnifier"></i>
-                                                    </a>
-                                                </span>
+                                    <a href="javascript:;" class="btn submit">
+                                        <i class="icon-magnifier"></i>
+                                    </a>
+                                </span>
 							</div>
 						</form>
 						<!-- END HEADER SEARCH BOX -->
@@ -241,6 +244,9 @@
 	<script src="{{ asset('assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"
 	        type="text/javascript"></script>
 	<script src="{{ asset('assets/global/plugins/bootstrap-toastr/toastr.min.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('assets/global/plugins/typeahead/handlebars.min.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('assets/global/plugins/typeahead/typeahead.bundle.min.js') }}"
+	        type="text/javascript"></script>
 @show
 <!-- END CORE PLUGINS -->
 @section('js_level_plugins')
@@ -251,6 +257,35 @@
 	<script src="{{ asset('assets/global/scripts/app.js') }}" type="text/javascript"></script>
 @show
 <!-- END THEME GLOBAL SCRIPTS -->
+<script>
+	$(document).ready(function () {
+		var vehiculos = new Bloodhound({
+			datumTokenizer: function (d) {
+				return d.tokens;
+			},
+			queryTokenizer: Bloodhound.tokenizers.whitespace,
+			remote: {
+				wildcard: '%QUERY',
+				url: '{{ route('service.reports.vehiculo.find') }}?query=%QUERY',
+			}
+		});
+
+		$('#vehiculo').typeahead(null, {
+			display: 'value',
+			source: vehiculos,
+			templates: {
+				empty: [
+					'<div class="empty-message">',
+					'No se ha encontrado la placa.',
+					'</div>'
+				].join('\n'),
+				suggestion: Handlebars.compile('<div><strong>Placa:</strong> @{{value}}<br><strong>Marca: </strong>@{{brand}} | <strong>Tipo:</strong> @{{type}}</div>')
+			}
+		}).bind('typeahead:select', function (ev, suggestion) {
+			window.location = '{{ route('app.reports.vehiculo.show') }}?id=' + suggestion.value;
+		});
+	});
+</script>
 @section('js_level_scripts')
 
 @show
