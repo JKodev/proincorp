@@ -3,6 +3,7 @@
 @section('title', $id)
 
 @section('css_level_plugins')
+	<link href="{{ asset('assets/pages/css/profile.min.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset("assets/global/plugins/datatables/datatables.min.css") }}" rel="stylesheet" type="text/css"/>
 	<link href="{{ asset("assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css") }}"
 	      rel="stylesheet" type="text/css"/>
@@ -95,6 +96,7 @@
 @endsection
 
 @section('js_level_scripts')
+	<script src="{{ asset('assets/pages/scripts/profile.min.js') }}" type="text/javascript"></script>
 	<script src="{{ asset("assets/pages/scripts/table-datatables-responsive.min.js") }}"
 	        type="text/javascript"></script>
 @endsection
