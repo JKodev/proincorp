@@ -115,21 +115,11 @@
 	<script>
 		jQuery(document).ready(function () {
 			var empresas = new Bloodhound({
-				datumTokenizer: function(datum) {
-					return Bloodhound.tokenizers.whitespace(datum.value);
-				},
+				datumTokenizer: function(d) { return d.tokens; },
 				queryTokenizer: Bloodhound.tokenizers.whitespace,
 				remote: {
 					wildcard: '%QUERY',
 					url: '{{ route('service.reports.empresa.find') }}?query=%QUERY',
-					transform: function(response) {
-						// Map the remote source JSON array to a JavaScript object array
-						return $.map(response.results, function(movie) {
-							return {
-								value: movie.original_title
-							};
-						});
-					}
 				}
 			});
 
