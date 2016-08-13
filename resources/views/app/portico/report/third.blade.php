@@ -126,6 +126,9 @@
 			$('#empresa').typeahead(null, {
 				display: 'value',
 				source: empresas
+			}).bind('typeahead:select', function (ev, suggestion) {
+				console.log(ev);
+				console.log(suggestion);
 			});
 
 			$('.date-picker').datepicker({
