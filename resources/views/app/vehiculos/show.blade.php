@@ -32,14 +32,19 @@
 						<div class="profile-usermenu">
 							<ul class="nav">
 								<li>
-									<i class="icon-home"></i> {{ $vehiculo->Tip_Vehiculo }}
+									<a href="javascript:;">
+										<i class="icon-home"></i> {{ $vehiculo->Tip_Vehiculo }}
+									</a>
 								</li>
 								<li>
-
-									<i class="icon-settings"></i> {{ $vehiculo->Mar_Vehiculo }}
+									<a href="javascript:;">
+										<i class="icon-settings"></i> {{ $vehiculo->Mar_Vehiculo }}
+									</a>
 								</li>
 								<li>
-									<i class="icon-info"></i> {{ $vehiculo->Gru_Vehiculo }}
+									<a href="javascript:;">
+										<i class="icon-info"></i> {{ $vehiculo->Gru_Vehiculo }}
+									</a>
 								</li>
 							</ul>
 						</div>
