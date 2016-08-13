@@ -279,7 +279,7 @@
 					'No se ha encontrado la placa.',
 					'</div>'
 				].join('\n'),
-				suggestion: Handlebars.compile('<div><strong>Placa:</strong> @{{value}}<br><strong>Marca: </strong>@{{brand}} | <strong>Tipo:</strong> @{{type}}</div>')
+				suggestion: Handlebars.compile('<div><strong>Placa:</strong> @{{value}}<br><strong>Marca: </strong>@{{brand}} <br><strong>Tipo:</strong> @{{type}}</div>')
 			}
 		}).bind('typeahead:select', function (ev, suggestion) {
 			window.location = '{{ route('app.reports.vehiculo.show') }}?id=' + suggestion.value;
