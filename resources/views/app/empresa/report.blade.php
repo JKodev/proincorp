@@ -22,78 +22,18 @@
 				<div class="tools"></div>
 			</div>
 			<div class="portlet-body">
-				<table class="table table-striped table-bordered table-hover dt-responsive" width="100%" id="row_group">
-					<thead>
-					<tr>
-						<th class="all">Fecha y Hora</th>
-						<th class="all">Grupo de Vehículo</th>
-						<th class="min-tablet">ID Vehículo</th>
-						<th class="min-phone-1">Portico</th>
-					</tr>
-					</thead>
-					<tbody>
-					<tr>
-						<td>11/07/16 06:04 AM</td>
-						<td>CAMIONETA</td>
-						<td>W4T847</td>
-						<td>1_1 PUENTE TINGO AQP-CV</td>
-					</tr>
-					<tr>
-						<td>11/07/16 05:37 AM</td>
-						<td>MICROBUS</td>
-						<td>V2Z196</td>
-						<td>1_1 PUENTE TINGO AQP-CV</td>
-					</tr>
-					<tr>
-						<td>11/07/16 05:39 AM</td>
-						<td>OMNIBUS</td>
-						<td>V9W955</td>
-						<td>1_1 PUENTE TINGO AQP-CV</td>
-					</tr>
-					<tr>
-						<td>11/07/16 01:09 PM</td>
-						<td>CAMIONETA</td>
-						<td>C7Z743</td>
-						<td>1_2 PUENTE TINGO CV-AQP</td>
-					</tr>
-					<tr>
-						<td>11/07/16 03:33 PM</td>
-						<td>CAMIONETA</td>
-						<td>C7Z743</td>
-						<td>1_2 PUENTE TINGO CV-AQP</td>
-					</tr>
-					<tr>
-						<td>11/07/16 08:15 PM</td>
-						<td>MICROBUS</td>
-						<td>V2Z196</td>
-						<td>1_2 PUENTE TINGO CV-AQP</td>
-					</tr>
-					<tr>
-						<td>11/07/16 07:54 AM</td>
-						<td>OMNIBUS</td>
-						<td>V9W955</td>
-						<td>1_2 PUENTE TINGO CV-AQP</td>
-					</tr>
-					<tr>
-						<td>11/07/16 08:24 PM</td>
-						<td>OMNIBUS</td>
-						<td>V9W955</td>
-						<td>1_1 PUENTE TINGO AQP-CV</td>
-					</tr>
-					</tbody>
-				</table>
-				<table class="table table-striped table-bordered table-hover dt-responsive table-checkable" width="100%"
+				<table class="table table-striped table-bordered table-hover dt-responsive" width="100%"
 				       id="datatable_ajax">
 					<thead>
 					<tr role="row" class="heading">
 						<th class="min-tablet"> Fecha Hora</th>
 						<th class="all"> Tag</th>
 						<th class="all"> Placa</th>
-						<th class="min-phone-1"> Portico</th>
-						<th class="none"></th>
+						<th class="all"> Portico</th>
+						<th class="all"></th>
 					</tr>
 					<tr role="row" class="filter">
-						<td>
+						<td class="min-tablet">
 							<div class="input-group date date-picker margin-bottom-5"
 							     data-date-format="dd/mm/yyyy">
 								<input type="text" class="form-control form-filter input-sm" readonly
@@ -116,18 +56,18 @@
                                 </span>
 							</div>
 						</td>
-						<td>
+						<td class="all">
 							<input type="text" class="form-control form-filter input-sm" name="tag">
 						</td>
-						<td>
+						<td class="all">
 							<input type="text" class="form-control form-filter input-sm" name="placa">
 						</td>
-						<td>
+						<td class="all">
 							<input type="text" class="form-control form-filter input-sm"
 							       name="portico">
 						</td>
 
-						<td>
+						<td class="all">
 							<div class="margin-bottom-5">
 								<button class="btn btn-sm green btn-outline filter-submit margin-bottom">
 									<i class="fa fa-search"></i> Buscar
