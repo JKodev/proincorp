@@ -257,7 +257,7 @@
 						} );
 					}
 					"ajax": {
-						"url": "{{ route('service.reports.portico.tipos-vehiculos.empresa', array('id' => $id)) }}", // ajax source
+						"url": "{{ route('service.reports.empresa.report', array('id' => $id)) }}", // ajax source
 						"data": function (data) {
 							setAjaxParams();
 							data._token = '{{ csrf_token() }}';

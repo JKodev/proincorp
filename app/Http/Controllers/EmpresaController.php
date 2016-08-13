@@ -31,6 +31,7 @@ class EmpresaController extends Controller
     	$empresa = Empresa::find($id);
 
 	    return view('app.empresa.report', array(
+	    	'id'    =>  $id,
 	    	'empresa' => $empresa,
 		    'title' => $empresa->Nom_Empresa
 	    ));
