@@ -35,17 +35,17 @@
 							<ul class="nav">
 								<li>
 									<a href="javascript:;">
-										<i class="icon-home"></i> {{ $vehiculo->Tip_Vehiculo }}
+										<i class="fa fa-chevron-right"></i> <strong>Tipo: </strong>{{ $vehiculo->Tip_Vehiculo }}
 									</a>
 								</li>
 								<li>
 									<a href="javascript:;">
-										<i class="icon-settings"></i> {{ $vehiculo->Mar_Vehiculo }}
+										<i class="fa fa-chevron-right"></i> <strong>Marca: </strong>{{ $vehiculo->Mar_Vehiculo }}
 									</a>
 								</li>
 								<li>
 									<a href="javascript:;">
-										<i class="icon-info"></i> {{ $vehiculo->Gru_Vehiculo }}
+										<i class="fa fa-chevron-right"></i> <strong>Grupo: </strong>{{ $vehiculo->Gru_Vehiculo }}
 									</a>
 								</li>
 							</ul>
