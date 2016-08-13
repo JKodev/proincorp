@@ -184,6 +184,11 @@ Route::group([
 				'as'    =>  'service.reports.vehiculo.portico',
 				'uses'  =>  'VehiculoController@serviceVehiculoPortico'
 			]);
+
+			Route::get('find', [
+				'as'    =>  'service.reports.vehiculo.find',
+				'uses'  =>  'VehiculoController@serviceFind'
+			]);
 		});
 	});
 });
