@@ -191,8 +191,9 @@ class PorticoController extends Controller
 	    $start = $request->start;
 	    $draw = $request->draw;
 	    $parameters = $request->filters;
+	    $order = $request->order;
 
-    	$data = ReportHelper::tipo_vehiculo_empresa($id, $length, $start, $draw, $parameters);
+    	$data = ReportHelper::tipo_vehiculo_empresa($id, $length, $start, $draw, $parameters, $order);
 
 	    return response()->json($data);
     }

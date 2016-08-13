@@ -32,7 +32,7 @@ class ReportHelper
 		return $query;
 	}
 
-	public static function tipo_vehiculo_empresa($lector_id, $length, $start, $draw, $parameters)
+	public static function tipo_vehiculo_empresa($lector_id, $length, $start, $draw, $parameters, $order)
 	{
 		$lector = Lector::find($lector_id);
 
@@ -69,6 +69,20 @@ class ReportHelper
 			'recordsTotal'  =>  $query->count(),
 			'recordsFiltered'   =>  $query->count()
 		);
+
+		switch ($order[0]['column']) {
+			case '0':
+				$query->orderBy('FECHA', $order[0]['dir']);
+				break;
+			case '1':
+				$query->orderBy('PLACA', $order[0]['dir']);
+				break;
+			case '3':
+				$query->orderBy('RAZON_SOCIAL', $order[0]['dir']);
+				break;
+			default:
+				$query->orderBy('FECHA', $order[0]['dir']);
+		}
 
 		$results = $query->skip($start)->take($length)->get();
 

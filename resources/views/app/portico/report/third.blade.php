@@ -30,7 +30,7 @@
 					</div>
 					<div class="portlet-body">
 						<div class="table-container">
-							<table class="table table-striped table-bordered table-hover table-checkable"
+							<table class="table table-striped table-bordered table-hover"
 							       id="datatable_ajax">
 								<thead>
 								<tr role="row" class="heading">
@@ -226,13 +226,19 @@
 							});
 						}
 					},
-					buttons: [
+					"columnDefs":[
+						{
+							"sortable": false,
+							'targets': [2]
+						}
+					],
+					"buttons": [
 						{ extend: 'print', className: 'btn dark btn-outline' },
 						{ extend: 'pdf', className: 'btn green btn-outline' },
 						{ extend: 'csv', className: 'btn purple btn-outline ' }
 					],
 					"order": [
-						[1, "asc"]
+						[0, "desc"]
 					]// set first column as a default sort by asc
 				}
 			});
