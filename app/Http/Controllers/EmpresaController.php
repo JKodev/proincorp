@@ -16,7 +16,7 @@ class EmpresaController extends Controller
     public function index()
     {
     	$empresas = Empresa::all();
-    	//dd($empresa);
+
     	return view('app.empresa.index', array(
     		'empresas' => $empresas
     	));

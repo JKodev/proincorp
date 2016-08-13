@@ -27,6 +27,7 @@
 						<th class="min-tablet">Marca</th>
 						<th class="min-phone-1">Observación</th>
 						<th class="min-phone-1">Grupo</th>
+						<th class="all"></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -37,6 +38,11 @@
 						<td>{{ $vehiculo->Mar_Vehiculo }}</td>
 						<td>{{ $vehiculo->Obs_Vehiculo }}</td>
 						<td>{{ $vehiculo->Gru_Vehiculo }}</td>
+						<td>
+							<a href="{{ route('app.reports.vehiculo.show', array('id' => $vehiculo->ID_Vehiculo)) }}" class="btn blue-soft">
+								Ver Info
+							</a>
+						</td>
 					</tr>
 					@endforeach
 				</tbody>

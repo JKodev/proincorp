@@ -109,6 +109,11 @@ Route::group([
 				    		'as'	=>	'app.reports.vehiculo.index',
 				    		'uses'	=>	'VehiculoController@index'
 				    	]);
+
+						Route::get('/{id}', [
+							'as'    =>  'app.reports.vehiculo.show',
+							'uses'  =>  'VehiculoController@show'
+						]);
 				});
 		});
 });
