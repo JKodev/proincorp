@@ -62,9 +62,8 @@
 						<td class="all">
 							<input type="text" class="form-control form-filter input-sm" name="placa">
 						</td>
-						<td class="all">
-							<input type="text" class="form-control form-filter input-sm"
-							       name="portico">
+						<td>
+
 						</td>
 
 						<td class="all">
