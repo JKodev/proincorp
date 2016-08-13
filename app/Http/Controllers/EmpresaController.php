@@ -56,6 +56,6 @@ class EmpresaController extends Controller
 
     public function serviceFind(Request $request)
     {
-    	dd($request);
+    	dd($request->input('query'));
     }
 }
