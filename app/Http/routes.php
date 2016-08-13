@@ -155,6 +155,16 @@ Route::group([
 				'uses'  =>  'PorticoController@serviceGeneral'
 			]);
 		});
+
+		Route::group([
+			'prefix'    =>  'empresa'
+		], function () {
+
+			Route::post('report/{id}', [
+				'as'    =>  'service.reports.empresa.report',
+				'uses'  =>  'EmpresaController@serviceReport'
+			]);
+		});
 	});
 });
 

@@ -4,10 +4,11 @@ namespace App\Helpers;
 
 
 use App\Models\Camara;
+use App\Models\Empresa;
 use App\Models\Lector;
 use App\Models\Lectura;
 use App\Models\Vehiculo;
-use Illuminate\Support\Facades\DB;
+use DB;
 
 class ReportHelper
 {
@@ -367,6 +368,74 @@ class ReportHelper
 		);
 
 		$data['general'] = $data['camaras'] + $data['tags'];
+
+		return $data;
+	}
+
+	/**
+	 * @param $empresa_id integer
+	 * @param $length integer
+	 * @param $start integer
+	 * @param $draw integer
+	 * @param $parameters array
+	 * @return array
+	 */
+	public static function empresaReport($empresa_id, $length, $start, $draw, $parameters)
+	{
+		$empresa = Empresa::find($empresa_id);
+
+		$query = DB::connection('sqlsrv')
+			->table('LECTURAS_DETALLADAS_LEC_VISIBLE')
+			->where('EMPRESA', $empresa->ID_Empresa);
+
+		if (array_key_exists('date_from', $parameters) && array_key_exists('date_to', $parameters)) {
+			if (!empty($parameters['date_from']) && !empty($parameters['date_to'])) {
+				$start_date = \DateTime::createFromFormat("d/m/Y", $parameters['date_from']);
+				$end_date = \DateTime::createFromFormat("d/m/Y", $parameters['date_to']);
+				$query->whereBetween('FECHA', array(
+					$start_date->format('d/m/Y 00:00:00'),
+					$end_date->format('d/m/Y 00:00:00')
+				));
+			}
+		}
+
+		if (array_key_exists('tag', $parameters)) {
+			if (!empty($parameters['tag'])) {
+				$query->where('TAG', 'LIKE', '%'.strtoupper($parameters['tag']).'%');
+			}
+		}
+
+		if (array_key_exists('placa', $parameters)) {
+			if (!empty($parameters['placa'])) {
+				$query->where('PLACA', 'LIKE', '%'.strtoupper($parameters['placa']).'%');
+			}
+		}
+
+		if (array_key_exists('portico', $parameters)) {
+			if (!empty($parameters['portico'])) {
+				$query->where('PUNTO', 'LIKE', '%'.strtoupper($parameters['portico']).'%');
+			}
+		}
+
+		$data = array(
+			'data'  => array(),
+			'draw'  =>  $draw,
+			'recordsTotal'  =>  $query->count(),
+			'recordsFiltered'   =>  $query->count()
+		);
+
+		$results = $query->skip($start)->take($length)->get();
+
+		foreach ($results as $result) {
+			$data['data'][] = array(
+				$result->FECHA,
+				$result->TAG,
+				$result->PLACA,
+				$result->PUNTO,
+				'-'
+			);
+		}
+
 
 		return $data;
 	}

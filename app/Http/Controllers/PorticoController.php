@@ -13,8 +13,15 @@ use App\Models\Camara;
 
 class PorticoController extends Controller
 {
+	/**
+	 * @var array
+	 */
 	private $colors = ["green-jungle", "blue-sharp", "red-thunderbird", "yellow-gold", "purple-seance", "blue-ebonyclay", "green-turquoise", "grey-salsa", "red-sunglo", "yellow-soft", "purple-medium"];
-    public function index()
+
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function index()
     {
     	$lectores = Lector::orderBy('dsc_lector_movimiento')->get();
     	return view('app.portico.index', array(
@@ -23,6 +30,10 @@ class PorticoController extends Controller
     	));
     }
 
+	/**
+	 * @param $id integer
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
     public function show($id)
     {
     	$totals = ReportHelper::totalAllReports($id, date('d/m/Y 00:00:00'), date('d/m/Y 23:59:59'));
@@ -37,11 +48,16 @@ class PorticoController extends Controller
 
     }
 
+	/**
+	 * @param $id integer
+	 * @param $report_id integer
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
     public function report($id, $report_id)
     {
 	    $totals = ReportHelper::totalAllReports($id, date('d/m/Y 00:00:00'), date('d/m/Y 23:59:59'));
     	$lector = Lector::find($id);
-	    $lectores = Lector::all();
+	    $lectores = Lector::orderBy('dsc_lector_movimiento')->get();
 	    $view = '';
 	    $variables = array(
 	    	'title' => '',
@@ -76,6 +92,10 @@ class PorticoController extends Controller
 	    return view($view, $variables);
     }
 
+	/**
+	 * @param $id integer
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
     public function tags($id)
     {
 	    $totals = ReportHelper::totalAllReports($id, date('d/m/Y 00:00:00'), date('d/m/Y 23:59:59'));
@@ -84,7 +104,7 @@ class PorticoController extends Controller
 		    ->where('id_lector_movimiento', $id)
 		    ->first();
     	$lector = Lector::find($id);
-	    $lectores = Lector::all();
+	    $lectores = Lector::orderBy('dsc_lector_movimiento')->get();
     	return view('app.portico.report.tags', array(
     		'title'     =>  'Reporte por Tags',
 		    'id'        =>  $id,
@@ -96,6 +116,10 @@ class PorticoController extends Controller
 	    ));
     }
 
+	/**
+	 * @param $id integer
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
     public function camaras($id)
     {
 	    $totals = ReportHelper::totalAllReports($id, date('d/m/Y 00:00:00'), date('d/m/Y 23:59:59'));
@@ -104,7 +128,7 @@ class PorticoController extends Controller
 		    ->where('id_lector_movimiento', $id)
 		    ->first();
 	    $lector = Lector::find($id);
-	    $lectores = Lector::all();
+	    $lectores = Lector::orderBy('dsc_lector_movimiento')->get();
 	    return view('app.portico.report.camaras', array(
 		    'title'     =>  'Reporte por Cámaras',
 		    'id'        =>  $id,
@@ -128,7 +152,7 @@ class PorticoController extends Controller
 		    ->where('id_lector_movimiento', $id)
 		    ->first();
 	    $lector = Lector::find($id);
-	    $lectores = Lector::all();
+	    $lectores = Lector::orderBy('dsc_lector_movimiento')->get();
 	    return view('app.portico.report.general', array(
 		    'title'     =>  'Reporte General',
 		    'id'        =>  $id,
@@ -140,6 +164,12 @@ class PorticoController extends Controller
 	    ));
     }
 
+	/**
+	 * @param $id integer
+	 * @param $start_date integer unix time
+	 * @param $end_date integer unix time
+	 * @return \Illuminate\Http\JsonResponse
+	 */
     public function serviceTipoVehiculoPorcentual($id, $start_date, $end_date)
     {
     	$s_date = date("Y-m-d 00:00:00", $start_date);
@@ -150,6 +180,11 @@ class PorticoController extends Controller
 	    return response()->json($serialize);
     }
 
+	/**
+	 * @param Request $request
+	 * @param $id integer
+	 * @return \Illuminate\Http\JsonResponse
+	 */
     public function serviceTipoVehiculoEmpresa(Request $request, $id)
     {
     	$length = $request->length;
@@ -162,6 +197,11 @@ class PorticoController extends Controller
 	    return response()->json($data);
     }
 
+	/**
+	 * @param $id integer
+	 * @param $date integer unix time
+	 * @return \Illuminate\Http\JsonResponse
+	 */
     public function serviceVehiculosDia($id, $date)
     {
     	$f_date = date("d/m/Y", $date);
@@ -170,6 +210,11 @@ class PorticoController extends Controller
 	    return response()->json($data);
     }
 
+	/**
+	 * @param $id integer
+	 * @param $date integer unix time
+	 * @return \Illuminate\Http\JsonResponse
+	 */
     public function serviceTags($id, $date)
     {
     	$f_date = date("d/m/Y", $date);
@@ -180,6 +225,11 @@ class PorticoController extends Controller
 	    return response()->json($serialize);
     }
 
+	/**
+	 * @param $id integer
+	 * @param $date integer unix time
+	 * @return \Illuminate\Http\JsonResponse
+	 */
     public function serviceCamaras($id, $date)
     {
     	$f_date = date("d/m/Y", $date);
@@ -190,6 +240,12 @@ class PorticoController extends Controller
 	    return response()->json($serialize);
     }
 
+	/**
+	 * @param $id integer
+	 * @param $date integer unix time
+	 * @param $direction integer
+	 * @return \Illuminate\Http\JsonResponse
+	 */
     public function serviceGeneral($id, $date, $direction)
     {
     	$dir = 'Arequipa - CV';

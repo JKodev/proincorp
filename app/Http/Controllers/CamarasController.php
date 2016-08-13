@@ -10,10 +10,19 @@ use App\Http\Requests;
 
 class CamarasController extends Controller
 {
+	/**
+	 * @var array
+	 */
 	private $colors = ["green-jungle", "blue-sharp", "red-thunderbird", "yellow-gold", "purple-seance", "blue-ebonyclay", "green-turquoise", "grey-salsa", "red-sunglo", "yellow-soft", "purple-medium"];
-    public function index()
+
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function index()
     {
-    	$camaras = Camara::where('currentConfigurationIndex', -99)->get();
+    	$camaras = Camara::where('currentConfigurationIndex', -99)
+		    ->orderBy('cameraName')
+		    ->get();
 
 	    return view('app.camaras.index', [
 	    	'camaras'   =>  $camaras,
@@ -21,9 +30,15 @@ class CamarasController extends Controller
 	    ]);
     }
 
+	/**
+	 * @param $id integer
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
     public function show($id)
     {
-    	$camaras = Camara::where('currentConfigurationIndex', -99)->get();
+    	$camaras = Camara::where('currentConfigurationIndex', -99)
+		    ->orderBy('cameraName')
+		    ->get();
     	$camara = Camara::find($id);
 
 	    $cam_ubication = DB::connection('sqlsrv')
