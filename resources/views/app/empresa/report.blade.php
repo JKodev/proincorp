@@ -22,7 +22,7 @@
 				<div class="tools"></div>
 			</div>
 			<div class="portlet-body">
-				<table class="table table-striped table-bordered table-hover dt-responsive" width="100%"
+				<table class="table table-striped table-bordered dt-responsive" width="100%"
 				       id="datatable_ajax">
 					<thead>
 					<tr role="row" class="heading">
