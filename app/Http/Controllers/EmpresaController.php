@@ -54,8 +54,24 @@ class EmpresaController extends Controller
 	    return response()->json($data);
     }
 
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Http\JsonResponse
+	 */
     public function serviceFind(Request $request)
     {
-    	dd($request->input('query'));
+    	$query = strtoupper($request->input('query'));
+
+	    $empresas = Empresa::where('Nom_Empresa', 'LIKE', "%$query%")->get();
+
+	    $data = array();
+	    foreach ($empresas as $empresa) {
+	    	$data[] = array(
+	    		'value'     =>  $empresa->Nom_Empresa,
+			    'tokens'    =>  explode(' ', $empresa->Nom_Empresa)
+		    );
+	    }
+
+	    return response()->json($data);
     }
 }
