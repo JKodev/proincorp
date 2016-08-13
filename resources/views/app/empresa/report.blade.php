@@ -86,11 +86,11 @@
 				       id="datatable_ajax">
 					<thead>
 					<tr role="row" class="heading">
-						<th class="min-phone-1" width="30%"> Fecha Hora</th>
+						<th class="min-tablet"> Fecha Hora</th>
 						<th class="all"> Tag</th>
-						<th width="20%" class="all"> Placa</th>
+						<th class="all"> Placa</th>
 						<th class="min-phone-1"> Portico</th>
-						<th width="60"></th>
+						<th class="none"></th>
 					</tr>
 					<tr role="row" class="filter">
 						<td>
