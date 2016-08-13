@@ -439,4 +439,50 @@ class ReportHelper
 
 		return $data;
 	}
+
+	public static function vehiculoPortico($vehiculo_id, $length, $start, $draw, $parameters)
+	{
+		$vehiculo = Vehiculo::find($vehiculo_id);
+
+		$query = DB::connection('sqlsrv')
+			->table('LECTURAS_DETALLADAS_LEC_VISIBLE')
+			->where('PLACA', $vehiculo->ID_Vehiculo);
+
+		if (array_key_exists('date_from', $parameters) && array_key_exists('date_to', $parameters)) {
+			if (!empty($parameters['date_from']) && !empty($parameters['date_to'])) {
+				$start_date = \DateTime::createFromFormat("d/m/Y", $parameters['date_from']);
+				$end_date = \DateTime::createFromFormat("d/m/Y", $parameters['date_to']);
+				$query->whereBetween('FECHA', array(
+					$start_date->format('d/m/Y 00:00:00'),
+					$end_date->format('d/m/Y 00:00:00')
+				));
+			}
+		}
+
+		if (array_key_exists('portico', $parameters)) {
+			if (!empty($parameters['portico'])) {
+				$query->where('PUNTO', 'LIKE', '%'.strtoupper($parameters['portico']).'%');
+			}
+		}
+
+		$data = array(
+			'data'  => array(),
+			'draw'  =>  $draw,
+			'recordsTotal'  =>  $query->count(),
+			'recordsFiltered'   =>  $query->count()
+		);
+
+		$results = $query->skip($start)->take($length)->get();
+
+		foreach ($results as $result) {
+			$data['data'][] = array(
+				$result->FECHA,
+				$result->PUNTO,
+				'-'
+			);
+		}
+
+
+		return $data;
+	}
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ReportHelper;
 use App\Models\Empresa;
 use App\Models\Vehiculo;
 use DB;
@@ -11,6 +12,9 @@ use App\Http\Requests;
 
 class VehiculoController extends Controller
 {
+	/**
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
     public function index()
     {
     	$vehiculos = Vehiculo::all();
@@ -20,6 +24,10 @@ class VehiculoController extends Controller
 	    ]);
     }
 
+	/**
+	 * @param $id integer
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
     public function show($id)
     {
     	$empresa = null;
@@ -44,5 +52,22 @@ class VehiculoController extends Controller
 		    'registro'  =>  $registro,
 		    'id'    =>  $id
 	    ]);
+    }
+
+	/**
+	 * @param Request $request
+	 * @param $id integer
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+    public function serviceVehiculoPortico(Request $request, $id)
+    {
+	    $length = $request->length;
+	    $start = $request->start;
+	    $draw = $request->draw;
+	    $parameters = $request->filters;
+
+	    $data = ReportHelper::vehiculoPortico($id, $length, $start, $draw, $parameters);
+
+	    return response()->json($data);
     }
 }

@@ -170,6 +170,16 @@ Route::group([
 				'uses'  =>  'EmpresaController@serviceReport'
 			]);
 		});
+
+		Route::group([
+			'prefix'    =>  'vehiculo'
+		], function () {
+
+			Route::post('portico/{id}', [
+				'as'    =>  'service.reports.vehiculo.portico',
+				'uses'  =>  'VehiculoController@serviceVehiculoPortico'
+			]);
+		});
 	});
 });
 
