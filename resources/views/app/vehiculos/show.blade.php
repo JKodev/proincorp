@@ -153,6 +153,7 @@
 	        type="text/javascript"></script>
 	<script src="{{ asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"
 	        type="text/javascript"></script>
+	<script src="{{ asset('assets/global/plugins/jquery.sparkline.min.js') }}" type="text/javascript"></script>
 @endsection
 
 @section('js_level_scripts')
