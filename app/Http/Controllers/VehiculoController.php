@@ -41,7 +41,8 @@ class VehiculoController extends Controller
 	    return view('app.vehiculos.show', [
 	    	'vehiculo'  =>  $vehiculo,
 		    'empresa'   =>  $empresa,
-		    'registro'  =>  $registro
+		    'registro'  =>  $registro,
+		    'id'    =>  $id
 	    ]);
     }
 }
