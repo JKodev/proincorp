@@ -8,6 +8,7 @@
 	      rel="stylesheet" type="text/css"/>
 	<link href="{{ asset('assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}"
 	      rel="stylesheet" type="text/css"/>
+	<link href="{{ asset('assets/global/plugins/typeahead/typeahead.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('breadcrumb')
@@ -72,7 +73,7 @@
 									</td>
 									<td>
 										<input type="text" class="form-control form-filter input-sm"
-										       name="empresa">
+										       name="empresa" id="empresa">
 									</td>
 
 									<td>
@@ -105,11 +106,38 @@
 	        type="text/javascript"></script>
 	<script src="{{ asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"
 	        type="text/javascript"></script>
+	<script src="{{ asset('assets/global/plugins/typeahead/handlebars.min.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('assets/global/plugins/typeahead/typeahead.bundle.min.js') }}" type="text/javascript"></script>
+
 @endsection
 
 @section('js_level_scripts')
 	<script>
 		jQuery(document).ready(function () {
+			var empresas = new Bloodhound({
+				datumTokenizer: function(datum) {
+					return Bloodhound.tokenizers.whitespace(datum.value);
+				},
+				queryTokenizer: Bloodhound.tokenizers.whitespace,
+				remote: {
+					wildcard: '%QUERY',
+					url: '{{ route('service.reports.empresa.find') }}?query=%QUERY',
+					transform: function(response) {
+						// Map the remote source JSON array to a JavaScript object array
+						return $.map(response.results, function(movie) {
+							return {
+								value: movie.original_title
+							};
+						});
+					}
+				}
+			});
+
+			$('#empresa').typeahead(null, {
+				display: 'value',
+				source: empresas
+			});
+
 			$('.date-picker').datepicker({
 				rtl: App.isRTL(),
 				autoclose: true

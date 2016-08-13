@@ -53,4 +53,9 @@ class EmpresaController extends Controller
 
 	    return response()->json($data);
     }
+
+    public function serviceFind(Request $request)
+    {
+    	dd($request);
+    }
 }

@@ -169,6 +169,11 @@ Route::group([
 				'as'    =>  'service.reports.empresa.report',
 				'uses'  =>  'EmpresaController@serviceReport'
 			]);
+
+			Route::get('find', [
+				'as'    =>  'service.reports.empresa.find',
+				'uses'  =>  'EmpresaController@serviceFind'
+			]);
 		});
 
 		Route::group([
