@@ -86,10 +86,10 @@
 				       id="datatable_ajax">
 					<thead>
 					<tr role="row" class="heading">
-						<th width="100"> Fecha Hora</th>
-						<th width="min-phone-1"> Tag</th>
-						<th width="50"> Placa</th>
-						<th width="min-tablet"> Portico</th>
+						<th class="min-tablet" width="30%"> Fecha Hora</th>
+						<th class="min-tablet"> Tag</th>
+						<th width="20%" class="all"> Placa</th>
+						<th class="min-tablet"> Portico</th>
 						<th width="60"></th>
 					</tr>
 					<tr role="row" class="filter">
@@ -253,7 +253,7 @@
 						api.column(3, {page:'current'} ).data().each( function ( group, i ) {
 							if ( last !== group ) {
 								$(rows).eq( i ).before(
-										'<tr class="group"><td colspan="3">'+group+'</td></tr>'
+										'<tr class="group"><td colspan="4">'+group+'</td></tr>'
 								);
 
 								last = group;
