@@ -150,6 +150,11 @@ Route::group([
 				'uses'  =>  'PorticoController@serviceVehiculosDia'
 			]);
 
+			Route::post('/vehiculos-dia/{id}/excel', [
+				'as'    =>  'service.reports.portico.vehiculos-dia.excel',
+				'uses'  =>  'PorticoController@serviceVehiculosDiaExcel'
+			]);
+
 			Route::get('/tags/{id}/{date}', [
 				'as'    =>  'service.reports.portico.tags',
 				'uses'  =>  'PorticoController@serviceTags'

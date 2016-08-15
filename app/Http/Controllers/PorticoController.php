@@ -241,6 +241,26 @@ class PorticoController extends Controller
 	    return response()->json($data);
     }
 
+    public function serviceVehiculosDiaExcel(Request $request, $id)
+    {
+    	$lector = Lector::find($id);
+    	$date = date("d/m/Y", $request->date);
+
+	    $parameters = array(
+	    	'title' =>  'Vehiculos por día',
+		    'registers' =>  ReportHelper::autosDia($id, $date),
+		    'start_date'  =>  $date.' 00:00:00',
+		    'end_date'  =>  $date.' 23:59:59',
+		    'sentido'       =>  preg_replace('/(\d+)\_(\d+)/', " ", $lector->dsc_lector_movimiento)
+	    );
+
+	    Excel::create($parameters['title'], function(LaravelExcelWriter $excel) use ($parameters) {
+		    $excel->sheet('Vehiculos Dia', function(LaravelExcelWorksheet $sheet) use ($parameters) {
+			    $sheet->loadView('app.portico.report.excel.first', $parameters);
+		    });
+	    })->export('xlsx');
+    }
+
 	/**
 	 * @param $id integer
 	 * @param $date integer unix time

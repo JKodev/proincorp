@@ -104,6 +104,15 @@
 		};
 
 		$(document).ready(function () {
+			jQuery.download = function(url, date){
+				// Build a form
+				var form = $('<form></form>').attr('action', url).attr('method', 'post');
+				form.append('{{ csrf_field() }}');
+				// Add the one key/value
+				form.append($("<input></input>").attr('type', 'hidden').attr('name', 'date').attr('value', date));
+				//send request
+				form.appendTo('body').submit().remove();
+			};
 			if (jQuery().datepicker) {
 				$('.date-picker').datepicker({
 					rtl: App.isRTL(),
@@ -151,7 +160,53 @@
 				"startDuration": 1,
 				"theme": "default",
 				"export": {
-					"enabled": true
+					"enabled": true,
+					"menu": [ {
+						"class": "export-main",
+						"menu": [
+							{
+								"label": "Descargar",
+								"menu": [
+									"JPG",
+									"PNG",
+									"SVG",
+									"PDF"
+								]
+							},
+							{
+								"label": "Guardar",
+								"menu": [
+									"CSV",
+									{
+										"label": "Excel",
+										"click": function () {
+											var start = $('#from').val();
+											var end = $('#to').val();
+											if (start == '' || start === null) {
+												start = '{{ date('d/m/Y') }}';
+											}
+											if (end == '' || end === null) {
+												end = '{{ date('d/m/Y') }}';
+											}
+
+											var start_unix = moment(start, "DD/MM/YYYY").unix();
+											var end_unix = moment(end, "DD/MM/YYYY").unix();
+											$.download('{{ route('service.reports.portico.tipos-vehiculo.porcentual.excel', array('id'=>$id)) }}', start_unix, end_unix);
+										}
+									},
+									"JSON"
+								]
+							},
+							{
+								"label": "Anotaciones",
+								"action": "draw"
+							},
+							{
+								"label": "Imprimir",
+								"format": "PRINT"
+							}
+						]
+					} ]
 				},
 				"categoryAxis": {
 					"gridPosition": "start"

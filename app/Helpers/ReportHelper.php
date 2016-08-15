@@ -9,6 +9,7 @@ use App\Models\Lector;
 use App\Models\Lectura;
 use App\Models\Vehiculo;
 use DB;
+use Illuminate\Database\Query\JoinClause;
 
 class ReportHelper
 {
@@ -142,6 +143,26 @@ class ReportHelper
 		}
 
 		return $results;
+	}
+
+	public static function autosDia($lector_id, $fecha)
+	{
+		$lector = Lector::find($lector_id);
+		$date = \DateTime::createFromFormat('d/m/Y', $fecha)->format('d/m/Y');
+		$start_date = $date.' 00:00:00';
+		$end_date = $date.' 23:59:59';
+		$query = DB::connection('sqlsrv')
+			->table('SDTR_LECTURAS_VISIBLE')
+			->join('TB_REGISTRO_VEHICULOS', function (JoinClause $join) {
+				$join->on('TB_REGISTRO_VEHICULOS.cod_tag', '=', 'SDTR_LECTURAS_VISIBLE.cod_tag');
+			})
+			->join('TB_VEHICULOS', function (JoinClause $join) {
+				$join->on('TB_VEHICULOS.ID_Vehiculo', '=', 'TB_REGISTRO_VEHICULOS.ID_Vehiculo');
+			})
+			->where('ip_lector_movimiento', $lector->ip_lector_movimiento)
+			->whereBetween('fecha_hora_lectura', [$start_date, $end_date])->get();
+
+		return $query;
 	}
 
 	private static function getZoneName($zones, $zone_id)
