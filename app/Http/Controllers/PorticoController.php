@@ -196,7 +196,7 @@ class PorticoController extends Controller
 	    $data = ReportHelper::tipo_vehiculo_porcentual($id, $s_date, $e_date);
 
 	    $parameters = array(
-	    	'title' =>  $title.' Porcentual',
+	    	'title' =>  $title,
 		    'registers'  =>  $data,
 		    'start_date'    =>  $s_date,
 		    'end_date'      =>  $e_date,
