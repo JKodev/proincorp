@@ -48,8 +48,9 @@ class EmpresaController extends Controller
 	    $start = $request->start;
 	    $draw = $request->draw;
 	    $parameters = $request->filters;
+	    $order = $request->order;
 
-	    $data = ReportHelper::empresaReport($id, $length, $start, $draw, $parameters);
+	    $data = ReportHelper::empresaReport($id, $length, $start, $draw, $parameters, $order);
 
 	    return response()->json($data);
     }

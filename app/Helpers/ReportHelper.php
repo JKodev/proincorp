@@ -394,7 +394,7 @@ class ReportHelper
 	 * @param $parameters array
 	 * @return array
 	 */
-	public static function empresaReport($empresa_id, $length, $start, $draw, $parameters)
+	public static function empresaReport($empresa_id, $length, $start, $draw, $parameters, $order)
 	{
 		$empresa = Empresa::find($empresa_id);
 
@@ -437,6 +437,23 @@ class ReportHelper
 			'recordsTotal'  =>  $query->count(),
 			'recordsFiltered'   =>  $query->count()
 		);
+
+		switch ($order[0]['column']) {
+			case '0':
+				$query->orderBy('FECHA', $order[0]['dir']);
+				break;
+			case '1':
+				$query->orderBy('TAG', $order[0]['dir']);
+				break;
+			case '2':
+				$query->orderBy('PLACA', $order[0]['dir']);
+				break;
+			case '3':
+				$query->orderBy('PUNTO', $order[0]['dir']);
+				break;
+			default:
+				$query->orderBy('FECHA', $order[0]['dir']);
+		}
 
 		$results = $query->skip($start)->take($length)->get();
 
