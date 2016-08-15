@@ -191,12 +191,12 @@ class PorticoController extends Controller
 	    $s_date = date("Y-m-d 00:00:00", $start_date);
 	    $e_date = date("Y-m-d 23:59:59", $end_date);
 
-	    $title = 'Reporte Tipo de Vehiculo Porcentual';
+	    $title = 'Reporte Tipo de Vehiculo';
 	    $lector = Lector::find($id);
 	    $data = ReportHelper::tipo_vehiculo_porcentual($id, $s_date, $e_date);
 
 	    $parameters = array(
-	    	'title' =>  $title,
+	    	'title' =>  $title.' Porcentual',
 		    'registers'  =>  $data,
 		    'start_date'    =>  $s_date,
 		    'end_date'      =>  $e_date,
@@ -204,10 +204,10 @@ class PorticoController extends Controller
 	    );
 
 	    Excel::create($title, function(LaravelExcelWriter $excel) use ($parameters) {
-	    	$excel->sheet('Tipo de Vehiculos', function(LaravelExcelWorksheet $sheet) use ($parameters) {
+	    	$excel->sheet('Tipo de Vehiculo', function(LaravelExcelWorksheet $sheet) use ($parameters) {
 	    		$sheet->loadView('app.portico.report.excel.second', $parameters);
 		    });
-	    });
+	    })->export('xlsx');
     }
 
 	/**
