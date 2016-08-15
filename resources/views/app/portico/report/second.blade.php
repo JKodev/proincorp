@@ -174,7 +174,13 @@
 							"align": "center",
 							"markerType": "circle"
 						},
-						"titles": [],
+						"titles": [
+							{
+								"id": "Title-1",
+								"size": 15,
+								"text": "Reporte Tipo de vehículo {{ date('d/m/Y') }}"
+							}
+						],
 
 						"dataProvider": []
 					}
@@ -186,8 +192,8 @@
 				chart.dataProvider = getData();
 				toastr.info("Creando Gráfico con los datos...");
 				chart.titles = [];
-				var title = "Del " + $("#from").val() + " al " + $("#to").val();
-				chart.addTitle(title);
+				var title = "Reporte Tipo de Vehículo Del " + $("#from").val() + " al " + $("#to").val();
+				chart.addTitle(title, 15);
 				chart.validateData();
 				chart.animateAgain();
 			};

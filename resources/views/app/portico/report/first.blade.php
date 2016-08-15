@@ -159,7 +159,7 @@
 				"trendLines": [],
 				"graphs": [
 					{
-						"balloonText": "[[title]] a las [[Hora]]: [[value]]",
+						"balloonText": "[[title]] a las [[Hora]]: [[value]] autos.",
 						"bullet": "round",
 						"id": "AmGraph-1",
 						"title": "Portico dia",
