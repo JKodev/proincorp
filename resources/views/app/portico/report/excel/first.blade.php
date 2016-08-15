@@ -66,7 +66,7 @@
 					{{ $register->Tip_Vehiculo }}
 				</td>
 				<td>
-					{{ $register->fecha_hora_lectura }}
+					{{ \DateTime::createFromFormat('Y-m-d H:i:s.u', $register->fecha_hora_lectura)->format('d/m/Y H:i:s') }}
 				</td>
 				<td>
 					{{ $register->cod_tag }}
