@@ -180,18 +180,13 @@
 									{
 										"label": "Excel",
 										"click": function () {
-											var start = $('#from').val();
-											var end = $('#to').val();
-											if (start == '' || start === null) {
-												start = '{{ date('d/m/Y') }}';
-											}
-											if (end == '' || end === null) {
-												end = '{{ date('d/m/Y') }}';
+											var date = $('#date').val();
+											if (date == '' || date === null) {
+												date = '{{ date('d/m/Y') }}';
 											}
 
-											var start_unix = moment(start, "DD/MM/YYYY").unix();
-											var end_unix = moment(end, "DD/MM/YYYY").unix();
-											$.download('{{ route('service.reports.portico.tipos-vehiculo.porcentual.excel', array('id'=>$id)) }}', start_unix, end_unix);
+											var date_unix = moment(date, "DD/MM/YYYY").unix();
+											$.download('{{ route('service.reports.portico.vehiculos-dia.excel', array('id'=>$id)) }}', date_unix);
 										}
 									},
 									"JSON"
