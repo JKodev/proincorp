@@ -107,6 +107,16 @@
 			"label.saved.from": "Saved from: "
 		};
 		$(document).ready(function () {
+			jQuery.download = function(url, start_date, end_date){
+				// Build a form
+				var form = $('<form></form>').attr('action', url).attr('method', 'post');
+				form.append('{{ csrf_field() }}');
+				// Add the one key/value
+				form.append($("<input></input>").attr('type', 'hidden').attr('name', 'start_date').attr('value', start_date));
+				form.append($("<input></input>").attr('type', 'hidden').attr('name', 'end_date').attr('value', end_date));
+				//send request
+				form.appendTo('body').submit().remove();
+			};
 			if (jQuery().datepicker) {
 				$('.date-picker').datepicker({
 					rtl: App.isRTL(),
@@ -185,7 +195,18 @@
 											{
 												"label": "Excel",
 												"click": function () {
-													console.log("Hola");
+													var start = $('#from').val();
+													var end = $('#to').val();
+													if (start == '' || start === null) {
+														start = '{{ date('d/m/Y') }}';
+													}
+													if (end == '' || end === null) {
+														end = '{{ date('d/m/Y') }}';
+													}
+
+													var start_unix = moment(start, "DD/MM/YYYY").unix();
+													var end_unix = moment(end, "DD/MM/YYYY").unix();
+													$.download('{{ route('') }}', start_unix, end_unix);
 												}
 											},
 											"JSON"

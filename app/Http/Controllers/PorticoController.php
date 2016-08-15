@@ -6,10 +6,13 @@ use App\Helpers\ReportHelper;
 use App\Helpers\SerializeHelper;
 use App\Models\Lector;
 use DB;
+use Excel;
 use Illuminate\Http\Request;
 use App\Helpers\CamaraStaticHelper;
 use App\Http\Requests;
 use App\Models\Camara;
+use Maatwebsite\Excel\Classes\LaravelExcelWorksheet;
+use Maatwebsite\Excel\Writers\LaravelExcelWriter;
 
 class PorticoController extends Controller
 {
@@ -178,6 +181,33 @@ class PorticoController extends Controller
 	    $serialize = SerializeHelper::fromArray($data, array("Tip_Vehiculo", "sum"));
 
 	    return response()->json($serialize);
+    }
+
+    public function serviceTipoVehiculoPorcentualExcel(Request $request, $id)
+    {
+    	$start_date = $request->start_date;
+	    $end_date = $request->end_date;
+
+	    $s_date = date("Y-m-d 00:00:00", $start_date);
+	    $e_date = date("Y-m-d 23:59:59", $end_date);
+
+	    $title = 'Reporte Tipo de Vehiculo Porcentual';
+	    $lector = Lector::find($id);
+	    $data = ReportHelper::tipo_vehiculo_porcentual($id, $s_date, $e_date);
+
+	    $parameters = array(
+	    	'title' =>  $title,
+		    'registers'  =>  $data,
+		    'start_date'    =>  $s_date,
+		    'end_date'      =>  $e_date,
+		    'sentido'       =>  preg_replace('/(\d+)\_(\d+)/', " ", $lector->dsc_lector_movimiento)
+	    );
+
+	    Excel::create($title, function(LaravelExcelWriter $excel) use ($parameters) {
+	    	$excel->sheet('Tipo de Vehiculos', function(LaravelExcelWorksheet $sheet) use ($parameters) {
+	    		$sheet->loadView('app.portico.report.excel.second', $parameters);
+		    });
+	    });
     }
 
 	/**

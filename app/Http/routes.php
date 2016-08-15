@@ -135,6 +135,11 @@ Route::group([
 				'uses'  =>  'PorticoController@serviceTipoVehiculoPorcentual'
 			]);
 
+			Route::post('/porcentual/{id}/excel', [
+				'as'    =>  'service.reports.portico.tipos-vehiculo.porcentual.excel',
+				'uses'  =>  'PorticoController@serviceTipoVehiculoPorcentualExcel'
+			]);
+
 			Route::post('/empresa/{id}/', [
 				'as'    =>  'service.reports.portico.tipos-vehiculos.empresa',
 				'uses'  =>  'PorticoController@serviceTipoVehiculoEmpresa'
