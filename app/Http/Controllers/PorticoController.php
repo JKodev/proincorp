@@ -193,7 +193,7 @@ class PorticoController extends Controller
 
 	    $title = 'Reporte Tipo de Vehiculo';
 	    $lector = Lector::find($id);
-	    $data = ReportHelper::tipo_vehiculo_porcentual($id, $s_date, $e_date);
+	    $data = ReportHelper::tipoVehiculoPorcentualExcel($id, $s_date, $e_date);
 
 	    $parameters = array(
 	    	'title' =>  $title,
