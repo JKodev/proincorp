@@ -165,7 +165,42 @@
 						"valueField": "sum",
 						"groupPercent": 5,
 						"export": {
-							"enabled": true
+							"enabled": true,
+							"menu": [ {
+								"class": "export-main",
+								"menu": [
+									{
+										"label": "Descargar",
+										"menu": [
+											"JPG",
+											"PNG",
+											"SVG",
+											"PDF"
+										]
+									},
+									{
+										"label": "Guardar",
+										"menu": [
+											"CSV",
+											{
+												"label": "Excel",
+												"click": function () {
+													console.log("Hola");
+												}
+											},
+											"JSON"
+										]
+									},
+									{
+										"label": "Anotaciones",
+										"action": "draw"
+									},
+									{
+										"label": "Imprimir",
+										"format": "PRINT"
+									}
+								]
+							} ]
 						},
 						"allLabels": [],
 						"balloon": {},
