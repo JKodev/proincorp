@@ -206,7 +206,7 @@
 
 													var start_unix = moment(start, "DD/MM/YYYY").unix();
 													var end_unix = moment(end, "DD/MM/YYYY").unix();
-													$.download('{{ route('') }}', start_unix, end_unix);
+													$.download('{{ route('service.reports.portico.tipos-vehiculo.porcentual.excel', array('id'=>$id)) }}', start_unix, end_unix);
 												}
 											},
 											"JSON"
