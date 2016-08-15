@@ -160,7 +160,9 @@ class ReportHelper
 				$join->on('TB_VEHICULOS.ID_Vehiculo', '=', 'TB_REGISTRO_VEHICULOS.ID_Vehiculo');
 			})
 			->where('ip_lector_movimiento', $lector->ip_lector_movimiento)
-			->whereBetween('fecha_hora_lectura', [$start_date, $end_date])->get();
+			->whereBetween('fecha_hora_lectura', [$start_date, $end_date])
+			->orderBy('fecha_hora_lectura', 'desc')
+			->get();
 
 		return $query;
 	}
