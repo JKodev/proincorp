@@ -97,7 +97,7 @@ class MigrateHelper
 					->insert([
 						'id_indicador'  =>  $q->detector_id,
 						'id_zona'       =>  $q->zone_id,
-						'hora'          =>  \DateTime::createFromFormat('Y-m-d H:i:s', $q->end_time)->format('d/m/Y H:i:s'),
+						'hora'          =>  \DateTime::createFromFormat('Y-m-d H:i:s', $q->end_time)->sub(new \DateInterval('PT5H'))->format('d/m/Y H:i:s'),
 						'cantidad'      =>  $cantidad
 
 					]);
