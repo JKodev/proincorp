@@ -62,6 +62,7 @@
 		<tbody>
 			@foreach($registers as $register)
 			<tr>
+				{{ dd($register) }}
 				<td>
 					{{ $register->FECHA }}
 				</td>
