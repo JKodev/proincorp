@@ -27,6 +27,12 @@
 							<i class="icon-settings font-dark"></i>
 							<span class="caption-subject font-dark sbold uppercase">{{ $title }}</span>
 						</div>
+						<div class="actions">
+							<button type="button" id="export" class="c-btn-border-1x c-btn-green-jungle">
+								<span class="fa fa-file-excel-o"></span>
+								Exportar a Excel
+							</button>
+						</div>
 					</div>
 					<div class="portlet-body">
 						<div class="table-container">
@@ -45,7 +51,7 @@
 										<div class="input-group date date-picker margin-bottom-5"
 										     data-date-format="dd/mm/yyyy">
 											<input type="text" class="form-control form-filter input-sm" readonly
-											       name="date_from" placeholder="Desde">
+											       name="date_from" placeholder="Desde" id="date_from">
 											<span class="input-group-btn">
                                                 <button class="btn btn-sm default"
                                                         type="button">
@@ -55,7 +61,7 @@
 										</div>
 										<div class="input-group date date-picker" data-date-format="dd/mm/yyyy">
 											<input type="text" class="form-control form-filter input-sm" readonly
-											       name="date_to" placeholder="Hasta">
+											       name="date_to" placeholder="Hasta" id="date_to">
 											<span class="input-group-btn">
                                                 <button class="btn btn-sm default"
                                                         type="button">
@@ -65,7 +71,7 @@
 										</div>
 									</td>
 									<td>
-										<input type="text" class="form-control form-filter input-sm" name="placa">
+										<input type="text" class="form-control form-filter input-sm" name="placa" id="placa">
 									</td>
 									<td>
 
@@ -110,6 +116,23 @@
 @section('js_level_scripts')
 	<script>
 		jQuery(document).ready(function () {
+			jQuery.download = function(url){
+				// Build a form
+				var form = $('<form></form>').attr('action', url).attr('method', 'post');
+				form.append('{{ csrf_field() }}');
+				// Add the one key/value
+				form.append($("<input></input>").attr('type', 'hidden').attr('name', 'date_from').attr('value', $('#date_from').val()));
+				form.append($("<input></input>").attr('type', 'hidden').attr('name', 'date_to').attr('value', $('#date_to').val()));
+				form.append($("<input></input>").attr('type', 'hidden').attr('name', 'placa').attr('value', $('#placa').val()));
+				form.append($("<input></input>").attr('type', 'hidden').attr('name', 'empresa').attr('value', $('#empresa').val()));
+				//send request
+				form.appendTo('body').submit().remove();
+			};
+
+			$('#export').click(function () {
+				$.download('{{ route('service.reports.empresa.excel') }}');
+			});
+
 			var empresas = new Bloodhound({
 				datumTokenizer: function(d) { return d.tokens; },
 				queryTokenizer: Bloodhound.tokenizers.whitespace,

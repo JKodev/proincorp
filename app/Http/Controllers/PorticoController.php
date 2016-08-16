@@ -228,6 +228,42 @@ class PorticoController extends Controller
 	    return response()->json($data);
     }
 
+	public function serviceTipoVehiculoEmpresaExcel(Request $request, $id)
+	{
+		$lector = Lector::find($id);
+
+		$parameters = array(
+			'date_from' =>  $request->date_from,
+			'date_to'   =>  $request->date_to,
+			'empresa'   =>  $request->empresa,
+			'placa'     =>  $request->placa
+		);
+
+		$order = array(
+			array(
+				'column'    =>  '0',
+				'dir'       =>  'desc'
+			)
+		);
+
+		$start_date = \DateTime::createFromFormat("d/m/Y", $parameters['date_from']);
+		$end_date = \DateTime::createFromFormat("d/m/Y", $parameters['date_to']);
+
+		$data = array(
+			'title'     => 'Tipos Vehículos Empresa',
+			'registers' =>  ReportHelper::tipoVehiculoEmpresaQuery($id, 0, -1, $parameters, $order),
+			'start_date'=>  $start_date->format('d/m/Y 00:00:00'),
+			'end_date'  =>  $end_date->format('d/m/Y 00:00:00'),
+			'sentido'   =>  preg_replace('/(\d+)\_(\d+)/', " ", $lector->dsc_lector_movimiento)
+		);
+
+		Excel::create($parameters['title'], function(LaravelExcelWriter $excel) use ($data) {
+			$excel->sheet('Vehiculos Dia', function(LaravelExcelWorksheet $sheet) use ($data) {
+				$sheet->loadView('app.portico.report.excel.third', $data);
+			});
+		})->export('xlsx');
+	}
+
 	/**
 	 * @param $id integer
 	 * @param $date integer unix time

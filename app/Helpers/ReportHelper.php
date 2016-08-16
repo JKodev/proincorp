@@ -44,13 +44,16 @@ class ReportHelper
 		return $query;
 	}
 
-	public static function tipo_vehiculo_empresa($lector_id, $length, $start, $draw, $parameters, $order)
+	public static function tipoVehiculoEmpresaQuery($lector_id, $start, $length, $parameters, $order)
 	{
 		$lector = Lector::find($lector_id);
 
 		$query = DB::connection('sqlsrv')
 			->table('LECTURAS_DETALLADAS_LEC_VISIBLE')
-			->where('IP', $lector->ip_lector_movimiento);
+			->where('IP', $lector->ip_lector_movimiento)
+			->join('TB_VEHICULOS', function(JoinClause $join) {
+				$join->on('LECTURAS_DETALLADAS_LEC_VISIBLE.PLACA', '=', 'TB_VEHICULOS.ID_Vehiculo');
+			});
 
 		if (array_key_exists('date_from', $parameters) && array_key_exists('date_to', $parameters)) {
 			if (!empty($parameters['date_from']) && !empty($parameters['date_to'])) {
@@ -75,12 +78,7 @@ class ReportHelper
 			}
 		}
 
-		$data = array(
-			'data'  => array(),
-			'draw'  =>  $draw,
-			'recordsTotal'  =>  $query->count(),
-			'recordsFiltered'   =>  $query->count()
-		);
+		$total = $query->count();
 
 		switch ($order[0]['column']) {
 			case '0':
@@ -96,7 +94,30 @@ class ReportHelper
 				$query->orderBy('FECHA', $order[0]['dir']);
 		}
 
-		$results = $query->skip($start)->take($length)->get();
+		if (intval($length) == -1) {
+			$results = $query->get();
+		} else {
+			$results = $query->skip($start)->take($length)->get();
+		}
+
+		return array(
+			'results'   =>  $results,
+			'total'     =>  $total
+		);
+	}
+
+	public static function tipo_vehiculo_empresa($lector_id, $length, $start, $draw, $parameters, $order)
+	{
+
+		$info = self::tipoVehiculoEmpresaQuery($lector_id, $start, $length, $parameters, $order);
+		$data = array(
+			'data'  => array(),
+			'draw'  =>  $draw,
+			'recordsTotal'  =>  $info['total'],
+			'recordsFiltered'   =>  $info['total']
+		);
+
+		$results = $info['results'];
 
 		foreach ($results as $result) {
 			$data['data'][] = array(
@@ -489,7 +510,11 @@ class ReportHelper
 				$query->orderBy('FECHA', $order[0]['dir']);
 		}
 
-		$results = $query->skip($start)->take($length)->get();
+		if (intval($length) == -1) {
+			$results = $query->get();
+		} else {
+			$results = $query->skip($start)->take($length)->get();
+		}
 
 		foreach ($results as $result) {
 			$data['data'][] = array(
