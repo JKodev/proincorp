@@ -21,11 +21,11 @@
 						</div>
 					</div>
 					<div class="portlet-body">
-						@foreach($camaras as $camara)
-							<a href="{{ route('app.reports.camaras.show', array('id' => $camara->id)) }}"
-							   class="btn btn-block btn-lg {{ $colors[intval($camara->id) % count($colors)] }}">
+						@foreach($camaras as $cam)
+							<a href="{{ route('app.reports.camaras.show', array('id' => $cam->id)) }}"
+							   class="btn btn-block btn-lg {{ $colors[intval($cam->id) % count($colors)] }}">
 								<span class="fa fa-car"></span>
-								{{ preg_replace('/Cam(\d+)\_/', " ", $camara->cameraName) }}
+								{{ preg_replace('/Cam(\d+)\_/', " ", $cam->cameraName) }}
 							</a>
 						@endforeach
 					</div>
