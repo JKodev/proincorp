@@ -483,6 +483,8 @@ class ReportHelper
 			}
 		}
 
+		dd($query->get());
+
 		$data = array(
 			'data'  => array(),
 			'draw'  =>  $draw,
@@ -507,12 +509,12 @@ class ReportHelper
 				$query->orderBy('FECHA', $order[0]['dir']);
 		}
 
-		if ($length == -1 || $length == '-1') {
-			$results = $query->get();
-		} else {
+		if ($length != -1 && $length != '-1') {
 			$results = $query->skip($start)->take($length)->get();
+		} else {
+			$results = $query->get();
 		}
-		dd($results);
+
 		foreach ($results as $result) {
 			$data['data'][] = array(
 				$result->FECHA,
