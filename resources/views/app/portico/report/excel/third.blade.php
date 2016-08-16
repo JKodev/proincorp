@@ -63,7 +63,7 @@
 			@foreach($registers as $register)
 			<tr>
 				<td>
-					{{ $register['FECHA'] }}
+					{{ $register->FECHA }}
 				</td>
 				<td>
 					{{ $register['PLACA'] }}
