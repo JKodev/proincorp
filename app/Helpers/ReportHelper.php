@@ -50,10 +50,7 @@ class ReportHelper
 
 		$query = DB::connection('sqlsrv')
 			->table('LECTURAS_DETALLADAS_LEC_VISIBLE')
-			->where('IP', $lector->ip_lector_movimiento)
-			->join('TB_VEHICULOS', function(JoinClause $join) {
-				$join->on('LECTURAS_DETALLADAS_LEC_VISIBLE.PLACA', '=', 'TB_VEHICULOS.ID_Vehiculo');
-			});
+			->where('IP', $lector->ip_lector_movimiento);
 
 		if (array_key_exists('date_from', $parameters) && array_key_exists('date_to', $parameters)) {
 			if (!empty($parameters['date_from']) && !empty($parameters['date_to'])) {

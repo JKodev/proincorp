@@ -69,7 +69,7 @@
 					{{ $register->PLACA }}
 				</td>
 				<td>
-					{{ $register->Gru_Vehiculo }}
+					{{ \App\Models\Vehiculo::find($register->PLACA)->Gru_Vehiculo }}
 				</td>
 				<td>
 					{{ $register->RAZON_SOCIAL }}
