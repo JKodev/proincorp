@@ -512,7 +512,7 @@ class ReportHelper
 		} else {
 			$results = $query->skip($start)->take($length)->get();
 		}
-
+		dd($results);
 		foreach ($results as $result) {
 			$data['data'][] = array(
 				$result->FECHA,
