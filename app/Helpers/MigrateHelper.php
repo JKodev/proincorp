@@ -5,6 +5,7 @@ namespace App\Helpers;
 
 use App\Models\DetectorConfig;
 use DB;
+use Illuminate\Database\Query\JoinClause;
 use XmlParser;
 
 class MigrateHelper
@@ -12,7 +13,10 @@ class MigrateHelper
 	public static function migrate()
 	{
 		$messages = array();
-		$detectorSettings = DetectorConfig::where('configurationIndex', -99);
+		$detectorSettings = DetectorConfig::join('detector', function (JoinClause $join) {
+			$join->on('detectorconfiguration.detectorId', '=', 'detector.id')
+			->where('detector.cameraName', 'LIKE', 'Cam%');
+		});
 
 		if ($detectorSettings->count() > 0) {
 			$d_settings = $detectorSettings->get();
