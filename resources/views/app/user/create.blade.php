@@ -31,6 +31,7 @@
 			</div>
 			<div class="portlet-body form">
 				<form class="form-horizontal" role="form" method="post" action="{{ route('app.settings.users.store') }}">
+					{{ csrf_field() }}
 					<div class="form-body">
 						<div class="form-group">
 							<label class="col-md-3 control-label">Usuario</label>
