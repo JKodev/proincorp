@@ -249,9 +249,11 @@ class PorticoController extends Controller
 		$start_date = \DateTime::createFromFormat("d/m/Y", $parameters['date_from']);
 		$end_date = \DateTime::createFromFormat("d/m/Y", $parameters['date_to']);
 
+		$info = ReportHelper::tipoVehiculoEmpresaQuery($id, 0, -1, $parameters, $order);
+
 		$data = array(
 			'title'     => 'Tipos Vehículos Empresa',
-			'registers' =>  ReportHelper::tipoVehiculoEmpresaQuery($id, 0, -1, $parameters, $order),
+			'registers' =>  $info['results'],
 			'start_date'=>  $start_date->format('d/m/Y 00:00:00'),
 			'end_date'  =>  $end_date->format('d/m/Y 00:00:00'),
 			'sentido'   =>  preg_replace('/(\d+)\_(\d+)/', " ", $lector->dsc_lector_movimiento)
