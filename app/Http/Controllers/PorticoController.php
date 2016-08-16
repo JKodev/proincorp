@@ -233,8 +233,8 @@ class PorticoController extends Controller
 		$lector = Lector::find($id);
 
 		$parameters = array(
-			'date_from' =>  $request->date_from,
-			'date_to'   =>  $request->date_to,
+			'date_from' =>  (!empty($request->date_from))?$request->date_from:date('01/01/Y'),
+			'date_to'   =>  (!empty($request->date_to))?$request->date_to:date('d/m/Y'),
 			'empresa'   =>  $request->empresa,
 			'placa'     =>  $request->placa
 		);
