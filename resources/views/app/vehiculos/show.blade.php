@@ -33,8 +33,10 @@
 					<div class="portlet light profile-sidebar-portlet ">
 						<!-- SIDEBAR USERPIC -->
 						<div class="profile-userpic">
-							@if($registro->Fot_Registro)
-								<img src="http://www.proincorp.com.pe/fotos/{{ $registro->Fot_Registro }}" class="img-responsive" alt="">
+							@if ($registro)
+								@if($registro->Fot_Registro)
+									<img src="http://www.proincorp.com.pe/fotos/{{ $registro->Fot_Registro }}" class="img-responsive" alt="">
+								@endif
 							@else
 								<img src="{{ asset('assets/pages/img/photo_default.png') }}" class="img-responsive" alt="">
 							@endif
