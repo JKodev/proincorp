@@ -130,7 +130,7 @@
 			};
 
 			$('#export').click(function () {
-				$.download('{{ route('service.reports.empresa.excel') }}');
+				$.download('{{ route('service.reports.portico.tipos-vehiculos.empresa.excel', array('id'=>$id)) }}');
 			});
 
 			var empresas = new Bloodhound({
