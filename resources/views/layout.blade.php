@@ -84,8 +84,6 @@
 								<li class="dropdown dropdown-user dropdown-dark">
 									<a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown"
 									   data-hover="dropdown" data-close-others="true">
-										<img alt="" class="img-circle"
-										     src="{{ asset('assets/layouts/layout3/img/avatar9.jpg') }}">
 										<span class="username username-hide-mobile">{{ Auth::user()->name }}</span>
 									</a>
 									<ul class="dropdown-menu dropdown-menu-default">
