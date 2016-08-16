@@ -63,16 +63,16 @@
 			@foreach($registers as $register)
 			<tr>
 				<td>
-					{{ $register->FECHA }}
+					{{ $register['FECHA'] }}
 				</td>
 				<td>
-					{{ $register->PLACA }}
+					{{ $register['PLACA'] }}
 				</td>
 				<td>
-					-
+					{{ \App\Models\Vehiculo::find($register['PLACA'])->Gru_Vehiculo }}
 				</td>
 				<td>
-					{{ $register->RAZON_SOCIAL }}
+					{{ $register['RAZON_SOCIAL'] }}
 				</td>
 			</tr>
 			@endforeach
