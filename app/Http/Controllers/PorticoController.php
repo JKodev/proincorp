@@ -257,6 +257,8 @@ class PorticoController extends Controller
 			'sentido'   =>  preg_replace('/(\d+)\_(\d+)/', " ", $lector->dsc_lector_movimiento)
 		);
 
+		dd($data['registers']);
+
 		Excel::create($data['title'], function(LaravelExcelWriter $excel) use ($data) {
 			$excel->sheet('Vehiculos Dia', function(LaravelExcelWorksheet $sheet) use ($data) {
 				$sheet->loadView('app.portico.report.excel.third', $data);
