@@ -57,6 +57,8 @@ class UserController extends Controller
 		    $rol->description = "Rol creado para ".$request->name;
 		    $rol->save();
 
+		    $user->attachRole($rol);
+
 		    foreach ($request->permissions as $permission) {
 		    	$perm = Permission::find($permission);
 		    	$rol->attachPermission($perm);
