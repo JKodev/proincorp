@@ -1,4 +1,4 @@
-@extends('app.user.index')
+@extends('layout')
 
 @section('title', 'Nuevo Usuario')
 
@@ -10,7 +10,10 @@
 @endsection
 
 @section('breadcrumb')
-	@parent
+	<li>
+		<a href="{{ route('app.settings.users.index') }}">Usuarios</a>
+		<i class="fa fa-circle"></i>
+	</li>
 	<li>
 		<a href="{{ route('app.settings.users.create') }}">Nuevo</a>
 		<i class="fa fa-circle"></i>

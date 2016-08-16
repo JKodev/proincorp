@@ -4,14 +4,14 @@
 
 @section('css_level_plugins')
 	<link href="{{ asset('assets/global/plugins/bootstrap-table/bootstrap-table.min.css') }}" rel="stylesheet" type="text/css" />
-@show
+@endsection
 
 @section('breadcrumb')
 	<li>
 		<a href="{{ route('app.settings.users.index') }}">Usuarios</a>
 		<i class="fa fa-circle"></i>
 	</li>
-@show
+@endsection
 
 @section('content')
 <div class="page-content-inner">
@@ -60,12 +60,12 @@
 		</div>
 	</div>
 </div>
-@show
+@endsection
 
 @section('js_level_plugins')
 	<script src="{{ asset('assets/global/plugins/bootstrap-table/bootstrap-table.min.js') }}" type="text/javascript"></script>
-@show
+@endsection
 
 @section('js_level_scripts')
 	<script src="{{ asset('assets/pages/scripts/table-bootstrap.min.js') }}" type="text/javascript"></script>
-@show
+@endsection
