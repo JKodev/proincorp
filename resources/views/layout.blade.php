@@ -130,31 +130,41 @@
 										Principal
 									</a>
 								</li>
+								@permission('view-portico')
 								<li class=" ">
 									<a href="{!! route('app.reports.portico.index') !!}">
 										Pórticos
 									</a>
 								</li>
+								@endpermission
+								@permission('view-empresas')
 								<li class=" ">
 									<a href="{!! route('app.reports.empresa.index') !!}">
 										Empresas
 									</a>
 								</li>
+								@endpermission
+								@permission('view-vehiculos')
 								<li class=" ">
 									<a href="{!! route('app.reports.vehiculo.index') !!}">
 										Vehículos
 									</a>
 								</li>
+								@endpermission
+								@permission('view-camaras')
 								<li class=" ">
 									<a href="{!! route('app.reports.camaras.index') !!}">
 										Cámaras
 									</a>
 								</li>
+								@endpermission
+								@role('admin')
 								<li class=" ">
 									<a href="{!! route('app.settings.users.index') !!}">
 										Usuarios
 									</a>
 								</li>
+								@endrole
 							</ul>
 						</div>
 						<!-- END MEGA MENU -->
