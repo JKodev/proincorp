@@ -83,7 +83,7 @@
 				'</div>';
 
 			var map = new google.maps.Map(document.getElementById('gmap_marker'), {
-				zoom: 12,
+				zoom: 18,
 				center: position
 			});
 
