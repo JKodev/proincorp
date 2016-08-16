@@ -449,11 +449,10 @@ class ReportHelper
 	public static function empresaReport($empresa_id, $length, $start, $draw, $parameters, $order)
 	{
 		$empresa = Empresa::find($empresa_id);
-		dd("error");
+
 		$query = DB::connection('sqlsrv')
 			->table('LECTURAS_DETALLADAS_LEC_VISIBLE')
 			->where('EMPRESA', $empresa_id);
-		dd($query->get());
 
 		if (array_key_exists('date_from', $parameters) && array_key_exists('date_to', $parameters)) {
 			if (!empty($parameters['date_from']) && !empty($parameters['date_to'])) {
