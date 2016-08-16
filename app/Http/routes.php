@@ -120,8 +120,25 @@ Route::group([
 	Route::group([
 		'prefix'    =>  'settings'
 	], function () {
+		Route::group([
+			'prefix'    =>  'users',
+		], function () {
 
-		Route::resource('users', 'UserController@index');
+			Route::get('/', [
+				'as'    =>  'app.settings.users.index',
+				'uses'  =>  'UserController@index'
+			]);
+
+			Route::get('create', [
+				'as'    =>  'app.settings.users.create',
+				'uses'  =>  'UserController@create'
+			]);
+
+			Route::post('/', [
+				'as'    =>  'app.settings.users.store',
+				'uses'  =>  'UserController@store'
+			]);
+		});
 	});
 });
 
