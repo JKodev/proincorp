@@ -60,7 +60,6 @@
 			</tr>
 		</thead>
 		<tbody>
-			{{ dd($registers) }}
 			@foreach($registers as $register)
 			<tr>
 				<td>
@@ -70,7 +69,7 @@
 					{{ $register->PLACA }}
 				</td>
 				<td>
-					{{ \App\Models\Vehiculo::find($register->PLACA)->Gru_Vehiculo }}
+					-
 				</td>
 				<td>
 					{{ $register->RAZON_SOCIAL }}
