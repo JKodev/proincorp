@@ -37,7 +37,8 @@ Route::group([
 			], function () {
 
 				Route::group([
-					'prefix'	=>	'portico'
+					'prefix'	=>	'portico',
+					'middleware'    =>  ['permission:view-portico']
 					], function () {
 						
 						Route::get('/', [
@@ -72,7 +73,8 @@ Route::group([
 				});
 
 				Route::group([
-					'prefix' 	=>	'empresa'
+					'prefix' 	=>	'empresa',
+					'middleware'    =>  ['permission:view-empresas']
 					], function() {
 				    	
 				    	Route::get('/', [
@@ -87,7 +89,8 @@ Route::group([
 				});
 
 				Route::group([
-					'prefix' 	=>	'camaras'
+					'prefix' 	=>	'camaras',
+					'middleware'    =>  ['permission:view-camaras']
 					], function() {
 				    	
 				    	Route::get('/', [
@@ -102,7 +105,8 @@ Route::group([
 				});
 
 				Route::group([
-					'prefix' 	=>	'vehiculo'
+					'prefix' 	=>	'vehiculo',
+					'middleware'    =>  ['permission:view-vehiculos']
 					], function() {
 				    	
 				    	Route::get('/', [
@@ -122,6 +126,7 @@ Route::group([
 	], function () {
 		Route::group([
 			'prefix'    =>  'users',
+			'middleware'    =>  ['role:admin']
 		], function () {
 
 			Route::get('/', [
@@ -151,7 +156,8 @@ Route::group([
 		'prefix'    =>  'reports'
 	], function () {
 		Route::group([
-			'prefix'    =>  'portico'
+			'prefix'    =>  'portico',
+			'middleware'    =>  ['permission:view-portico']
 		], function () {
 
 			Route::get('/porcentual/{id}/{start_date}/{end_date}/', [
@@ -201,7 +207,8 @@ Route::group([
 		});
 
 		Route::group([
-			'prefix'    =>  'empresa'
+			'prefix'    =>  'empresa',
+			'middleware'    =>  ['permission:view-empresas']
 		], function () {
 
 			Route::post('report/{id}', [
@@ -216,7 +223,8 @@ Route::group([
 		});
 
 		Route::group([
-			'prefix'    =>  'vehiculo'
+			'prefix'    =>  'vehiculo',
+			'middleware'    =>  ['permission:view-vehiculos']
 		], function () {
 
 			Route::post('portico/{id}', [
@@ -233,7 +241,7 @@ Route::group([
 });
 
 Route::group([
-	'middleware'    =>  'auth',
+	'middleware'    =>  ['auth', 'role:admin'],
 	'prefix'    =>  'tools'
 ], function () {
 

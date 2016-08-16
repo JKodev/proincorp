@@ -5,6 +5,7 @@
 @section('content')
 <div class="page-content-inner">
 	<div class="row widget-row">
+		@permission('view-portico')
 		<div class="col-md-3">
 			<!-- BEGIN WIDGET THUMB -->
 			<div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 ">
@@ -23,6 +24,8 @@
 			</div>
 			<!-- END WIDGET THUMB -->
 		</div>
+		@endpermission
+		@permission('view-empresas')
 		<div class="col-md-3">
 			<!-- BEGIN WIDGET THUMB -->
 			<div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 ">
@@ -41,6 +44,8 @@
 			</div>
 			<!-- END WIDGET THUMB -->
 		</div>
+		@endpermission
+		@permission('view-vehiculos')
 		<div class="col-md-3">
 			<!-- BEGIN WIDGET THUMB -->
 			<div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 ">
@@ -59,6 +64,8 @@
 			</div>
 			<!-- END WIDGET THUMB -->
 		</div>
+		@endpermission
+		@permission('view-camaras')
 		<div class="col-md-3">
 			<!-- BEGIN WIDGET THUMB -->
 			<div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20 ">
@@ -77,6 +84,7 @@
 			</div>
 			<!-- END WIDGET THUMB -->
 		</div>
+		@endpermission
 	</div>
 </div>
 @endsection
