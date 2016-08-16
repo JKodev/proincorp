@@ -60,6 +60,7 @@
 			</tr>
 		</thead>
 		<tbody>
+			{{ dd($registers) }}
 			@foreach($registers as $register)
 			<tr>
 				{{ dd($register) }}
