@@ -156,6 +156,13 @@
 									</a>
 								</li>
 								@endpermission
+								@permission('view-incidencias')
+								<li class=" ">
+									<a href="{!! route('app.reports.incidencias.index') !!}">
+										Incidencias
+									</a>
+								</li>
+								@endpermission
 								@role('admin')
 								<li class=" ">
 									<a href="{!! route('app.settings.users.index') !!}">

@@ -119,6 +119,17 @@ Route::group([
 							'uses'  =>  'VehiculoController@show'
 						]);
 				});
+
+			Route::group([
+				'prefix'    =>  'incidencias',
+				'middleware'    =>  ['permission:view-incidencias']
+			], function () {
+
+				Route::get('/', [
+					'as'    =>  'app.reports.incidencias.index',
+					'uses'  =>  'IncidenciasController@index'
+				]);
+			});
 		});
 
 	Route::group([

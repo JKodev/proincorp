@@ -8,4 +8,9 @@ class Camara extends Eloquent
 {
 	protected $connection = "tmsng";
 	protected $table = "detector";
+
+	public function config()
+	{
+		$this->hasMany('App\Models\DectectorConfig', 'detectorId');
+	}
 }

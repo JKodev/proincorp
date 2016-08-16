@@ -11,4 +11,9 @@ class DetectorConfig extends Eloquent
 	protected $connection = "tmsng";
 	protected $table = "detectorconfiguration";
 
+	public function detector()
+	{
+		$this->belongsTo('App\Models\Camara', 'id');
+	}
+
 }
