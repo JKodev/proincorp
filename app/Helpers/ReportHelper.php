@@ -449,7 +449,7 @@ class ReportHelper
 	public static function empresaReport($empresa_id, $length, $start, $draw, $parameters, $order)
 	{
 		$empresa = Empresa::find($empresa_id);
-
+		dd("error");
 		$query = DB::connection('sqlsrv')
 			->table('LECTURAS_DETALLADAS_LEC_VISIBLE')
 			->where('EMPRESA', $empresa_id);
