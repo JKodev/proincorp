@@ -36,7 +36,7 @@ class CamarasController extends Controller
 	 */
     public function show($id)
     {
-    	$camaras = Camara::where('currentConfigurationIndex', -99)
+    	$camaras = Camara::where('cameraName', 'LIKE', 'Cam%')
 		    ->orderBy('cameraName')
 		    ->get();
     	$camara = Camara::find($id);
