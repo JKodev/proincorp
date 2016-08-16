@@ -64,7 +64,7 @@
 			@foreach($registers as $register)
 			<tr>
 				<td>
-					{{ $register->FECHA }}
+					{{ \DateTime::createFromFormat('Y-m-d H:i:s.u', $register->FECHA)->format('d/m/Y H:i:s') }}
 				</td>
 				<td>
 					{{ $register->PLACA }}
