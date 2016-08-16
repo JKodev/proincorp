@@ -43,7 +43,7 @@ class GeneratePermissionsAndRoles extends Command
 	    /**
 	     * Creacion de Roles
 	     */
-	    $this->info("Se Empezara con la creación de Roles");
+	    $this->info("Se Empezara con la creacion de Roles");
     	/** @var Role $admin */
         $admin = new Role();
 	    $admin->name            =   "admin";
@@ -61,12 +61,13 @@ class GeneratePermissionsAndRoles extends Command
 	    $supervisor->save();
 
 	    $this->info("Se ha creado el rol de Supervisor");
-	    $this->info("Se terminó con la creación de roles");
+	    $this->info("Se termino con la creacion de roles");
 
 	    /**
 	     * Creacion de Permisos
 	     */
-		$this->info("Se iniciará con la creación de permisos");
+		$this->info("Se iniciara con la creacion de permisos");
+
 	    /** @var Permission $viewPortico */
 	    $viewPortico = new Permission();
 	    $viewPortico->name          =   "view-portico";
@@ -103,7 +104,7 @@ class GeneratePermissionsAndRoles extends Command
 
 	    $this->info("Se ha creado el permiso para 'Ver Camaras'");
 
-	    $this->info("Se ha terminado con la creación de permisos.");
+	    $this->info("Se ha terminado con la creacion de permisos.");
 
 
     }
