@@ -8,6 +8,8 @@ use Zizaco\Entrust\Traits\EntrustUserTrait;
 class User extends Authenticatable
 {
 	use EntrustUserTrait;
+
+	protected $dateFormat = 'd-m-Y H:i:s';
     /**
      * The attributes that are mass assignable.
      *
