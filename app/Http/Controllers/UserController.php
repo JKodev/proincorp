@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Permission;
+use App\Models\Role;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -50,9 +51,15 @@ class UserController extends Controller
 		    $user->password = bcrypt($request->password);
 		    $user->save();
 
+		    $rol = new Role();
+		    $rol->name = $request->name;
+		    $rol->display_name = $request->name;
+		    $rol->description = "Rol creado para ".$request->name;
+		    $rol->save();
+
 		    foreach ($request->permissions as $permission) {
 		    	$perm = Permission::find($permission);
-		    	$user->attachPermission($perm);
+		    	$rol->attachPermission($perm);
 		    }
 
 		    \Session::flash('message', "Usuario creado correctamente.");
