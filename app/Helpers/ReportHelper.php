@@ -452,7 +452,7 @@ class ReportHelper
 
 		$query = DB::connection('sqlsrv')
 			->table('LECTURAS_DETALLADAS_LEC_VISIBLE')
-			->where('EMPRESA', $empresa->ID_Empresa);
+			->where('EMPRESA', $empresa_id);
 
 		if (array_key_exists('date_from', $parameters) && array_key_exists('date_to', $parameters)) {
 			if (!empty($parameters['date_from']) && !empty($parameters['date_to'])) {
@@ -507,7 +507,7 @@ class ReportHelper
 				$query->orderBy('FECHA', $order[0]['dir']);
 		}
 
-		if (intval($length) == -1) {
+		if ($length == -1 || $length == '-1') {
 			$results = $query->get();
 		} else {
 			$results = $query->skip($start)->take($length)->get();
