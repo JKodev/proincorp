@@ -28,7 +28,7 @@
 							<span class="caption-subject font-dark sbold uppercase">{{ $title }}</span>
 						</div>
 						<div class="actions">
-							<button type="button" id="export" class="c-btn-border-1x c-btn-green-jungle">
+							<button type="button" id="export" class="btn sbold uppercase btn-outline green-jungle">
 								<span class="fa fa-file-excel-o"></span>
 								Exportar a Excel
 							</button>
