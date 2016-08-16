@@ -21,7 +21,11 @@ class UserController extends Controller
     public function create()
     {
     	$permissions = Permission::all();
-    	return view('app.user.create')->with('permissions', $permissions);
+	    $users = User::all();
+    	return view('app.user.create')->with(array(
+    		'permissions'   =>  $permissions,
+	        'users' =>  $users
+	    ));
     }
 
     public function store(Request $request)

@@ -1,10 +1,20 @@
 @extends('app.user.index')
 
+@section('title', 'Nuevo Usuario')
+
 @section('css_level_plugins')
 	<link href="{{ asset('assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('assets/global/plugins/jquery-multi-select/css/multi-select.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('assets/global/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('assets/global/plugins/select2/css/select2-bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+@endsection
+
+@section('breadcrumb')
+	@parent
+	<li>
+		<a href="{{ route('app.settings.users.create') }}">Nuevo</a>
+		<i class="fa fa-circle"></i>
+	</li>
 @endsection
 
 @section('content')
