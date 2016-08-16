@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -15,5 +16,16 @@ class UserController extends Controller
 		return view('app.user.index', array(
 			'users' =>  $users
 		));
+    }
+
+    public function create()
+    {
+    	$permissions = Permission::all();
+    	return view('app.user.create')->with('permissions', $permissions);
+    }
+
+    public function store(Request $request)
+    {
+		dd($request->all());
     }
 }

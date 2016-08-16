@@ -1,7 +1,16 @@
 @extends('layout')
 
+@section('title', 'Usuarios')
+
 @section('css_level_plugins')
 	<link href="{{ asset('assets/global/plugins/bootstrap-table/bootstrap-table.min.css') }}" rel="stylesheet" type="text/css" />
+@endsection
+
+@section('breadcrumb')
+	<li>
+		<a href="{{ route('app.settings.users.index') }}">Usuarios</a>
+		<i class="fa fa-circle"></i>
+	</li>
 @endsection
 
 @section('content')
@@ -14,19 +23,14 @@
 					<span class="caption-subject font-dark bold uppercase">Usuarios</span>
 				</div>
 				<div class="actions">
-					<a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-						<i class="icon-cloud-upload"></i>
-					</a>
-					<a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-						<i class="icon-wrench"></i>
-					</a>
-					<a class="btn btn-circle btn-icon-only btn-default" href="javascript:;">
-						<i class="icon-trash"></i>
+					<a class="btn" href="{{ route('app.settings.users.create') }}">
+						<i class="icon-user-follow "></i>
+						Nuevo Usuario
 					</a>
 				</div>
 			</div>
 			<div class="portlet-body">
-				<table id="table-pagination" data-toggle="table" data-url="../assets/global/plugins/bootstrap-table/data/data2.json" data-height="299" data-pagination="true" data-search="true">
+				<table id="table-pagination" data-toggle="table" data-height="299" data-pagination="true" data-search="true">
 					<thead>
 					<tr>
 						<th data-field="id" data-align="right" data-sortable="true">Usuario</th>
@@ -45,7 +49,7 @@
 							</td>
 							<td>
 								@foreach($user->roles() as $rol)
-								{{ $rol->name }},
+								{{ $rol->display_name }},
 								@endforeach
 							</td>
 						</tr>
