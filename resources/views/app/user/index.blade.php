@@ -48,7 +48,7 @@
 								{{ $user->email }}
 							</td>
 							<td>
-								{{ dd($user->roles()) }}
+								{!! dd($user->roles()) !!}
 								@foreach($user->roles() as $rol)
 								{{ $rol->display_name }},
 								@endforeach
