@@ -46,6 +46,7 @@
 						@show
 						<div class="row">
 							<div class="col-md-8">
+								IP: {{ $camara->ipaddress }}
 								<iframe src="http://{{ $camara->ipaddress }}/#/" style="width:400px; height:400px; position: relative;" frameborder="0"></iframe>
 							</div>
 						</div>
