@@ -116,6 +116,13 @@ Route::group([
 						]);
 				});
 		});
+
+	Route::group([
+		'prefix'    =>  'settings'
+	], function () {
+
+		Route::resource('users', 'UserController@index');
+	});
 });
 
 Route::group([

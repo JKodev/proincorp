@@ -150,6 +150,11 @@
 										Cámaras
 									</a>
 								</li>
+								<li class=" ">
+									<a href="{!! route('app.settings.users.index') !!}">
+										Usuarios
+									</a>
+								</li>
 							</ul>
 						</div>
 						<!-- END MEGA MENU -->
