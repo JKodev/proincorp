@@ -83,12 +83,11 @@ class AdvertisementController extends Controller
 	    $advertisement->saturday = $saturday;
 	    $advertisement->sunday = $sunday;
 	    $advertisement->save();
-		dd($pictures);
-	    foreach ($pictures as $picture) {
-	    	/** @var string $code */
-	    	$code = $picture['code'];
+
+	    for($i = 0; $i < count($pictures); $i++) {
+	    	$code = $codes[$i]['code'];
 		    /** @var UploadedFile $image */
-		    $image = $picture['image'];
+		    $image = $pictures[$i]['image'];
 
 		    Storage::put(
 		    	$code,
