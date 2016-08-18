@@ -98,6 +98,7 @@ class AdvertisementController extends Controller
 		    $advertisementPicture->advertisement_id = $advertisement->id;
 		    $advertisementPicture->code = $code;
 		    $advertisementPicture->path = Storage::url($code);
+		    $advertisementPicture->description = '';
 		    $advertisementPicture->save();
 	    }
 	    dd($request->all());

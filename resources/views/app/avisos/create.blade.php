@@ -1,6 +1,7 @@
 @extends('app.portico.index')
 
 @section('css_level_plugins')
+	<link href="{{ asset('assets/global/plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}" rel="stylesheet" type="text/css" />
 	<link href="{{ asset('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css') }}" rel="stylesheet" type="text/css" />
 @endsection
 
@@ -15,13 +16,13 @@
 				<div class="col-md-4">
 					<div class="input-icon">
 						<i class="fa fa-clock-o"></i>
-						<input type="text" name="start_date" class="form-control timepicker start_hour" autocomplete="false" placeholder="Inicio">
+						<input type="text" name="start_hour" class="form-control timepicker start_hour" autocomplete="false" placeholder="Inicio">
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="input-icon">
 						<i class="fa fa-clock-o"></i>
-						<input type="text" name="end_date" class="form-control timepicker end_hour" autocomplete="false" placeholder="Fin">
+						<input type="text" name="end_hour" class="form-control timepicker end_hour" autocomplete="false" placeholder="Fin">
 					</div>
 				</div>
 			</div>
