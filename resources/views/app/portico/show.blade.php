@@ -142,6 +142,48 @@
 								@endforeach
 							@endif
 						</td>
+						<td>
+							@if($advertisement->tuesday)
+								@foreach($advertisement->pictures as $picture)
+									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+								@endforeach
+							@endif
+						</td>
+						<td>
+							@if($advertisement->wednesday)
+								@foreach($advertisement->pictures as $picture)
+									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+								@endforeach
+							@endif
+						</td>
+						<td>
+							@if($advertisement->thursday)
+								@foreach($advertisement->pictures as $picture)
+									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+								@endforeach
+							@endif
+						</td>
+						<td>
+							@if($advertisement->friday)
+								@foreach($advertisement->pictures as $picture)
+									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+								@endforeach
+							@endif
+						</td>
+						<td>
+							@if($advertisement->saturday)
+								@foreach($advertisement->pictures as $picture)
+									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+								@endforeach
+							@endif
+						</td>
+						<td>
+							@if($advertisement->sunday)
+								@foreach($advertisement->pictures as $picture)
+									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+								@endforeach
+							@endif
+						</td>
 					</tr>
 					@endforeach
 					</tbody>
@@ -156,7 +198,7 @@
 		$(document).ready(function () {
 			$('a[rel=popover]').popover({
 				html: true,
-				trigger: 'click',
+				trigger: 'hover',
 				placement: 'top',
 				content: function(){return '<img style="width: 200px" src="'+$(this).data('image') + '" />';}
 			});
