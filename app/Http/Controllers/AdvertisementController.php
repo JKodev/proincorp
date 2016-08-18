@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Helpers\ReportHelper;
 use App\Models\Advertisement;
+use App\Models\AdvertisementPictures;
 use App\Models\Lector;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Http\UploadedFile;
+use Storage;
 
 class AdvertisementController extends Controller
 {
@@ -56,8 +59,47 @@ class AdvertisementController extends Controller
      */
     public function store(Request $request, $id)
     {
-		$inputs = $request->all();
-	    dd($inputs);
+		$start_hour = $request->input('start_hour');
+	    $end_hour = $request->input('end_hour');
+	    $monday = $request->input('monday', false);
+	    $tuesday = $request->input('tuesday', false);
+	    $wednesday = $request->input('wednesday', false);
+	    $thursday = $request->input('thursday', false);
+	    $friday = $request->input('friday', false);
+	    $saturday = $request->input('saturday', false);
+	    $sunday = $request->input('sunday', false);
+	    $pictures = $request->input('pictures', array());
+
+	    $advertisement = new Advertisement();
+	    $advertisement->start_hour = $start_hour;
+	    $advertisement->end_hour = $end_hour;
+	    $advertisement->lector_id = $id;
+	    $advertisement->monday = $monday;
+	    $advertisement->tuesday = $tuesday;
+	    $advertisement->wednesday = $wednesday;
+	    $advertisement->thursday = $thursday;
+	    $advertisement->friday = $friday;
+	    $advertisement->saturday = $saturday;
+	    $advertisement->sunday = $sunday;
+	    $advertisement->save();
+
+	    foreach ($pictures as $picture) {
+	    	/** @var string $code */
+	    	$code = $picture['code'];
+		    /** @var UploadedFile $image */
+		    $image = $picture['image'];
+
+		    Storage::put(
+		    	$code,
+			    file_get_contents($image->getRealPath())
+		    );
+
+	    	$advertisementPicture = new AdvertisementPictures();
+		    $advertisementPicture->advertisement = $advertisement;
+		    $advertisementPicture->code = $code;
+		    $advertisementPicture->path = Storage::url($code);
+		    $advertisementPicture->save();
+	    }
     }
 
     /**

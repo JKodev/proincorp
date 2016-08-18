@@ -15,13 +15,13 @@
 				<div class="col-md-4">
 					<div class="input-icon">
 						<i class="fa fa-clock-o"></i>
-						<input type="text" name="start_date" class="form-control timepicker" autocomplete="false" placeholder="Inicio">
+						<input type="text" name="start_date" class="form-control timepicker start_hour" autocomplete="false" placeholder="Inicio">
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="input-icon">
 						<i class="fa fa-clock-o"></i>
-						<input type="text" name="end_date" class="form-control timepicker" autocomplete="false" placeholder="Fin">
+						<input type="text" name="end_date" class="form-control timepicker end_hour" autocomplete="false" placeholder="Fin">
 					</div>
 				</div>
 			</div>
@@ -30,31 +30,31 @@
 				<div class="col-md-8">
 					<div class="mt-checkbox-list">
 						<label class="mt-checkbox">
-							<input type="checkbox" name="monday"> Lunes
+							<input type="checkbox" name="monday" value="true"> Lunes
 							<span></span>
 						</label>
 						<label class="mt-checkbox">
-							<input type="checkbox" name="tuesday"> Martes
+							<input type="checkbox" name="tuesday" value="true"> Martes
 							<span></span>
 						</label>
 						<label class="mt-checkbox">
-							<input type="checkbox" name="wednesday"> Miércoles
+							<input type="checkbox" name="wednesday" value="true"> Miércoles
 							<span></span>
 						</label>
 						<label class="mt-checkbox">
-							<input type="checkbox" name="thursday"> Jueves
+							<input type="checkbox" name="thursday" value="true"> Jueves
 							<span></span>
 						</label>
 						<label class="mt-checkbox">
-							<input type="checkbox" name="friday"> Viernes
+							<input type="checkbox" name="friday" value="true"> Viernes
 							<span></span>
 						</label>
 						<label class="mt-checkbox">
-							<input type="checkbox" name="saturday"> Sábado
+							<input type="checkbox" name="saturday" value="true"> Sábado
 							<span></span>
 						</label>
 						<label class="mt-checkbox">
-							<input type="checkbox" name="sunday"> Domingo
+							<input type="checkbox" name="sunday" value="true"> Domingo
 							<span></span>
 						</label>
 					</div>
@@ -107,7 +107,13 @@
 @section('js_level_scripts')
 	<script>
 	$( document ).ready(function () {
-		$('.timepicker').timepicker({
+		$('.start_hour').timepicker({
+			autoclose: true,
+			minuteStep: 1,
+			showMeridian: false
+		});
+
+		$('.end_hour').timepicker({
 			autoclose: true,
 			minuteStep: 1,
 			showMeridian: false
