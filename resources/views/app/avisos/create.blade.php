@@ -87,6 +87,14 @@
 				</div>
 			</div>
 		</div>
+		<div class="form-actions">
+			<div class="row">
+				<div class="col-md-offset-3 col-md-9">
+					<button type="submit" class="btn green">Guardar</button>
+					<a href="{{ route('app.reports.portico.show', array('id'=>$lector->id_lector_movimiento)) }}" class="btn default">Cancelar</a>
+				</div>
+			</div>
+		</div>
 	</form>
 @endsection
 
@@ -98,11 +106,20 @@
 
 @section('js_level_scripts')
 	<script>
-	$(document).ready(function () {
+	$( document ).ready(function () {
 		$('.timepicker').timepicker({
 			autoclose: true,
 			minuteStep: 1,
 			showMeridian: false
+		});
+
+		$('.timepicker').parent('.input-group').on('click', '.input-group-btn', function(e){
+			e.preventDefault();
+			$(this).parent('.input-group').find('.timepicker').timepicker('showWidget');
+		});
+
+		$( document ).scroll(function(){
+			$('.timepicker').timepicker('place');
 		});
 
 		var max_fields      = 10; //maximum input boxes allowed
