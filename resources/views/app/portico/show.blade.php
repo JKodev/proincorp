@@ -131,12 +131,12 @@
 					@foreach($advertisements as $advertisement)
 					<tr>
 						<td>
-							{{ $advertisement->start_hour }}
+							{{ date('H:i:s', strtotime($advertisement->start_hour)) }}
 							-
-							{{ $advertisement->end_hour }}
+							{{ date('H:i:s', strtotime($advertisement->end_hour)) }}
 						</td>
 						<td>
-							{{ dd($advertisement->pictures()) }}
+							{{ dd($advertisement->pictures) }}
 							@if($advertisement->monday)
 								@foreach($advertisement->pictures() as $picture)
 									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
