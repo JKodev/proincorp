@@ -156,9 +156,9 @@
 		$(document).ready(function () {
 			$('a[rel=popover]').popover({
 				html: true,
-				trigger: 'hover',
+				trigger: 'click',
 				placement: 'top',
-				content: function(){return '<img style="width: 300px" src="'+$(this).data('image') + '" />';}
+				content: function(){return '<img style="width: 200px" src="'+$(this).data('image') + '" />';}
 			});
 		});
 	</script>
