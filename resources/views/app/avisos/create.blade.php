@@ -7,7 +7,8 @@
 @section('title_content_portico', 'Nuevo Aviso')
 
 @section('content_portico')
-	<form class="form-horizontal" action="" role="form">
+	<form class="form-horizontal" action="{{ route('app.reports.portico.avisos.store', array('id'=>$lector->id_lector_movimiento)) }}" role="form" enctype="multipart/form-data">
+		{{ csrf_field() }}
 		<div class="form-body">
 			<div class="form-group">
 				<label class="col-md-4 control-label">Horario</label>

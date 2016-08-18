@@ -79,6 +79,11 @@ Route::group([
 								'as'    =>  'app.reports.portico.avisos.create',
 								'uses'  =>  'AdvertisementController@create'
 							]);
+
+							Route::post('/store/{id}', [
+								'as'    =>  'app.reports.portico.avisos.store',
+								'uses'  =>  'AdvertisementController@store'
+							]);
 						});
 				});
 
