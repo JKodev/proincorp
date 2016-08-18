@@ -133,51 +133,63 @@
 						<td> {{ $advertisement->start_hour }} - {{ $advertisement->end_hour }}</td>
 						<td>
 							@if($advertisement->monday)
-								@foreach($advertisement->pictures()->get() as $picture)
+								@foreach($advertisement->pictures() as $picture)
 									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
 								@endforeach
 							@endif
 						</td>
 						<td>
 							@if($advertisement->tuesday)
-								@foreach($advertisement->pictures()->get() as $picture)
-									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
-								@endforeach
+								@if ($advertisement->pictures())
+									@foreach($advertisement->pictures() as $picture)
+										<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+									@endforeach
+								@endif
 							@endif
 						</td>
 						<td>
 							@if($advertisement->wednesday)
-								@foreach($advertisement->pictures()->get() as $picture)
-									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
-								@endforeach
+								@if ($advertisement->pictures())
+									@foreach($advertisement->pictures() as $picture)
+										<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+									@endforeach
+								@endif
 							@endif
 						</td>
 						<td>
 							@if($advertisement->thursday)
-								@foreach($advertisement->pictures()->get() as $picture)
-									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
-								@endforeach
+								@if ($advertisement->pictures())
+									@foreach($advertisement->pictures() as $picture)
+										<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+									@endforeach
+								@endif
 							@endif
 						</td>
 						<td>
 							@if($advertisement->friday)
-								@foreach($advertisement->pictures()->get() as $picture)
-									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
-								@endforeach
+								@if ($advertisement->pictures())
+									@foreach($advertisement->pictures() as $picture)
+										<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+									@endforeach
+								@endif
 							@endif
 						</td>
 						<td>
 							@if($advertisement->saturday)
-								@foreach($advertisement->pictures()->get() as $picture)
-									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
-								@endforeach
+								@if ($advertisement->pictures())
+									@foreach($advertisement->pictures() as $picture)
+										<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+									@endforeach
+								@endif
 							@endif
 						</td>
 						<td>
 							@if($advertisement->sunday)
-								@foreach($advertisement->pictures()->get() as $picture)
-									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
-								@endforeach
+								@if ($advertisement->pictures())
+									@foreach($advertisement->pictures() as $picture)
+										<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+									@endforeach
+								@endif
 							@endif
 						</td>
 					</tr>
