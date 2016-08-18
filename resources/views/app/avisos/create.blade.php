@@ -15,13 +15,13 @@
 				<div class="col-md-4">
 					<div class="input-icon">
 						<i class="fa fa-clock-o"></i>
-						<input type="text" name="start_date" class="form-control timepicker timepicker-default" placeholder="Inicio">
+						<input type="text" name="start_date" class="form-control timepicker" autocomplete="false" placeholder="Inicio">
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="input-icon">
 						<i class="fa fa-clock-o"></i>
-						<input type="text" name="end_date" class="form-control timepicker timepicker-default" placeholder="Fin">
+						<input type="text" name="end_date" class="form-control timepicker" autocomplete="false" placeholder="Fin">
 					</div>
 				</div>
 			</div>
