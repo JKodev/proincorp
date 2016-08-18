@@ -131,9 +131,9 @@
 					@foreach($advertisements as $advertisement)
 					<tr>
 						<td>
-							{{ \DateTime::createFromFormat('H:i:s.u', $advertisement->start_hour)->format('H:i:s') }}
+							{{ \DateTime::createFromFormat('H:i:s', $advertisement->start_hour)->format('H:i:s') }}
 							-
-							{{ \DateTime::createFromFormat('H:i:s.u', $advertisement->end_hour)->format('H:i:s') }}
+							{{ \DateTime::createFromFormat('H:i:s', $advertisement->end_hour)->format('H:i:s') }}
 						</td>
 						<td>
 							@if($advertisement->monday)
