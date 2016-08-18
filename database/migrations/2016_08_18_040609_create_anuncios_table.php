@@ -45,6 +45,7 @@ class CreateAnunciosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('anuncios');
+        Schema::drop('advertisement');
+	    Schema::drop('advertisement_pictures');
     }
 }

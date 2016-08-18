@@ -43,7 +43,10 @@ class PorticoController extends Controller
 		$totals = ReportHelper::totalAllReports($id, date('d/m/Y 00:00:00'), date('d/m/Y 23:59:59'));
 		$lectores = Lector::orderBy('dsc_lector_movimiento')->get();
 		$lector = Lector::where('id_lector_movimiento', $id)->first();
-		$advertisements = Advertisement::where('lector_id', $id)->get();
+		$advertisements = Advertisement::where('lector_id', $id)
+			->orderBy('start_hour', 'asc')
+			->orderBy('end_hour', 'asc')
+			->get();
 		return view('app.portico.show', array(
 			'lector' => $lector,
 			'lectores' => $lectores,
