@@ -100,6 +100,7 @@ class AdvertisementController extends Controller
 		    $advertisementPicture->path = Storage::url($code);
 		    $advertisementPicture->save();
 	    }
+	    dd($request->all());
     }
 
     /**
