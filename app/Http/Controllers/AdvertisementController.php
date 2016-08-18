@@ -85,19 +85,20 @@ class AdvertisementController extends Controller
 	    $advertisement->save();
 
 	    for($i = 0; $i < count($pictures); $i++) {
-	    	$code = $codes[$i]['code'];
+		    $code = $codes[$i]['code'];
 		    /** @var UploadedFile $image */
 		    $image = $pictures[$i]['image'];
 
+		    $name = $code.'.'.$image->guessClientExtension();
 		    Storage::put(
-		    	$code,
+		    	$name,
 			    file_get_contents($image->getRealPath())
 		    );
 
 	    	$advertisementPicture = new AdvertisementPictures();
 		    $advertisementPicture->advertisement_id = $advertisement->id;
 		    $advertisementPicture->code = $code;
-		    $advertisementPicture->path = Storage::url($code);
+		    $advertisementPicture->path = Storage::url($name);
 		    $advertisementPicture->description = '';
 		    $advertisementPicture->save();
 	    }
