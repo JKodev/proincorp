@@ -157,8 +157,8 @@
 			$('a[rel=popover]').popover({
 				html: true,
 				trigger: 'hover',
-				placement: 'bottom',
-				content: function(){return '<img src="'+$(this).data('image') + '" />';}
+				placement: 'top',
+				content: function(){return '<img style="width: 300px" src="'+$(this).data('image') + '" />';}
 			});
 		});
 	</script>
