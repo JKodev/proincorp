@@ -133,9 +133,11 @@
 						<td> {{ $advertisement->start_hour }} - {{ $advertisement->end_hour }}</td>
 						<td>
 							@if($advertisement->monday)
-								@foreach($advertisement->pictures() as $picture)
-									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
-								@endforeach
+								@if ($advertisement->pictures())
+									@foreach($advertisement->pictures() as $picture)
+										<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+									@endforeach
+								@endif
 							@endif
 						</td>
 						<td>
