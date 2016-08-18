@@ -11,6 +11,6 @@ class AdvertisementPictures extends Eloquent
 
 	public function advertisement()
 	{
-		$this->belongsTo('App\Models\Advertisement');
+		return $this->belongsTo('App\Models\Advertisement');
 	}
 }

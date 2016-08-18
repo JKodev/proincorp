@@ -11,6 +11,6 @@ class Advertisement extends Eloquent
 
 	public function pictures()
 	{
-		$this->hasMany('App\Models\AdvertisementPictures');
+		return $this->hasMany('App\Models\AdvertisementPictures');
 	}
 }
