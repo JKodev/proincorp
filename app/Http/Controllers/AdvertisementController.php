@@ -59,8 +59,8 @@ class AdvertisementController extends Controller
      */
     public function store(Request $request, $id)
     {
-		$start_hour = $request->input('start_hour');
-	    $end_hour = $request->input('end_hour');
+		$start_hour = date('H:i:s', strtotime($request->input('start_hour', '00:00')));
+	    $end_hour = date('H:i:s', strtotime($request->input('end_hour', '00:00')));
 	    $monday = $request->input('monday', false);
 	    $tuesday = $request->input('tuesday', false);
 	    $wednesday = $request->input('wednesday', false);
