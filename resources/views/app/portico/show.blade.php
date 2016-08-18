@@ -114,7 +114,7 @@
 				<span class="caption-subject font-blue bold uppercase">Avisos</span>
 			</div>
 			<div class="actions">
-				<a href="" class="btn green-jungle">
+				<a href="{{ route('app.reports.portico.avisos.create', array('id' => $lector->id_lector_movimiento)) }}" class="btn green-jungle">
 					<span class="glyphicon glyphicon-bullhorn"></span>
 					Nuevo Aviso
 				</a>

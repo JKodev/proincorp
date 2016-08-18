@@ -70,6 +70,16 @@ Route::group([
 							'as'    =>  'app.reports.portico.general',
 							'uses'  =>  'PorticoController@general'
 						]);
+
+						Route::group([
+							'prefix'    =>  'avisos'
+						], function () {
+
+							Route::get('/create/{id}', [
+								'as'    =>  'app.reports.portico.avisos.create',
+								'uses'  =>  'AdvertisementController@create'
+							]);
+						});
 				});
 
 				Route::group([
