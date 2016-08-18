@@ -10,6 +10,8 @@
 	</li>
 @endsection
 
+@section('title_content_portico', 'Reportes')
+
 @section('content_portico')
 
 	<div class="row">
@@ -109,7 +111,13 @@
 		<div class="portlet-title">
 			<div class="caption">
 				<i class=" icon-layers font-blue"></i>
-				<span class="caption-subject font-blue bold uppercase"></span>
+				<span class="caption-subject font-blue bold uppercase">Avisos</span>
+			</div>
+			<div class="actions">
+				<a href="" class="btn green-jungle">
+					<span class="glyphicon glyphicon-bullhorn"></span>
+					Nuevo Aviso
+				</a>
 			</div>
 		</div>
 		<div class="portlet-body">

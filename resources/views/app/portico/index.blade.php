@@ -36,7 +36,7 @@
 				<div class="portlet-title">
 					<div class="caption">
 						<i class=" icon-layers font-blue"></i>
-						<span class="caption-subject font-blue bold uppercase"></span>
+						<span class="caption-subject font-blue bold uppercase">@yield('title_content_portico')</span>
 					</div>
 				</div>
 				<div class="portlet-body">
