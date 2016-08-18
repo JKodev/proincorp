@@ -82,7 +82,7 @@ class AdvertisementController extends Controller
 	    $advertisement->saturday = $saturday;
 	    $advertisement->sunday = $sunday;
 	    $advertisement->save();
-
+		dd($pictures);
 	    foreach ($pictures as $picture) {
 	    	/** @var string $code */
 	    	$code = $picture['code'];
