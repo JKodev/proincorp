@@ -140,7 +140,7 @@
 						</td>
 						<td>
 							@if($advertisement->tuesday)
-								@foreach($advertisement->pictures as $picture)
+								@foreach($advertisement->pictures() as $picture)
 									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
 								@endforeach
 							@endif
