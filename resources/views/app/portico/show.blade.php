@@ -103,3 +103,101 @@
 		</div>
 	</div>
 @endsection
+
+@section('extra-portlets')
+	<div class="portlet light portlet-fit ">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class=" icon-layers font-blue"></i>
+				<span class="caption-subject font-blue bold uppercase"></span>
+			</div>
+		</div>
+		<div class="portlet-body">
+			<div class="table-scrollable">
+				<table class="table table-bordered table-hover">
+					<thead>
+					<tr>
+						<th> Horario </th>
+						<th> Lunes </th>
+						<th> Martes </th>
+						<th> Miércoles </th>
+						<th> Jueves </th>
+						<th> Viernes </th>
+						<th> Sábado </th>
+						<th> Domingo </th>
+					</tr>
+					</thead>
+					<tbody>
+					@foreach($advertisements as $advertisement)
+					<tr>
+						<td> {{ $advertisement->start_hour }} - {{ $advertisement->end_hour }}</td>
+						<td>
+							@if($advertisement->monday)
+								@foreach($advertisement->pictures as $picture)
+									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+								@endforeach
+							@endif
+						</td>
+						<td>
+							@if($advertisement->tuesday)
+								@foreach($advertisement->pictures as $picture)
+									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+								@endforeach
+							@endif
+						</td>
+						<td>
+							@if($advertisement->wednesday)
+								@foreach($advertisement->pictures as $picture)
+									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+								@endforeach
+							@endif
+						</td>
+						<td>
+							@if($advertisement->thursday)
+								@foreach($advertisement->pictures as $picture)
+									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+								@endforeach
+							@endif
+						</td>
+						<td>
+							@if($advertisement->friday)
+								@foreach($advertisement->pictures as $picture)
+									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+								@endforeach
+							@endif
+						</td>
+						<td>
+							@if($advertisement->saturday)
+								@foreach($advertisement->pictures as $picture)
+									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+								@endforeach
+							@endif
+						</td>
+						<td>
+							@if($advertisement->sunday)
+								@foreach($advertisement->pictures as $picture)
+									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
+								@endforeach
+							@endif
+						</td>
+					</tr>
+					@endforeach
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+@endsection
+
+@section('js_level_scripts')
+	<script>
+		$(document).ready(function () {
+			$('a[rel=popover]').popover({
+				html: true,
+				trigger: 'hover',
+				placement: 'bottom',
+				content: function(){return '<img src="'+$(this).data('image') + '" />';}
+			});
+		});
+	</script>
+@endsection

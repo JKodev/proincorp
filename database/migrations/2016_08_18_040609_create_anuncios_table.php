@@ -32,7 +32,8 @@ class CreateAnunciosTable extends Migration
 		    $table->integer('advertisement_id')->unsigned();
 		    $table->foreign('advertisement_id')->references('id')->on('advertisement');
 		    $table->string('path');
-
+			$table->string('code');
+		    $table->string('description');
 		    $table->timestamps();
 	    });
     }

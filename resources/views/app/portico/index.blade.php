@@ -46,6 +46,9 @@
 				</div>
 			</div>
 			<!-- END MARKERS PORTLET-->
+			@section('extra-portlets')
+
+			@show
 		</div>
 
 	</div>
