@@ -69,7 +69,7 @@ class AdvertisementController extends Controller
 	    $saturday = $request->input('saturday', false);
 	    $sunday = $request->input('sunday', false);
 	    $codes = $request->input('pictures', array());
-	    $pictures = $request->allFiles();
+	    $pictures = $request->file('pictures');
 
 	    $advertisement = new Advertisement();
 	    $advertisement->start_hour = $start_hour;
