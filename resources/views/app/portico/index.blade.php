@@ -70,13 +70,13 @@
 		@foreach($lectores as $lector)
 		map.addMarker({
 			position: {{ \App\Helpers\CamaraStaticHelper::getPosition($lector->id_lector_movimiento) }},
-			title: 'Central',
+			title: '{{ preg_replace('/(\d+)\_(\d+)/', " ", $lector->dsc_lector_movimiento) }}',
 			details: {
 				database_id: 42,
 				author: 'HPNeo'
 			},
 			click: function (e) {
-				document.location.ref = "{{ route('app.reports.portico.show', array('id' => $lector->id_lector_movimiento)) }}";
+				document.location.href = "{{ route('app.reports.portico.show', array('id' => $lector->id_lector_movimiento)) }}";
 			}
 		});
 		@endforeach
