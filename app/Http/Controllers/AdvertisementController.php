@@ -151,7 +151,7 @@ class AdvertisementController extends Controller
         $advertisement = Advertisement::find($ad_id);
 
 	    /** @var AdvertisementPictures $pictures */
-	    $pictures = $advertisement->pictures();
+	    $pictures = $advertisement->pictures;
 
 	    foreach ($pictures as $picture) {
 	    	$picture->delete();
