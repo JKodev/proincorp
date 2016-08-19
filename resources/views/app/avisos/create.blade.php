@@ -77,7 +77,7 @@
 		                                <span class="btn default btn-file">
 		                                    <span class="fileinput-new"> Seleccionar imagen </span>
 		                                    <span class="fileinput-exists"> Cambiar </span>
-		                                    <input type="file" class="inputfileimage" name="pictures[0][image]">
+		                                    <input type="file" class="inputfileimage" name="pictures[][image]">
 		                                </span>
 										<a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Quitar </a>
 									</div>
@@ -168,8 +168,6 @@
 				var arr = 'pictures['+(x-1)+']';
 				$(img).find('a.fileinput-exists').click();
 				$(img).find('.form-control').val('');
-				$(img).find('input.inputfileimage').attr('name', arr+'[image]');
-				$(img).find('input.inputfileimage').siblings('input').attr('name', arr+'[image]');
 				$(img).find('input.code').attr('name', arr+'[code]');
 				$(img).find('input.description').attr('name', arr+'[description]');
 				//$(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
