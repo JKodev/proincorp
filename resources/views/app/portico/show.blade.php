@@ -133,6 +133,7 @@
 						<th> Viernes </th>
 						<th> Sábado </th>
 						<th> Domingo </th>
+						<th></th>
 					</tr>
 					</thead>
 					<tbody>
@@ -191,6 +192,12 @@
 									<a data-image="{{ asset($picture->path) }}" rel="popover">{{ $picture->code }}</a>
 								@endforeach
 							@endif
+						</td>
+						<td>
+							<a href="#" class="btn red-thunderbird">
+								<span class="fa fa-trash"></span>
+								Eliminar
+							</a>
 						</td>
 					</tr>
 					@endforeach

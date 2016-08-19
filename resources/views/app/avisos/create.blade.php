@@ -66,25 +66,45 @@
 				<div class="col-md-8">
 					<div class="input_fields_wrap">
 						<div class="row" id="img-init">
-							<div class="fileinput fileinput-new" data-provides="fileinput">
-								<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-									<img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
-								</div>
-								<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
-								<div>
+							<div class="col-md-5">
+								<div class="fileinput fileinput-new" data-provides="fileinput">
+									<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
+										<img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
+									</div>
+									<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+									<div>
                                 <span class="btn default btn-file">
                                     <span class="fileinput-new"> Seleccionar imagen </span>
                                     <span class="fileinput-exists"> Cambiar </span>
                                     <input type="file" name="pictures[][image]">
                                 </span>
-									<a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Quitar </a>
+										<a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Quitar </a>
+									</div>
 								</div>
 							</div>
-							<input type="text" class="form-control" name="pictures[][code]">
-							<a href="#" class="remove_field">Eliminar</a>
+							<div class="col-md-5">
+								<div class="form-group">
+									<label class="control-label">Código</label>
+									<input type="text" class="form-control" name="pictures[][code]">
+								</div>
+								<div class="form-group">
+									<label class="control-label">Descripción</label>
+									<input type="text" class="form-control" name="pictures[][description]">
+								</div>
+							</div>
+							<div class="col-md-2">
+								<a href="#" class="remove_field btn red-thunderbird">
+									<span class="fa fa-trash"></span>
+									Eliminar
+								</a>
+							</div>
+
 						</div>
 					</div>
-					<button class="add_field_button">Agregar un campo</button>
+					<button class="btn green-jungle add_field_button">
+						<span class="fa fa-plus"></span>
+						Agregar un campo
+					</button>
 				</div>
 			</div>
 		</div>
@@ -138,7 +158,10 @@
 			e.preventDefault();
 			if(x < max_fields){ //max input box allowed
 				x++; //text box increment
-				$('#img-init').clone().appendTo(wrapper);
+				$('#img-init').clone().attr('id', x).appendTo(wrapper);
+				var img = $('#'+x);
+				$(img).find('fileinput-exists').click();
+				$(img).find('form-control').val('');
 				//$(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
 			}
 		});
