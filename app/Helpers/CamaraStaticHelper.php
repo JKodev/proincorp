@@ -65,6 +65,6 @@ class CamaraStaticHelper
 				}
 			}
 		}
-		return '{lat: '.$data['lat'].', lng: '.$data['lng'].'},';
+		return '{lat: '.$data['lat'].', lng: '.$data['lng'].'}';
 	}
 }
