@@ -164,8 +164,8 @@
 				x++; //text box increment
 				$('#img-init').clone().attr('id', x).appendTo(wrapper);
 				var img = $('#'+x);
-				$(img).find('fileinput-exists').click();
-				$(img).find('form-control').val('');
+				$(img).find('a.fileinput-exists').click();
+				$(img).find('.form-control').val('');
 				//$(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
 			}
 		});
