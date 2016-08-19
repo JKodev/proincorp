@@ -194,7 +194,7 @@
 							@endif
 						</td>
 						<td>
-							<a href="#" class="btn red-thunderbird">
+							<a href="{{ route('app.reports.portico.avisos.destroy', array('id'=>$lector->id_lector_movimiento, 'ad_id'=>$advertisement->id)) }}" class="btn red-thunderbird">
 								<span class="fa fa-trash"></span>
 								Eliminar
 							</a>

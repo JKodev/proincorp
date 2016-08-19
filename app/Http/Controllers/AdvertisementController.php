@@ -146,8 +146,10 @@ class AdvertisementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $ad_id)
     {
-        //
+        $arvertisement = Advertisement::find($ad_id);
+	    $arvertisement->delete();
+	    return redirect()->route('app.reports.portico.show', array('id'=>$id));
     }
 }

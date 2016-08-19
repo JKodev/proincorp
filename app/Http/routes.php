@@ -84,6 +84,11 @@ Route::group([
 								'as'    =>  'app.reports.portico.avisos.store',
 								'uses'  =>  'AdvertisementController@store'
 							]);
+
+							Route::get('/destroy/{id}/{ad_id}', [
+								'as'    =>  'app.reports.portico.avisos.destroy',
+								'uses'  =>  'AdvertisementController@destroy'
+							]);
 						});
 				});
 
