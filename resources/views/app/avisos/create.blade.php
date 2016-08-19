@@ -76,7 +76,7 @@
                                 <span class="btn default btn-file">
                                     <span class="fileinput-new"> Seleccionar imagen </span>
                                     <span class="fileinput-exists"> Cambiar </span>
-                                    <input type="file" name="pictures[][image]">
+                                    <input type="file" class="inputfile-image" name="pictures[0][image]">
                                 </span>
 										<a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Quitar </a>
 									</div>
@@ -85,11 +85,11 @@
 							<div class="col-md-6">
 								<div class="form-group">
 									<label class="control-label">Código</label>
-									<input type="text" class="form-control" name="pictures[][code]">
+									<input type="text" class="form-control code" name="pictures[0][code]">
 								</div>
 								<div class="form-group">
 									<label class="control-label">Descripción</label>
-									<input type="text" class="form-control" name="pictures[][description]">
+									<input type="text" class="form-control description" name="pictures[0][description]">
 								</div>
 								<div class="form-group">
 									<a href="#" class="remove_field btn red-thunderbird">
@@ -164,8 +164,12 @@
 				x++; //text box increment
 				$('#img-init').clone().attr('id', x).appendTo(wrapper);
 				var img = $('#'+x);
+				var arr = 'pictures['+(x-1)+']';
 				$(img).find('a.fileinput-exists').click();
 				$(img).find('.form-control').val('');
+				$(img).find('input.inputfile-image').attr('name', arr+'[image]');
+				$(img).find('input.code').attr('name', arr+'[code]');
+				$(img).find('input.description').attr('name', arr+'[description]');
 				//$(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
 			}
 		});
