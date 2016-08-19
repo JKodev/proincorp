@@ -19,3 +19,4 @@ bootstrap/cache/
 
 .idea/
 public/storage/
+storage/app/
