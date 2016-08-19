@@ -18,5 +18,5 @@ bootstrap/cache/
 .rocketeer/
 
 .idea/
-public/storage/
+public/storage
 storage/app/
