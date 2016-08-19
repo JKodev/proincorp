@@ -171,9 +171,8 @@
 						"type": "pie",
 						"balloonText": "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
 						"labelRadius": 10,
-						"titleField": "Tip_Vehiculo",
+						"titleField": "Gru_Vehiculo",
 						"valueField": "sum",
-						"groupPercent": 5,
 						"export": {
 							"enabled": true,
 							"menu": [ {
