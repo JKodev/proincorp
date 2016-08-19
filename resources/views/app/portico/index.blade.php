@@ -66,7 +66,7 @@
 			div: '#gmap_marker',
 			lat: -16.449965,
 			lng: -71.587268,
-			zoom: 4,
+			zoom: 8,
 		});
 		@foreach($lectores as $lector)
 		map.addMarker({
