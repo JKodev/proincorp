@@ -285,7 +285,7 @@
 						{ extend: 'csv', className: 'btn purple btn-outline ' }
 					],
 					"order": [
-						[1, "asc"]
+						[0, "desc"]
 					]// set first column as a default sort by asc
 				}
 			});
