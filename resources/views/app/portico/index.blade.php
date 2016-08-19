@@ -65,7 +65,8 @@
 		var map = new GMaps({
 			div: '#gmap_marker',
 			lat: -16.449965,
-			lng: -71.587268
+			lng: -71.587268,
+			zoom: 4,
 		});
 		@foreach($lectores as $lector)
 		map.addMarker({
