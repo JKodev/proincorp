@@ -169,6 +169,7 @@
 				$(img).find('a.fileinput-exists').click();
 				$(img).find('.form-control').val('');
 				$(img).find('input.inputfileimage').attr('name', arr+'[image]');
+				$(img).find('input.inputfileimage').siblings('input').attr('name', arr+'[image]');
 				$(img).find('input.code').attr('name', arr+'[code]');
 				$(img).find('input.description').attr('name', arr+'[description]');
 				//$(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
