@@ -102,7 +102,8 @@ class AdvertisementController extends Controller
 		    $advertisementPicture->description = '';
 		    $advertisementPicture->save();
 	    }
-	    dd($request->all());
+
+	    return redirect()->route('app.reports.portico.show', array('id'=>$id));
     }
 
     /**
