@@ -65,6 +65,6 @@ class CamaraStaticHelper
 				}
 			}
 		}
-		return json_encode($data);
+		return '{lat: '.$data['lat'].', lng: '.$data['lng'].'},';
 	}
 }
