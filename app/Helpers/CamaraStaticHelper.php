@@ -3,6 +3,7 @@ namespace App\Helpers;
 
 use App\Models\Camara;
 use App\Models\DetectorConfig;
+use DB;
 use Laravie\Parser\Xml\Document;
 use Laravie\Parser\Xml\Reader;
 
@@ -33,5 +34,37 @@ class CamaraStaticHelper
 		}
 
 		return $dict;
+	}
+
+	public static function getPosition($lector_id)
+	{
+		$data = array(
+			'lat' => -16.449965,
+			'lng' => -71.587268
+		);
+
+		$lector_camara = DB::table('TB_LECTOR_CAMARA')
+			->where('id_lector_movimiento', $lector_id)
+			->first();
+
+		if ($lector_camara) {
+
+			$cam_ubi = DB::table('TBL_CAMARA_UBICACION')
+				->where('cod_camara', $lector_camara->id_camara)
+				->first();
+
+			if ($cam_ubi) {
+
+				$ubicacion = DB::table('TB_UBICACION')
+					->where('codigo', $cam_ubi->cod_ubicacion)
+					->first();
+
+				if ($ubicacion) {
+					$data['lat'] = $ubicacion->latitud;
+					$data['lng'] = $ubicacion->longitud;
+				}
+			}
+		}
+		return json_encode($data);
 	}
 }

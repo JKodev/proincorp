@@ -61,5 +61,25 @@
 @endsection
 
 @section('js_level_scripts')
-<script src="{{ asset('assets/pages/scripts/maps-google.js') }}" type="text/javascript"></script>
+	<script>
+		var map = new GMaps({
+			div: '#gmap_marker',
+			lat: -16.449965,
+			lng: -71.587268
+		});
+		@foreach($lectores as $lector)
+		map.addMarker({
+			position: {{ \App\Helpers\CamaraStaticHelper::getPosition($lector->id_lector_movimiento) }},
+			title: 'Central',
+			details: {
+				database_id: 42,
+				author: 'HPNeo'
+			},
+			click: function (e) {
+				if (console.log) console.log(e);
+				alert('You clicked in this marker');
+			}
+		});
+		@endforeach
+	</script>
 @endsection
