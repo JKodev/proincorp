@@ -66,7 +66,7 @@
 				<div class="col-md-8">
 					<div class="input_fields_wrap">
 						<div class="row" id="img-init">
-							<div class="col-md-5">
+							<div class="col-md-6">
 								<div class="fileinput fileinput-new" data-provides="fileinput">
 									<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
 										<img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
@@ -82,7 +82,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-5">
+							<div class="col-md-6">
 								<div class="form-group">
 									<label class="control-label">Código</label>
 									<input type="text" class="form-control" name="pictures[][code]">
@@ -91,20 +91,24 @@
 									<label class="control-label">Descripción</label>
 									<input type="text" class="form-control" name="pictures[][description]">
 								</div>
-							</div>
-							<div class="col-md-2">
-								<a href="#" class="remove_field btn red-thunderbird">
-									<span class="fa fa-trash"></span>
-									Eliminar
-								</a>
+								<div class="form-group">
+									<a href="#" class="remove_field btn red-thunderbird">
+										<span class="fa fa-trash"></span>
+										Eliminar
+									</a>
+								</div>
 							</div>
 
 						</div>
 					</div>
-					<button class="btn green-jungle add_field_button">
-						<span class="fa fa-plus"></span>
-						Agregar un campo
-					</button>
+					<div class="row">
+						<div class="col-md-12">
+							<button class="btn green-jungle add_field_button">
+								<span class="fa fa-plus"></span>
+								Agregar un campo
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
