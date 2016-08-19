@@ -148,8 +148,15 @@ class AdvertisementController extends Controller
      */
     public function destroy($id, $ad_id)
     {
-        $arvertisement = Advertisement::find($ad_id);
-	    $arvertisement->delete();
+        $advertisement = Advertisement::find($ad_id);
+
+	    /** @var AdvertisementPictures $pictures */
+	    $pictures = $advertisement->pictures();
+
+	    foreach ($pictures as $picture) {
+	    	$picture->delete();
+	    }
+	    $advertisement->delete();
 	    return redirect()->route('app.reports.portico.show', array('id'=>$id));
     }
 }
