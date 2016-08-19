@@ -58,5 +58,24 @@
 @endsection
 
 @section('js_level_scripts')
-<script src="{{ asset('assets/pages/scripts/maps-google.js') }}" type="text/javascript"></script>
+<script>
+	var map = new GMaps({
+		div: '#gmap_marker',
+		lat: -16.449965,
+		lng: -71.587268
+	});
+	@foreach($camaras as $camara)
+	map.addMarker({
+		position: {{ \App\Helpers\CamaraStaticHelper::getPositionFromCamera($camara->id) }},
+		title: '{{ preg_replace('/Cam(\d+)\_/', " ", $camara->cameraName) }}',
+		details: {
+			database_id: 42,
+			author: 'HPNeo'
+		},
+		click: function (e) {
+			document.location.href = "{{ route('app.reports.camaras.show', array('id' => $camara->id)) }}";
+		}
+	});
+	@endforeach
+</script>
 @endsection

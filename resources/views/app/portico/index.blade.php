@@ -69,7 +69,7 @@
 		});
 		@foreach($lectores as $lector)
 		map.addMarker({
-			position: {{ \App\Helpers\CamaraStaticHelper::getPosition($lector->id_lector_movimiento) }},
+			position: {{ \App\Helpers\CamaraStaticHelper::getPositionFromLector($lector->id_lector_movimiento) }},
 			title: '{{ preg_replace('/(\d+)\_(\d+)/', " ", $lector->dsc_lector_movimiento) }}',
 			details: {
 				database_id: 42,

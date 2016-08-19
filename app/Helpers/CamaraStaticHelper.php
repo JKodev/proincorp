@@ -36,7 +36,7 @@ class CamaraStaticHelper
 		return $dict;
 	}
 
-	public static function getPosition($lector_id)
+	public static function getPositionFromLector($lector_id)
 	{
 		$data = array(
 			'lat' => -16.449965,
@@ -63,6 +63,31 @@ class CamaraStaticHelper
 					$data['lat'] = $ubicacion->latitud;
 					$data['lng'] = $ubicacion->longitud;
 				}
+			}
+		}
+		return '{lat: '.$data['lat'].', lng: '.$data['lng'].'}';
+	}
+
+	public static function getPositionFromCamera($camara_id)
+	{
+		$data = array(
+			'lat' => -16.449965,
+			'lng' => -71.587268
+		);
+
+		$cam_ubi = DB::table('TBL_CAMARA_UBICACION')
+			->where('cod_camara', $camara_id)
+			->first();
+
+		if ($cam_ubi) {
+
+			$ubicacion = DB::table('TB_UBICACION')
+				->where('codigo', $cam_ubi->cod_ubicacion)
+				->first();
+
+			if ($ubicacion) {
+				$data['lat'] = $ubicacion->latitud;
+				$data['lng'] = $ubicacion->longitud;
 			}
 		}
 		return '{lat: '.$data['lat'].', lng: '.$data['lng'].'}';
