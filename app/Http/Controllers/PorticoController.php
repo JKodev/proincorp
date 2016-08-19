@@ -69,6 +69,10 @@ class PorticoController extends Controller
 		$totals = ReportHelper::totalAllReports($id, date('d/m/Y 00:00:00'), date('d/m/Y 23:59:59'));
 		$lector = Lector::find($id);
 		$lectores = Lector::orderBy('dsc_lector_movimiento')->get();
+		$advertisements = Advertisement::where('lector_id', $id)
+			->orderBy('start_hour', 'asc')
+			->orderBy('end_hour', 'asc')
+			->get();
 		$view = '';
 		$variables = array(
 			'title' => '',
@@ -77,7 +81,8 @@ class PorticoController extends Controller
 			'lector' => $lector,
 			'lectores' => $lectores,
 			'colors' => $this->colors,
-			'totals' => $totals
+			'totals' => $totals,
+			'advertisements' => $advertisements
 		);
 
 		switch ($report_id) {
@@ -116,6 +121,10 @@ class PorticoController extends Controller
 			->first();
 		$lector = Lector::find($id);
 		$lectores = Lector::orderBy('dsc_lector_movimiento')->get();
+		$advertisements = Advertisement::where('lector_id', $id)
+			->orderBy('start_hour', 'asc')
+			->orderBy('end_hour', 'asc')
+			->get();
 		return view('app.portico.report.tags', array(
 			'title' => 'Reporte por Tags',
 			'id' => $id,
@@ -123,7 +132,8 @@ class PorticoController extends Controller
 			'lectores' => $lectores,
 			'colors' => $this->colors,
 			'camara' => $camara,
-			'totals' => $totals
+			'totals' => $totals,
+			'advertisements' => $advertisements
 		));
 	}
 
@@ -140,6 +150,10 @@ class PorticoController extends Controller
 			->first();
 		$lector = Lector::find($id);
 		$lectores = Lector::orderBy('dsc_lector_movimiento')->get();
+		$advertisements = Advertisement::where('lector_id', $id)
+			->orderBy('start_hour', 'asc')
+			->orderBy('end_hour', 'asc')
+			->get();
 		return view('app.portico.report.camaras', array(
 			'title' => 'Reporte por Cámaras',
 			'id' => $id,
@@ -147,7 +161,8 @@ class PorticoController extends Controller
 			'lectores' => $lectores,
 			'colors' => $this->colors,
 			'camara' => $camara,
-			'totals' => $totals
+			'totals' => $totals,
+			'advertisements' => $advertisements
 		));
 	}
 
@@ -164,6 +179,10 @@ class PorticoController extends Controller
 			->first();
 		$lector = Lector::find($id);
 		$lectores = Lector::orderBy('dsc_lector_movimiento')->get();
+		$advertisements = Advertisement::where('lector_id', $id)
+			->orderBy('start_hour', 'asc')
+			->orderBy('end_hour', 'asc')
+			->get();
 		return view('app.portico.report.general', array(
 			'title' => 'Reporte General',
 			'id' => $id,
@@ -171,7 +190,8 @@ class PorticoController extends Controller
 			'lectores' => $lectores,
 			'colors' => $this->colors,
 			'camara' => $camara,
-			'totals' => $totals
+			'totals' => $totals,
+			'advertisements' => $advertisements
 		));
 	}
 
