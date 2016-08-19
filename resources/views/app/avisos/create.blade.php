@@ -71,13 +71,14 @@
 									<div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
 										<img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image" alt="" />
 									</div>
-									<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"> </div>
+									<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;">
+									</div>
 									<div>
-                                <span class="btn default btn-file">
-                                    <span class="fileinput-new"> Seleccionar imagen </span>
-                                    <span class="fileinput-exists"> Cambiar </span>
-                                    <input type="file" class="inputfile-image" name="pictures[0][image]">
-                                </span>
+		                                <span class="btn default btn-file">
+		                                    <span class="fileinput-new"> Seleccionar imagen </span>
+		                                    <span class="fileinput-exists"> Cambiar </span>
+		                                    <input type="file" class="inputfileimage" name="pictures[0][image]">
+		                                </span>
 										<a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput"> Quitar </a>
 									</div>
 								</div>
@@ -167,7 +168,7 @@
 				var arr = 'pictures['+(x-1)+']';
 				$(img).find('a.fileinput-exists').click();
 				$(img).find('.form-control').val('');
-				$(img).find('input.inputfile-image').attr('name', arr+'[image]');
+				$(img).find('input.inputfileimage').attr('name', arr+'[image]');
 				$(img).find('input.code').attr('name', arr+'[code]');
 				$(img).find('input.description').attr('name', arr+'[description]');
 				//$(wrapper).append('<div><input type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
