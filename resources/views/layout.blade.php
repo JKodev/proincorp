@@ -108,7 +108,7 @@
 						<!-- BEGIN HEADER SEARCH BOX -->
 						<form class="search-form" action="#" method="GET">
 							<div class="input-group">
-								<input type="text" class="form-control" id="vehiculo" placeholder="ID vehículo"
+								<input type="text" class="form-control" id="vehiculo" placeholder="Placa vehículo"
 								       name="query">
 								<span class="input-group-btn">
                                     <a href="javascript:;" class="btn submit">

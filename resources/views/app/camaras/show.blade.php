@@ -42,14 +42,13 @@
 					</div>
 					<div class="portlet-body">
 						<div class="row">
-							<div class="col-md-12">
-								<iframe src="http://{{ $camara->ipaddress }}/#/" style="width:800px; height:600px; position: relative;" frameborder="0"></iframe>
-							</div>
+							<iframe src="http://{{ $camara->ipaddress }}/#/" class="col-md-12" style="height:600px; position: relative;" frameborder="0"></iframe>
 						</div>
+						<div class="row">
 						@section('content_portico')
-							<div id="gmap_marker" class="gmaps"></div>
+							<div id="gmap_marker" class="gmaps col-md-8"></div>
 						@show
-
+						</div>
 					</div>
 				</div>
 				<!-- END MARKERS PORTLET-->
