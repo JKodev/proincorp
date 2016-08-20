@@ -195,6 +195,10 @@ class PorticoController extends Controller
 		));
 	}
 
+	/**
+	 * @param $id integer
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
 	public function generalPorcentual($id)
 	{
 		$totals = ReportHelper::totalAllReports($id, date('d/m/Y 00:00:00'), date('d/m/Y 23:59:59'));
@@ -210,6 +214,35 @@ class PorticoController extends Controller
 			->get();
 		return view('app.portico.report.generalPorcentaje', array(
 			'title' => 'Reporte General Porcentual',
+			'id' => $id,
+			'lector' => $lector,
+			'lectores' => $lectores,
+			'colors' => $this->colors,
+			'camara' => $camara,
+			'totals' => $totals,
+			'advertisements' => $advertisements
+		));
+	}
+
+	/**
+	 * @param $id
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+	 */
+	public function generalFechas($id)
+	{
+		$totals = ReportHelper::totalAllReports($id, date('d/m/Y 00:00:00'), date('d/m/Y 23:59:59'));
+		$camara = DB::connection('sqlsrv')
+			->table('TB_LECTOR_CAMARA')
+			->where('id_lector_movimiento', $id)
+			->first();
+		$lector = Lector::find($id);
+		$lectores = Lector::orderBy('dsc_lector_movimiento')->get();
+		$advertisements = Advertisement::where('lector_id', $id)
+			->orderBy('start_hour', 'asc')
+			->orderBy('end_hour', 'asc')
+			->get();
+		return view('app.portico.report.generalFechas', array(
+			'title' => 'Reporte General Fechas',
 			'id' => $id,
 			'lector' => $lector,
 			'lectores' => $lectores,
@@ -435,5 +468,20 @@ class PorticoController extends Controller
 		);
 
 		return response()->json($data);
+	}
+
+	public function serviceGeneralFechas($id, $start_date, $end_date, $direction)
+	{
+		$dir = 'Arequipa - CV';
+		if ($direction == 1) {
+			$dir = 'CV - Arequipa';
+		}
+		$s_date = date('d/m/Y 00:00:00', $start_date);
+		$e_date = date('d/m/Y 23:59:59', $end_date);
+		$data = ReportHelper::informe_general_fechas($id, $s_date, $e_date);
+		//dd($data);
+		$serialize = SerializeHelper::parseGeneralToChart($data, $dir);
+
+		return response()->json($serialize);
 	}
 }

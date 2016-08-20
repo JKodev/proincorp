@@ -283,6 +283,55 @@ class ReportHelper
 		return $data;
 	}
 
+	/**
+	 * @param $detector_id integer
+	 * @param $start_date DateTime
+	 * @param $end_date DateTime
+	 * @return array
+	 */
+	public static function informe_camaras_fechas($detector_id, $start_date, $end_date)
+	{
+		$detector = Camara::find($detector_id);
+
+		$registers = DB::connection('sqlsrv')
+			->table('TB_DATOS_CAMARA')
+			->where('id_indicador', $detector->id)
+			->whereBetween('hora', [$start_date, $end_date])
+			->get();
+
+		$zones = DB::connection('sqlsrv')
+			->table('TB_ZONAS_CAMARA')
+			->where('id_detector', $detector->id)
+			->get();
+
+		$data = self::getZonesArray($zones);
+		$format_unix_date = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date)->format('Y-m-d');
+		self::generateCompleteInterval($data, 10, $format_unix_date);
+
+		$valid_format = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date);
+
+		$unix_start_date = $valid_format->getTimestamp();
+
+		foreach ($registers as $register) {
+			$register_date = $register->hora;
+			$format_date = \DateTime::createFromFormat('Y-m-d H:i:s.u', $register_date);
+			$timestamp = $format_date->getTimestamp();
+
+			$position = intval(($timestamp - $unix_start_date) / 600);
+
+			$zone_name = self::getZoneName($zones, $register->id_zona);
+
+			$data[$zone_name][$position]['mount'] += $register->cantidad;
+		}
+
+		return $data;
+	}
+
+	/**
+	 * @param $camara_id integer
+	 * @param $date DateTime
+	 * @return array
+	 */
 	public static function informe_tags($camara_id, $date)
 	{
 		$camara = Camara::find($camara_id);
@@ -330,11 +379,79 @@ class ReportHelper
 		return $data;
 	}
 
+	/**
+	 * @param $camara_id integer
+	 * @param $start_date DateTime
+	 * @param $end_date DateTime
+	 * @return array
+	 */
+	public static function informe_tags_fechas($camara_id, $start_date, $end_date)
+	{
+		$camara = Camara::find($camara_id);
+
+		$lectores = DB::connection('sqlsrv')
+			->table('TB_LECTOR_CAMARA')
+			->where('id_camara', $camara->id)
+			->get();
+
+		$data = array();
+
+		foreach ($lectores as $lector) {
+			$lect = Lector::find($lector->id_lector_movimiento);
+			$registers = DB::connection('sqlsrv')
+				->table('TB_LECTURAS_FIN')
+				->where('ip_lector_movimiento', $lect->ip_lector_movimiento)
+				->whereBetween('fecha_hora_lectura', [$start_date, $end_date])
+				->get();
+			$route_name = $lector->ruta;
+
+			$data[$route_name] = array();
+			$formar_unix_date = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date)->format('Y-m-d');
+			self::generateSimpleInterval($data, $route_name, 10, $formar_unix_date);
+
+			$valid_format = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date);
+
+			$unix_start_date = $valid_format->getTimestamp();
+
+			foreach ($registers as $register) {
+				$register_date = $register->fecha_hora_lectura;
+				$format_date = \DateTime::createFromFormat('Y-m-d H:i:s.u', $register_date);
+				$timestamp = $format_date->getTimestamp();
+
+				$position = intval(($timestamp - $unix_start_date) / 600);
+
+				$data[$route_name][$position]['mount'] += 1;
+			}
+		}
+
+		return $data;
+	}
+	/**
+	 * @param $camara_id integer
+	 * @param $date DateTime
+	 * @return array
+	 */
 	public static function informe_general($camara_id, $date)
 	{
 		$data = array(
 			'tags' => self::informe_tags($camara_id, $date),
 			'camaras' => self::informe_camaras($camara_id, $date)
+		);
+
+		return $data;
+	}
+
+	/**
+	 * @param $camara_id integer
+	 * @param $start_date DateTime
+	 * @param $end_date DateTime
+	 * @return array
+	 */
+	public static function informe_general_fechas($camara_id, $start_date, $end_date)
+	{
+		$data = array(
+			'tags'  =>  self::informe_tags_fechas($camara_id, $start_date, $end_date),
+			'camaras'   =>  self::informe_camaras_fechas($camara_id, $start_date, $end_date)
 		);
 
 		return $data;

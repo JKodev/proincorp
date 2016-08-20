@@ -120,15 +120,15 @@
 			</div>
 		</div>
 		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-bottom-10">
-			<div class="dashboard-stat purple-seance">
+			<div class="dashboard-stat green-turquoise">
 				<div class="visual">
-					<i class="fa fa-bar-chart fa-icon-medium"></i>
+					<i class="fa fa-line-chart fa-icon-medium"></i>
 				</div>
 				<div class="details">
-					<div class="number"> {{ $totals['tags'] }}</div>
-					<div class="desc"> Reporte lectura de Tags</div>
+					<div class="number"> {{ $totals['general'] }}</div>
+					<div class="desc"> Reporte General Por Fechas</div>
 				</div>
-				<a class="more" href="{{ route('app.reports.portico.tags', array('id' => $lector->id_lector_movimiento)) }}"> Ver Reporte
+				<a class="more" href="{{ route('app.reports.portico.general.fechas', array('id' => $lector->id_lector_movimiento)) }}"> Ver Reporte
 					<i class="m-icon-swapright m-icon-white"></i>
 				</a>
 			</div>

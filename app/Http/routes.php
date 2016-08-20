@@ -76,6 +76,11 @@ Route::group([
 							'uses'  =>  'PorticoController@generalPorcentual'
 						]);
 
+						Route::get('/{id}/general/fechas', [
+							'as'    =>  'app.reports.portico.general.fechas',
+							'uses'  =>  'PorticoController@generalFechas'
+						]);
+
 						Route::group([
 							'prefix'    =>  'avisos'
 						], function () {
@@ -244,6 +249,11 @@ Route::group([
 			Route::get('/general/porcentual/{id}/{start_date}/{end_date}', [
 				'as'    =>  'service.reports.portico.general.porcentual',
 				'uses'  =>  'PorticoController@serviceGeneralPorcentual'
+			]);
+
+			Route::get('/general/fechas/{id}/{start_date}/{end_date}/{direction}', [
+				'as'    =>  'service.reports.portico.general.fechas',
+				'uses'  =>  'PorticoController@serviceGeneralFechas'
 			]);
 		});
 
