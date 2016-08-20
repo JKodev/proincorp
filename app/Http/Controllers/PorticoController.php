@@ -479,8 +479,8 @@ class PorticoController extends Controller
 		$s_date = date('d/m/Y 00:00:00', $start_date);
 		$e_date = date('d/m/Y 23:59:59', $end_date);
 		$data = ReportHelper::informe_general_fechas($id, $s_date, $e_date);
-		dd($data);
-		\Debugbar::info($data);
+		//dd($data);
+		//\Debugbar::info($data);
 		$serialize = SerializeHelper::parseGeneralToChart($data, $dir);
 
 		return response()->json($serialize);
