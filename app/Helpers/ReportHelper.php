@@ -467,6 +467,7 @@ class ReportHelper
 				$position = intval(($timestamp - $unix_start_date) / 600);
 
 				$data[$route_name][$position]['mount'] += 1;
+				$data[$route_name][$position]['mount'] += 1;
 			}
 		}
 

@@ -158,6 +158,7 @@ return [
 
 	    Orchestra\Parser\XmlServiceProvider::class,
 	    Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+	    Barryvdh\Debugbar\ServiceProvider::class,
 	    Maatwebsite\Excel\ExcelServiceProvider::class,
 	    Zizaco\Entrust\EntrustServiceProvider::class,
     ],
@@ -208,6 +209,7 @@ return [
 	    'XmlParser' => Orchestra\Parser\Xml\Facade::class,
 	    'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 	    'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+	    'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];
