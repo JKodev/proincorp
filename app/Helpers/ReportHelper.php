@@ -10,6 +10,7 @@ use App\Models\Lectura;
 use App\Models\Vehiculo;
 use DB;
 use DateTime;
+use Debugbar;
 use Illuminate\Database\Query\JoinClause;
 
 class ReportHelper
