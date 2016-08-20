@@ -115,8 +115,8 @@
 				});
 			}
 
-			var route_aqp_cv = '{{  route('app.init') }}/service/reports/portico/general/fechas/{{ $camara->id_camara }}/{start_date}/0/';
-			var route_cv_aqp = '{{  route('app.init') }}/service/reports/portico/general/fechas/{{ $camara->id_camara }}/{end_date}/1/';
+			var route_aqp_cv = '{{  route('app.init') }}/service/reports/portico/general/fechas/{{ $camara->id_camara }}/{start_date}/{end_date}/0/';
+			var route_cv_aqp = '{{  route('app.init') }}/service/reports/portico/general/fechas/{{ $camara->id_camara }}/{start_date}/{end_date}/1/';
 
 			var getData = function (route) {
 				var start = $('#from').val();
