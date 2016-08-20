@@ -416,9 +416,11 @@ class ReportHelper
 			foreach ($registers as $register) {
 				$register_date = $register->fecha_hora_lectura;
 				$format_date = \DateTime::createFromFormat('Y-m-d H:i:s.u', $register_date);
+				$base_date = $format_date->format('Y-m-d 00:00:00');
+				$base_init_date = strtotime($base_date);
 				$timestamp = $format_date->getTimestamp();
 
-				$position = intval(($timestamp - $unix_start_date) / 600);
+				$position = intval(($timestamp - $base_init_date) / 600);
 
 				$data[$route_name][$position]['mount'] += 1;
 			}
