@@ -454,7 +454,10 @@ class ReportHelper
 
 			$data[$route_name] = array();
 			$formar_unix_date = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date)->format('Y-m-d');
-			self::generateSimpleIntervalDates($data, $route_name, 10, $start_date, $end_date);
+
+			$s_date = DateTime::createFromFormat('d/m/Y H:i:s', $start_date)->format('Y-m-D H:i:s');
+			$e_date = DateTime::createFromFormat('d/m/Y H:i:s', $end_date)->format('Y-m-D H:i:s');
+			self::generateSimpleIntervalDates($data, $route_name, 10, $s_date, $e_date);
 
 			$valid_format = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date);
 
