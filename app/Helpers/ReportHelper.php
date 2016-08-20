@@ -9,6 +9,7 @@ use App\Models\Lector;
 use App\Models\Lectura;
 use App\Models\Vehiculo;
 use DB;
+use Faker\Provider\DateTime;
 use Illuminate\Database\Query\JoinClause;
 
 class ReportHelper
@@ -385,6 +386,12 @@ class ReportHelper
 		return $camara;
 	}
 
+	/**
+	 * @param $lector Lector
+	 * @param $start_date DateTime
+	 * @param $end_date DateTime
+	 * @return float|int
+	 */
 	public static function totalCamaras($lector, $start_date, $end_date)
 	{
 		$detector = self::getCameraFromLector($lector->id_lector_movimiento);
@@ -398,6 +405,12 @@ class ReportHelper
 		return $total;
 	}
 
+	/**
+	 * @param $lector Lector
+	 * @param $start_date DateTime
+	 * @param $end_date DateTime
+	 * @return int
+	 */
 	public static function totalTags($lector, $start_date, $end_date)
 	{
 		$camara = self::getCameraFromLector($lector->id_lector_movimiento);

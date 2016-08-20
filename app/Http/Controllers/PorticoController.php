@@ -236,6 +236,10 @@ class PorticoController extends Controller
 		return response()->json($serialize);
 	}
 
+	/**
+	 * @param Request $request
+	 * @param integer $id
+	 */
 	public function serviceTipoVehiculoPorcentualExcel(Request $request, $id)
 	{
 		$start_date = $request->start_date;
@@ -281,6 +285,10 @@ class PorticoController extends Controller
 		return response()->json($data);
 	}
 
+	/**
+	 * @param Request $request
+	 * @param integer $id
+	 */
 	public function serviceTipoVehiculoEmpresaExcel(Request $request, $id)
 	{
 		$lector = Lector::find($id);
@@ -402,19 +410,27 @@ class PorticoController extends Controller
 		return response()->json($serialize);
 	}
 
+	/**
+	 * @param $id integer
+	 * @param $start_date integer
+	 * @param $end_date integer
+	 * @return \Illuminate\Http\JsonResponse
+	 */
 	public function serviceGeneralPorcentual($id, $start_date, $end_date)
 	{
+		$lector = Lector::find($id);
+
 		$s_date = date("d/m/Y 00:00:00", $start_date);
 		$e_date = date("d/m/Y 00:00:00", $end_date);
 
 		$data = array(
 			array(
 				'name' =>   'TAGs',
-				'total' =>  ReportHelper::totalTags($id, $s_date, $e_date)
+				'total' =>  ReportHelper::totalTags($lector, $s_date, $e_date)
 			),
 			array(
 				'name'  =>  'Cámaras',
-				'total' =>  ReportHelper::totalCamaras($id, $s_date, $e_date)
+				'total' =>  ReportHelper::totalCamaras($lector, $s_date, $e_date)
 			)
 		);
 
