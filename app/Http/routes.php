@@ -71,6 +71,11 @@ Route::group([
 							'uses'  =>  'PorticoController@general'
 						]);
 
+						Route::get('/{id}/general/porcentual', [
+							'as'    =>  'app.reports.portico.general.porcentual',
+							'uses'  =>  'PorticoController@generalPorcentual'
+						]);
+
 						Route::group([
 							'prefix'    =>  'avisos'
 						], function () {
