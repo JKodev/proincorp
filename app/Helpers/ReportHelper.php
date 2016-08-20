@@ -458,7 +458,8 @@ class ReportHelper
 			$valid_format = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date);
 
 			$unix_start_date = $valid_format->getTimestamp();
-
+			Debugbar::info($registers);
+			Debugbar::info($data);
 			foreach ($registers as $register) {
 				$register_date = $register->fecha_hora_lectura;
 				$format_date = \DateTime::createFromFormat('Y-m-d H:i:s.u', $register_date);
