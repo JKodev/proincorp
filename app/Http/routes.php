@@ -235,6 +235,11 @@ Route::group([
 				'as'    =>  'service.reports.portico.general',
 				'uses'  =>  'PorticoController@serviceGeneral'
 			]);
+
+			Route::get('/general/porcentual/{id}/{start_date}/{end_date}', [
+				'as'    =>  'service.reports.portico.general.porcentual',
+				'uses'  =>  'PorticoController@serviceGeneralPorcentual'
+			]);
 		});
 
 		Route::group([

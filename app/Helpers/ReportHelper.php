@@ -143,7 +143,7 @@ class ReportHelper
 			$start_date = $date.' '.$hour_start;
 			$end_date = $date.' '.$hour_end;
 			$query = DB::connection('sqlsrv')
-				->table('SDTR_LECTURAS_VISIBLE')
+				->table('TB_LECTURAS_FIN')
 				->where('ip_lector_movimiento', $lector->ip_lector_movimiento)
 				->whereBetween('fecha_hora_lectura', [$start_date, $end_date]);
 
@@ -170,9 +170,9 @@ class ReportHelper
 		$start_date = $date.' 00:00:00';
 		$end_date = $date.' 23:59:59';
 		$query = DB::connection('sqlsrv')
-			->table('SDTR_LECTURAS_VISIBLE')
+			->table('TB_LECTURAS_FIN')
 			->join('TB_REGISTRO_VEHICULOS', function (JoinClause $join) {
-				$join->on('TB_REGISTRO_VEHICULOS.cod_tag', '=', 'SDTR_LECTURAS_VISIBLE.cod_tag');
+				$join->on('TB_REGISTRO_VEHICULOS.cod_tag', '=', 'TB_LECTURAS_FIN.cod_tag');
 			})
 			->join('TB_VEHICULOS', function (JoinClause $join) {
 				$join->on('TB_VEHICULOS.ID_Vehiculo', '=', 'TB_REGISTRO_VEHICULOS.ID_Vehiculo');
@@ -301,7 +301,7 @@ class ReportHelper
 		foreach ($lectores as $lector) {
 			$lect = Lector::find($lector->id_lector_movimiento);
 			$registers = DB::connection('sqlsrv')
-				->table('SDTR_LECTURAS_VISIBLE')
+				->table('TB_LECTURAS_FIN')
 				->where('ip_lector_movimiento', $lect->ip_lector_movimiento)
 				->whereBetween('fecha_hora_lectura', [$start_date, $end_date])
 				->get();
@@ -342,7 +342,7 @@ class ReportHelper
 	private static function totalAutosDia($lector, $start_date, $end_date)
 	{
 		$query = DB::connection('sqlsrv')
-			->table('SDTR_LECTURAS_VISIBLE')
+			->table('TB_LECTURAS_FIN')
 			->where('ip_lector_movimiento', $lector->ip_lector_movimiento)
 			->whereBetween('fecha_hora_lectura', [$start_date, $end_date]);
 
@@ -385,7 +385,7 @@ class ReportHelper
 		return $camara;
 	}
 
-	private static function totalCamaras($lector, $start_date, $end_date)
+	public static function totalCamaras($lector, $start_date, $end_date)
 	{
 		$detector = self::getCameraFromLector($lector->id_lector_movimiento);
 		$query = DB::connection('sqlsrv')
@@ -398,7 +398,7 @@ class ReportHelper
 		return $total;
 	}
 
-	private static function totalTags($lector, $start_date, $end_date)
+	public static function totalTags($lector, $start_date, $end_date)
 	{
 		$camara = self::getCameraFromLector($lector->id_lector_movimiento);
 
@@ -412,7 +412,7 @@ class ReportHelper
 		foreach ($lectores as $lector) {
 			$lect = Lector::find($lector->id_lector_movimiento);
 			$registers = DB::connection('sqlsrv')
-				->table('SDTR_LECTURAS_VISIBLE')
+				->table('TB_LECTURAS_FIN')
 				->where('ip_lector_movimiento', $lect->ip_lector_movimiento)
 				->whereBetween('fecha_hora_lectura', [$start_date, $end_date]);
 

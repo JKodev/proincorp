@@ -195,6 +195,31 @@ class PorticoController extends Controller
 		));
 	}
 
+	public function generalPorcentual($id)
+	{
+		$totals = ReportHelper::totalAllReports($id, date('d/m/Y 00:00:00'), date('d/m/Y 23:59:59'));
+		$camara = DB::connection('sqlsrv')
+			->table('TB_LECTOR_CAMARA')
+			->where('id_lector_movimiento', $id)
+			->first();
+		$lector = Lector::find($id);
+		$lectores = Lector::orderBy('dsc_lector_movimiento')->get();
+		$advertisements = Advertisement::where('lector_id', $id)
+			->orderBy('start_hour', 'asc')
+			->orderBy('end_hour', 'asc')
+			->get();
+		return view('app.portico.report.generalPorcentaje', array(
+			'title' => 'Reporte General Porcentual',
+			'id' => $id,
+			'lector' => $lector,
+			'lectores' => $lectores,
+			'colors' => $this->colors,
+			'camara' => $camara,
+			'totals' => $totals,
+			'advertisements' => $advertisements
+		));
+	}
+
 	/**
 	 * @param $id integer
 	 * @param $start_date integer unix time
@@ -375,5 +400,24 @@ class PorticoController extends Controller
 		$serialize = SerializeHelper::parseGeneralToChart($data, $dir);
 
 		return response()->json($serialize);
+	}
+
+	public function serviceGeneralPorcentual($id, $start_date, $end_date)
+	{
+		$s_date = date("d/m/Y 00:00:00", $start_date);
+		$e_date = date("d/m/Y 00:00:00", $end_date);
+
+		$data = array(
+			array(
+				'name' =>   'TAGs',
+				'total' =>  ReportHelper::totalTags($id, $s_date, $e_date)
+			),
+			array(
+				'name'  =>  'Cámaras',
+				'total' =>  ReportHelper::totalCamaras($id, $s_date, $e_date)
+			)
+		);
+
+		return response()->json($data);
 	}
 }

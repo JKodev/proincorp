@@ -104,6 +104,50 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-bottom-10">
+			<div class="dashboard-stat green-sharp">
+				<div class="visual">
+					<i class="fa fa-pie-chart fa-icon-medium"></i>
+				</div>
+				<div class="details">
+					<div class="number"> {{ $totals['camaras'] }} / {{ $totals['tags'] }}</div>
+					<div class="desc"> Reporte Tag's vs Cámaras</div>
+				</div>
+				<a class="more" href="{{ route('app.reports.portico.general.porcentual', array('id' => $lector->id_lector_movimiento)) }}"> Ver Reporte
+					<i class="m-icon-swapright m-icon-white"></i>
+				</a>
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-bottom-10">
+			<div class="dashboard-stat purple-seance">
+				<div class="visual">
+					<i class="fa fa-bar-chart fa-icon-medium"></i>
+				</div>
+				<div class="details">
+					<div class="number"> {{ $totals['tags'] }}</div>
+					<div class="desc"> Reporte lectura de Tags</div>
+				</div>
+				<a class="more" href="{{ route('app.reports.portico.tags', array('id' => $lector->id_lector_movimiento)) }}"> Ver Reporte
+					<i class="m-icon-swapright m-icon-white"></i>
+				</a>
+			</div>
+		</div>
+		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-bottom-10">
+			<div class="dashboard-stat purple-seance">
+				<div class="visual">
+					<i class="fa fa-bar-chart fa-icon-medium"></i>
+				</div>
+				<div class="details">
+					<div class="number"> {{ $totals['general'] }}</div>
+					<div class="desc"> Reporte lectura General</div>
+				</div>
+				<a class="more" href="{{ route('app.reports.portico.general', array('id' => $lector->id_lector_movimiento)) }}"> Ver Reporte
+					<i class="m-icon-swapright m-icon-white"></i>
+				</a>
+			</div>
+		</div>
+	</div>
 @endsection
 
 @section('extra-portlets')
