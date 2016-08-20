@@ -348,7 +348,9 @@ class ReportHelper
 
 		$data = self::getZonesArray($zones);
 		$format_unix_date = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date)->format('Y-m-d');
-		//self::generateCompleteInterval($data, 10, $format_unix_date);
+		$s_date = DateTime::createFromFormat('d/m/Y H:i:s', $start_date)->format('Y-m-d H:i:s');
+		$e_date = DateTime::createFromFormat('d/m/Y H:i:s', $end_date)->format('Y-m-d H:i:s');
+		self::generateCompleteIntervalDates($data, 10, $s_date, $e_date);
 
 		$valid_format = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date);
 
@@ -359,15 +361,16 @@ class ReportHelper
 			$format_date = \DateTime::createFromFormat('Y-m-d H:i:s.u', $register_date);
 			$timestamp = $format_date->getTimestamp();
 
-			//$position = intval(($timestamp - $unix_start_date) / 600);
+			$position = intval(($timestamp - $unix_start_date) / 600);
 
 			$zone_name = self::getZoneName($zones, $register->id_zona);
 
-			//$data[$zone_name][$position]['mount'] += $register->cantidad;
-			$data[$zone_name][] = array(
+			$data[$zone_name][$position]['mount'] += $register->cantidad;
+			/*$data[$zone_name][] = array(
 				'hour'  =>  $format_date->format('Y-m-d H:i:s'),
 				'mount' => $register->cantidad
 			);
+			*/
 
 		}
 
@@ -470,7 +473,6 @@ class ReportHelper
 
 				$position = intval(($timestamp - $unix_start_date) / 600);
 
-				$data[$route_name][$position]['mount'] += 1;
 				$data[$route_name][$position]['mount'] += 1;
 			}
 		}
