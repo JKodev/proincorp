@@ -157,7 +157,7 @@
 				{
 					"language": "es",
 					"type": "serial",
-					"categoryField": "date",
+					"categoryField": "hour",
 					"dataDateFormat": "YYYY-MM-DD JJ:NN:SS",
 					"categoryAxis": {
 						"minPeriod": "ss",
@@ -216,7 +216,7 @@
 					{
 						"language": "es",
 						"type": "serial",
-						"categoryField": "date",
+						"categoryField": "hour",
 						"dataDateFormat": "YYYY-MM-DD JJ:NN:SS",
 						"categoryAxis": {
 							"minPeriod": "ss",
