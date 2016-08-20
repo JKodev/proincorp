@@ -9,7 +9,7 @@ use App\Models\Lector;
 use App\Models\Lectura;
 use App\Models\Vehiculo;
 use DB;
-use Faker\Provider\DateTime;
+use DateTime;
 use Illuminate\Database\Query\JoinClause;
 
 class ReportHelper
@@ -66,13 +66,13 @@ class ReportHelper
 
 		if (array_key_exists('empresa', $parameters)) {
 			if (!empty($parameters['empresa'])) {
-				$query->where('RAZON_SOCIAL', 'LIKE', '%'.strtoupper($parameters['empresa']).'%');
+				$query->where('RAZON_SOCIAL', 'LIKE', '%' . strtoupper($parameters['empresa']) . '%');
 			}
 		}
 
 		if (array_key_exists('placa', $parameters)) {
 			if (!empty($parameters['placa'])) {
-				$query->where('PLACA', 'LIKE', '%'.strtoupper($parameters['placa']).'%');
+				$query->where('PLACA', 'LIKE', '%' . strtoupper($parameters['placa']) . '%');
 			}
 		}
 
@@ -99,8 +99,8 @@ class ReportHelper
 		}
 
 		return array(
-			'results'   =>  $results,
-			'total'     =>  $total
+			'results' => $results,
+			'total' => $total
 		);
 	}
 
@@ -109,10 +109,10 @@ class ReportHelper
 
 		$info = self::tipoVehiculoEmpresaQuery($lector_id, $start, $length, $parameters, $order);
 		$data = array(
-			'data'  => array(),
-			'draw'  =>  $draw,
-			'recordsTotal'  =>  $info['total'],
-			'recordsFiltered'   =>  $info['total']
+			'data' => array(),
+			'draw' => $draw,
+			'recordsTotal' => $info['total'],
+			'recordsFiltered' => $info['total']
 		);
 
 		$results = $info['results'];
@@ -141,8 +141,8 @@ class ReportHelper
 
 		while ($hour_end != '00:00:00') {
 			$date = \DateTime::createFromFormat('d/m/Y', $fecha)->format('d/m/Y');
-			$start_date = $date.' '.$hour_start;
-			$end_date = $date.' '.$hour_end;
+			$start_date = $date . ' ' . $hour_start;
+			$end_date = $date . ' ' . $hour_end;
 			$query = DB::connection('sqlsrv')
 				->table('TB_LECTURAS_FIN')
 				->where('ip_lector_movimiento', $lector->ip_lector_movimiento)
@@ -151,8 +151,8 @@ class ReportHelper
 			$total = $query->count();
 
 			$results[] = array(
-				'Hora'  =>  $hour_end,
-				'Vehiculos' =>  $total
+				'Hora' => $hour_end,
+				'Vehiculos' => $total
 			);
 			$hour_start = $hour_end;
 			$timestamp = strtotime($hour_end) + 1800;
@@ -168,8 +168,8 @@ class ReportHelper
 	{
 		$lector = Lector::find($lector_id);
 		$date = \DateTime::createFromFormat('d/m/Y', $fecha)->format('d/m/Y');
-		$start_date = $date.' 00:00:00';
-		$end_date = $date.' 23:59:59';
+		$start_date = $date . ' 00:00:00';
+		$end_date = $date . ' 23:59:59';
 		$query = DB::connection('sqlsrv')
 			->table('TB_LECTURAS_FIN')
 			->join('TB_REGISTRO_VEHICULOS', function (JoinClause $join) {
@@ -217,16 +217,44 @@ class ReportHelper
 	 */
 	private static function generateSimpleInterval(&$data, $key, $interval, $date)
 	{
-		$timer = $date.' 00:00:00';
-		$lenght = intval((60*24) / $interval);
-		for($i=0; $i < $lenght; $i++) {
+		$timer = $date . ' 00:00:00';
+		$lenght = intval((60 * 24) / $interval);
+		for ($i = 0; $i < $lenght; $i++) {
 			$data[$key][$i] = array(
-				'hour'      => $timer,
-				'mount'     => 0
+				'hour' => $timer,
+				'mount' => 0
 			);
 
 			$timestamp = strtotime($timer) + (60 * $interval);
 			$timer = date('Y-m-d H:i:s', $timestamp);
+		}
+	}
+
+	/**
+	 * @param $data array
+	 * @param $key string
+	 * @param $interval integer
+	 * @param $start_date DateTime
+	 * @param $end_date DateTime
+	 */
+	private static function generateSimpleIntervalDates(&$data, $key, $interval, $start_date, $end_date)
+	{
+		$s_date = \DateTime::createFromFormat('Y-m-d H:i:s', $start_date);
+		$e_date = DateTime::createFromFormat('Y-m-d H:i:s', $end_date);
+		$days = intval($e_date->diff($s_date)->format('%a'));
+
+		if ($days == 0) {
+			$days++;
+		}
+
+		$length = intval((60 * 24) / $interval) * $days;
+
+		for ($i = 0; $i < $length; $i++) {
+			$data[$key][$i] = array(
+				'hour' => $s_date->format('Y-m-d H:i:s'),
+				'mount' => 0
+			);
+			$s_date->add(new \DateInterval('PT' . $interval . 'M'));
 		}
 	}
 
@@ -237,8 +265,21 @@ class ReportHelper
 	 */
 	private static function generateCompleteInterval(&$data, $interval, $date)
 	{
-		foreach ($data as $item=>$value) {
+		foreach ($data as $item => $value) {
 			self::generateSimpleInterval($data, $item, $interval, $date);
+		}
+	}
+
+	/**
+	 * @param $data array
+	 * @param $interval integer
+	 * @param $start_date DateTime
+	 * @param $end_date DateTime
+	 */
+	private static function generateCompleteIntervalDates(&$data, $interval, $start_date, $end_date)
+	{
+		foreach ($data as $item => $value) {
+			self::generateSimpleIntervalDates($data, $item, $interval, $start_date, $end_date);
 		}
 	}
 
@@ -246,8 +287,8 @@ class ReportHelper
 	{
 		$detector = Camara::find($detector_id);
 		$f_date = \DateTime::createFromFormat('d/m/Y', $date)->format('d/m/Y');
-		$start_date = $f_date.' 00:00:00';
-		$end_date = $f_date.' 23:59:59';
+		$start_date = $f_date . ' 00:00:00';
+		$end_date = $f_date . ' 23:59:59';
 
 		$registers = DB::connection('sqlsrv')
 			->table('TB_DATOS_CAMARA')
@@ -343,8 +384,8 @@ class ReportHelper
 
 		$f_date = \DateTime::createFromFormat('d/m/Y', $date)->format('d/m/Y');
 
-		$start_date = $f_date.' 00:00:00';
-		$end_date = $f_date.' 23:59:59';
+		$start_date = $f_date . ' 00:00:00';
+		$end_date = $f_date . ' 23:59:59';
 
 		$data = array();
 
@@ -416,11 +457,9 @@ class ReportHelper
 			foreach ($registers as $register) {
 				$register_date = $register->fecha_hora_lectura;
 				$format_date = \DateTime::createFromFormat('Y-m-d H:i:s.u', $register_date);
-				$base_date = $format_date->format('Y-m-d 00:00:00');
-				$base_init_date = strtotime($base_date);
 				$timestamp = $format_date->getTimestamp();
 
-				$position = intval(($timestamp - $base_init_date) / 600);
+				$position = intval(($timestamp - $unix_start_date) / 600);
 
 				$data[$route_name][$position]['mount'] += 1;
 			}
@@ -428,6 +467,7 @@ class ReportHelper
 
 		return $data;
 	}
+
 	/**
 	 * @param $camara_id integer
 	 * @param $date DateTime
@@ -452,8 +492,8 @@ class ReportHelper
 	public static function informe_general_fechas($camara_id, $start_date, $end_date)
 	{
 		$data = array(
-			'tags'  =>  self::informe_tags_fechas($camara_id, $start_date, $end_date),
-			'camaras'   =>  self::informe_camaras_fechas($camara_id, $start_date, $end_date)
+			'tags' => self::informe_tags_fechas($camara_id, $start_date, $end_date),
+			'camaras' => self::informe_camaras_fechas($camara_id, $start_date, $end_date)
 		);
 
 		return $data;
@@ -558,11 +598,11 @@ class ReportHelper
 	{
 		$lector = Lector::find($lector_id);
 		$data = array(
-			'autos_dia' =>  self::totalAutosDia($lector, $start_date, $end_date),
-			'vehiculos_tipo'    =>  self::totalVehiculosTipo($lector, $start_date, $end_date),
-			'vehiculos_empresas'    =>  self::totalVehiculosEmpresas($lector, $start_date, $end_date),
-			'camaras'   =>  self::totalCamaras($lector, $start_date, $end_date),
-			'tags'      =>  self::totalTags($lector, $start_date, $end_date)
+			'autos_dia' => self::totalAutosDia($lector, $start_date, $end_date),
+			'vehiculos_tipo' => self::totalVehiculosTipo($lector, $start_date, $end_date),
+			'vehiculos_empresas' => self::totalVehiculosEmpresas($lector, $start_date, $end_date),
+			'camaras' => self::totalCamaras($lector, $start_date, $end_date),
+			'tags' => self::totalTags($lector, $start_date, $end_date)
 		);
 
 		$data['general'] = $data['camaras'] + $data['tags'];
@@ -599,29 +639,28 @@ class ReportHelper
 
 		if (array_key_exists('tag', $parameters)) {
 			if (!empty($parameters['tag'])) {
-				$query->where('TAG', 'LIKE', '%'.strtoupper($parameters['tag']).'%');
+				$query->where('TAG', 'LIKE', '%' . strtoupper($parameters['tag']) . '%');
 			}
 		}
 
 		if (array_key_exists('placa', $parameters)) {
 			if (!empty($parameters['placa'])) {
-				$query->where('PLACA', 'LIKE', '%'.strtoupper($parameters['placa']).'%');
+				$query->where('PLACA', 'LIKE', '%' . strtoupper($parameters['placa']) . '%');
 			}
 		}
 
 		if (array_key_exists('portico', $parameters)) {
 			if (!empty($parameters['portico'])) {
-				$query->where('PUNTO', 'LIKE', '%'.strtoupper($parameters['portico']).'%');
+				$query->where('PUNTO', 'LIKE', '%' . strtoupper($parameters['portico']) . '%');
 			}
 		}
 
 
-
 		$data = array(
-			'data'  => array(),
-			'draw'  =>  $draw,
-			'recordsTotal'  =>  $query->count(),
-			'recordsFiltered'   =>  $query->count()
+			'data' => array(),
+			'draw' => $draw,
+			'recordsTotal' => $query->count(),
+			'recordsFiltered' => $query->count()
 		);
 
 		switch ($order[0]['column']) {
@@ -682,15 +721,15 @@ class ReportHelper
 
 		if (array_key_exists('portico', $parameters)) {
 			if (!empty($parameters['portico'])) {
-				$query->where('PUNTO', 'LIKE', '%'.strtoupper($parameters['portico']).'%');
+				$query->where('PUNTO', 'LIKE', '%' . strtoupper($parameters['portico']) . '%');
 			}
 		}
 
 		$data = array(
-			'data'  => array(),
-			'draw'  =>  $draw,
-			'recordsTotal'  =>  $query->count(),
-			'recordsFiltered'   =>  $query->count()
+			'data' => array(),
+			'draw' => $draw,
+			'recordsTotal' => $query->count(),
+			'recordsFiltered' => $query->count()
 		);
 
 		$results = $query->skip($start)->take($length)->get();
