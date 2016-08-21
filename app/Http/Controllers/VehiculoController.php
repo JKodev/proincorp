@@ -117,5 +117,11 @@ class VehiculoController extends Controller
 			    'lector'    =>  preg_replace('/(\d+)\_(\d+)/', " ", $register->PUNTO)
 		    );
 	    }
+
+	    $response = array(
+	    	'success'   =>  true,
+		    'results'   =>  $data
+	    );
+	    return response()->json($data);
     }
 }
