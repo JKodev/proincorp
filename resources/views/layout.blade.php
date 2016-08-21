@@ -97,7 +97,7 @@
 								</li>
 								<!-- END USER LOGIN DROPDOWN -->
 								<li class="dropdown dropdown-extended quick-sidebar-toggler">
-									<span class="sr-only">Toggle Quick Sidebar</span>
+									<span class="sr-only">Ver Flujo Vehicular</span>
 									<i class="icon-logout"></i>
 								</li>
 							</ul>
@@ -236,8 +236,7 @@
 				<a href="javascript:;" class="page-quick-sidebar-toggler">
 					<i class="icon-login"></i>
 				</a>
-				<div class="page-quick-sidebar-wrapper" data-close-on-body-click="false"
-				     ng-controller="VehicleFlowController">
+				<div class="page-quick-sidebar-wrapper" data-close-on-body-click="false">
 					<div class="page-quick-sidebar">
 						<ul class="nav nav-tabs">
 							<li class="active">
