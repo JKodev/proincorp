@@ -95,13 +95,10 @@ class VehiculoController extends Controller
 	    return response()->json($data);
     }
 
-    public function serviceFlow(Request $request)
+    public function serviceFlow()
     {
-    	$date = DateTime::createFromFormat('Y-m-d H:i:s', $request->input('date', date('Y-m-d H:i:s')))
-		    ->format('d/m/Y H:i:s');
 
 	    $registers = DB::table('LECTURAS_DETALLADAS_LEC_VISIBLE')
-		    ->where('FECHA', '<=', $date)
 		    ->orderBy('FECHA', 'desc')
 		    ->skip(0)
 		    ->take(20)
