@@ -764,7 +764,7 @@ class ReportHelper
 		$registroVehiculo = RegistroVehiculo::where('ID_Vehiculo', $vehicle_id)->first();
 
 		if ($registroVehiculo) {
-			if ($registroVehiculo->Fot_Registro) {
+			if ($registroVehiculo->Fot_Registro && $registroVehiculo->Fot_Registro != 'NULL') {
 				return 'http://www.proincorp.com.pe/fotos/'.$registroVehiculo->Fot_Registro;
 			}
 		}
