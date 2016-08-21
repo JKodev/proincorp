@@ -389,10 +389,11 @@
 @show
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
 @section('js_layout')
-	<script src="{{ asset('assets/layouts/layout3/scripts/layout.js') }}" type="text/javascript"></script>
-	<script src="{{ asset('assets/layouts/layout3/scripts/demo.js') }}" type="text/javascript"></script>
-	<!--<script src="{{ asset('assets/layouts/global/scripts/quick-sidebar.min.js') }}" type="text/javascript"></script>-->
+
 @show
+<script src="{{ asset('assets/layouts/layout3/scripts/layout.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/layouts/layout3/scripts/demo.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/layouts/global/scripts/quick-sidebar.js') }}" type="text/javascript"></script>
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>
 
