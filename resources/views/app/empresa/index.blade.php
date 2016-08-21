@@ -26,7 +26,7 @@
 						<th class="all">Nombre</th>
 						<th class="min-tablet">Dirección</th>
 						<th class="min-phone-1">Descripción</th>
-						<th>Acciones</th>
+						<th class="hidden-print">Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
