@@ -236,7 +236,7 @@
 				<a href="javascript:;" class="page-quick-sidebar-toggler">
 					<i class="icon-login"></i>
 				</a>
-				<div class="page-quick-sidebar-wrapper" data-close-on-body-click="false">
+				<div class="page-quick-sidebar-wrapper" data-close-on-body-click="false" ng-controller="VehicleFlowController">
 					<div class="page-quick-sidebar">
 						<ul class="nav nav-tabs">
 							<li class="active">
@@ -379,6 +379,9 @@
 		}).bind('typeahead:select', function (ev, suggestion) {
 			window.location = '{{ route('app.reports.vehiculo.show') }}?id=' + suggestion.value;
 		});
+		$('.dropdown-quick-sidebar-toggler a, .page-quick-sidebar-toggler, .quick-sidebar-toggler').click(function (e) {
+			$('body').toggleClass('page-quick-sidebar-open');
+		});
 	});
 </script>
 @section('js_level_scripts')
@@ -388,7 +391,7 @@
 @section('js_layout')
 	<script src="{{ asset('assets/layouts/layout3/scripts/layout.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('assets/layouts/layout3/scripts/demo.js') }}" type="text/javascript"></script>
-	<script src="{{ asset('assets/layouts/global/scripts/quick-sidebar.min.js') }}" type="text/javascript"></script>
+	<!--<script src="{{ asset('assets/layouts/global/scripts/quick-sidebar.min.js') }}" type="text/javascript"></script>-->
 @show
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>
