@@ -287,6 +287,11 @@ Route::group([
 				'as'    =>  'service.reports.vehiculo.find',
 				'uses'  =>  'VehiculoController@serviceFind'
 			]);
+
+			Route::get('flow', [
+				'as'    =>  'service.reports.vehiculo.flow',
+				'uses'  =>  'VehiculoController@serviceFlow'
+			]);
 		});
 	});
 });

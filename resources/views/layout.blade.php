@@ -4,7 +4,7 @@
 <!--[if IE 9]>
 <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
-<html lang="en">
+<html lang="en" ng-app="proincorpApp">
 <!--<![endif]-->
 <!-- BEGIN HEAD -->
 
@@ -96,6 +96,10 @@
 									</ul>
 								</li>
 								<!-- END USER LOGIN DROPDOWN -->
+								<li class="dropdown dropdown-extended quick-sidebar-toggler">
+									<span class="sr-only">Toggle Quick Sidebar</span>
+									<i class="icon-logout"></i>
+								</li>
 							</ul>
 						</div>
 						<!-- END TOP NAVIGATION MENU -->
@@ -228,6 +232,44 @@
 					<!-- END CONTENT BODY -->
 				</div>
 				<!-- END CONTENT -->
+				<!-- BEGIN QUICK SIDEBAR -->
+				<a href="javascript:;" class="page-quick-sidebar-toggler">
+					<i class="icon-login"></i>
+				</a>
+				<div class="page-quick-sidebar-wrapper" data-close-on-body-click="false"
+				     ng-controller="VehicleFlowController">
+					<div class="page-quick-sidebar">
+						<ul class="nav nav-tabs">
+							<li class="active">
+								<a href="javascript:;" data-target="#quick_sidebar_tab_1" data-toggle="tab"> Vehículos
+									<span class="badge badge-danger">2</span>
+								</a>
+							</li>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active page-quick-sidebar-chat" id="quick_sidebar_tab_1">
+								<div class="page-quick-sidebar-chat-users" data-rail-color="#ddd"
+								     data-wrapper-class="page-quick-sidebar-list">
+									<h3 class="list-heading">Vehiculos Tiempo Real</h3>
+									<ul class="media-list list-items">
+										<li class="media" ng-repeat="vehicle in vehicles">
+											<div class="media-status">
+												<span class="badge badge-success">@{{ vehicles.date }}</span>
+											</div>
+											<img class="media-object" ng-src="@{{ vehicle.image }}"
+											     alt="...">
+											<div class="media-body">
+												<h4 class="media-heading">@{{ vehicle.empresa }} | @{{ vehicle.placa }}</h4>
+												<div class="media-heading-sub">@{{ vehicle.lector }}</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- END QUICK SIDEBAR -->
 			</div>
 			<!-- END CONTAINER -->
 		</div>
@@ -255,6 +297,7 @@
 <![endif]-->
 <!-- BEGIN CORE PLUGINS -->
 @section('js_core')
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 	<script src="{{ asset('assets/global/plugins/jquery.min.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('assets/global/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('assets/global/plugins/js.cookie.min.js') }}" type="text/javascript"></script>
@@ -267,6 +310,39 @@
 	<script src="{{ asset('assets/global/plugins/typeahead/handlebars.min.js') }}" type="text/javascript"></script>
 	<script src="{{ asset('assets/global/plugins/typeahead/typeahead.bundle.min.js') }}"
 	        type="text/javascript"></script>
+	<script>
+		var app = angular.module('proincorpApp', []);
+		app.controller('VehicleFlowController', ['$http', '$scope', function ($http, $scope) {
+			$scope.route = '{{ route('service.reports.vehiculo.flow') }}';
+			$scope.date = '{{ date('Y-m-d H:i:s') }}';
+
+			$scope.vehicles= [];
+
+			$scope.getVehicles = function () {
+				$http({
+					method: 'GET',
+					url: '{{ route('service.reports.vehiculo.flow') }}',
+					headers: {
+						'Content-type': 'application/json'
+					},
+					data: {
+						date: $scope.date
+					}
+				}).then(function (response) {
+					if (response.data.success)
+						$scope.vehicles = response.data.results;
+					else
+						toastr.error('Lo sentimos, no hemos podido actualizar los datos.');
+				})
+			};
+
+			$scope.getVehicles();
+
+			setTimeout(function () {
+				$scope.getVehicles();
+			}, 5000);
+		}]);
+	</script>
 @show
 <!-- END CORE PLUGINS -->
 @section('js_level_plugins')

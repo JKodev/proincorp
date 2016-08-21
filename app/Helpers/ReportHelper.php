@@ -7,6 +7,7 @@ use App\Models\Camara;
 use App\Models\Empresa;
 use App\Models\Lector;
 use App\Models\Lectura;
+use App\Models\RegistroVehiculo;
 use App\Models\Vehiculo;
 use DB;
 use DateTime;
@@ -756,5 +757,17 @@ class ReportHelper
 
 
 		return $data;
+	}
+
+	public static function getVehicleImage($vehicle_id)
+	{
+		$registroVehiculo = RegistroVehiculo::where('ID_Vehiculo', $vehicle_id)->first();
+
+		if ($registroVehiculo) {
+			if ($registroVehiculo->Fot_Registro) {
+				return 'http://www.proincorp.com.pe/fotos/'.$registroVehiculo->Fot_Registro;
+			}
+		}
+		return asset('assets/pages/img/photo_default.png');
 	}
 }
