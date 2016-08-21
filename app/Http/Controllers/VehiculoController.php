@@ -122,6 +122,6 @@ class VehiculoController extends Controller
 	    	'success'   =>  true,
 		    'results'   =>  $data
 	    );
-	    return response()->json($data);
+	    return response()->json($response);
     }
 }
