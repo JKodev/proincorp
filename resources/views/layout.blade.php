@@ -324,9 +324,9 @@
 					headers: {
 						'Content-type': 'application/json'
 					},
-					data: {
+					data: JSON.stringify({
 						date: $scope.date
-					}
+					})
 				}).then(function (response) {
 					if (response.data.success)
 						$scope.vehicles = response.data.results;
