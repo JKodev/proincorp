@@ -253,13 +253,13 @@
 									<ul class="media-list list-items">
 										<li class="media" ng-repeat="vehicle in vehicles">
 											<div class="media-status">
-												<span class="badge badge-success">@{{ vehicles.date }}</span>
+												<span class="badge badge-success">@{{ vehicle.date }}</span>
 											</div>
 											<img class="media-object" ng-src="@{{ vehicle.image }}"
 											     alt="...">
 											<div class="media-body">
-												<h4 class="media-heading">@{{ vehicle.empresa }} | @{{ vehicle.placa }}</h4>
-												<div class="media-heading-sub">@{{ vehicle.lector }}</div>
+												<h4 class="media-heading">@{{ vehicle.lector }} | @{{ vehicle.placa }}</h4>
+												<div class="media-heading-sub">@{{ vehicle.empresa }} <br> @{{ vehicle.date }}</div>
 											</div>
 										</li>
 									</ul>
