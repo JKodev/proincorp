@@ -36,7 +36,7 @@
 						<td>{{ $empresa->Nom_Empresa }}</td>
 						<td>{{ $empresa->Dir_Empresa }}</td>
 						<td>{{ $empresa->Des_Empresa }}</td>
-						<td>
+						<td class="hidden-print">
 							<a href="{{ route('app.reports.empresa.report', array('id' => $empresa->ID_Empresa)) }}" class="btn green-jungle btn-xs">
 								<i class="fa fa-columns"></i>
 								Reporte

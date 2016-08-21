@@ -42,7 +42,7 @@
 						<th class="all"> Marca</th>
 						<th class="all"> Modelo</th>
 						<th class="all"> Grupo</th>
-						<th class="all"></th>
+						<th class="all hidden-print"></th>
 					</tr>
 					</thead>
 					<tbody>
@@ -53,7 +53,7 @@
 						<td>{{ $vehicle->Mar_Vehiculo }}</td>
 						<td>{{ $vehicle->Mod_Vehiculo }}</td>
 						<td>{{ $vehicle->Gru_Vehiculo }}</td>
-						<td>
+						<td class="hidden-print">
 							<a href="{{ route('app.reports.vehiculo.show', array('id'=>$vehicle->ID_Vehiculo)) }}" class="btn green-jungle">
 								Ver Vehículo
 							</a>
