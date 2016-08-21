@@ -47,17 +47,7 @@
 			</div>
 			<!-- END MARKERS PORTLET-->
 			@section('extra-portlets')
-			<div class="portlet light portlet-fit ">
-				<div class="portlet-title">
-					<div class="caption">
-						<i class=" icon-layers font-blue"></i>
-						<span class="caption-subject font-blue bold uppercase">Transito Tiempo Real</span>
-					</div>
-				</div>
-				<div class="portlet-body">
 
-				</div>
-			</div>
 			@show
 		</div>
 
