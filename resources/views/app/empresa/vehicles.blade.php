@@ -16,7 +16,7 @@
 		<i class="fa fa-circle"></i>
 	</li>
 	<li>
-		<a href="{{ route('app.reports.empresa.report', array('id'=>$id)) }}">Flujo Vehicular {{ $empresa->Nom_Empresa }}</a>
+		<a href="{{ route('app.reports.empresa.report', array('id'=>$id)) }}">Vehículos {{ $empresa->Nom_Empresa }}</a>
 		<i class="fa fa-circle"></i>
 	</li>
 @endsection

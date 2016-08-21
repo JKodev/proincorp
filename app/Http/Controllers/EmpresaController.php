@@ -22,6 +22,15 @@ class EmpresaController extends Controller
     	));
     }
 
+    public function vehicles($id)
+    {
+    	$empresa = Empresa::find($id);
+
+	    return view('app.empresa.vehicles', array(
+	    	'empresa'   =>  $empresa
+	    ));
+    }
+
 	/**
 	 * @param $id integer
 	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
