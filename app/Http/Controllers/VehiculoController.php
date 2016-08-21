@@ -101,7 +101,7 @@ class VehiculoController extends Controller
 		    ->format('d/m/Y H:i:s');
 
 	    $registers = DB::table('LECTURAS_DETALLADAS_LEC_VISIBLE')
-		    ->where('FECHA', '>=', $date)
+		    ->where('FECHA', '<=', $date)
 		    ->orderBy('FECHA', 'desc')
 		    ->skip(0)
 		    ->take(20)
