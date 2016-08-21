@@ -241,7 +241,7 @@
 						<ul class="nav nav-tabs">
 							<li class="active">
 								<a href="javascript:;" data-target="#quick_sidebar_tab_1" data-toggle="tab"> Vehículos
-									<span class="badge badge-danger">2</span>
+									<span class="badge badge-danger">20</span>
 								</a>
 							</li>
 						</ul>
@@ -253,13 +253,13 @@
 									<ul class="media-list list-items">
 										<li class="media" ng-repeat="vehicle in vehicles">
 											<div class="media-status">
-												<span class="badge badge-success">@{{ vehicle.date }}</span>
+												<span class="badge badge-success"></span>
 											</div>
 											<img class="media-object" ng-src="@{{ vehicle.image }}"
 											     alt="...">
 											<div class="media-body">
-												<h4 class="media-heading">@{{ vehicle.lector }} | @{{ vehicle.placa }}</h4>
-												<div class="media-heading-sub">@{{ vehicle.empresa }} <br> @{{ vehicle.date }}</div>
+												<h4 class="media-heading"><strong>@{{ vehicle.lector }}</strong> <br>@{{ vehicle.placa }}</h4>
+												<div class="media-heading-sub">@{{ vehicle.empresa }} <br>@{{ vehicle.date }}</div>
 											</div>
 										</li>
 									</ul>
