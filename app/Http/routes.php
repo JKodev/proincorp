@@ -116,6 +116,11 @@ Route::group([
 							'as'    =>  'app.reports.empresa.report',
 							'uses'  =>  'EmpresaController@report'
 						]);
+
+						Route::get('/{id}/vehicles', [
+							'as'    =>  'app.reports.empresa.vehicles',
+							'uses'  =>  'EmpresaController@vehicles'
+						]);
 				});
 
 				Route::group([

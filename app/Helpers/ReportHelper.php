@@ -770,4 +770,14 @@ class ReportHelper
 		}
 		return asset('assets/pages/img/photo_default.png');
 	}
+
+	public static function getTagVehicle($vehicle_id)
+	{
+		$tag = RegistroVehiculo::where('ID_Vehiculo', $vehicle_id)->first();
+
+		if ($tag) {
+			return $tag->cod_tag;
+		}
+		return ' ';
+	}
 }

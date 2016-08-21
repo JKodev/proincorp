@@ -42,9 +42,11 @@
 									<i class="fa fa-columns"></i>
 									Reporte
 								</a>
-								<a href="{{ route('app.reports.empresa.report', array('id' => $empresa->ID_Empresa)) }}" class="btn green btn-xs btn-outline">
+							</div>
+							<div class="btn-group pull-right">
+								<a href="{{ route('app.reports.empresa.vehicles', array('id' => $empresa->ID_Empresa)) }}" class="btn green btn-xs btn-outline">
 									<i class="fa fa-columns"></i>
-									Reporte
+									Vehículos
 								</a>
 							</div>
 						</td>

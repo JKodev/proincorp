@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\ReportHelper;
+use DB;
+use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -26,8 +28,16 @@ class EmpresaController extends Controller
     {
     	$empresa = Empresa::find($id);
 
+	    $vehicles = DB::table('TB_VEHICULOS')
+		    ->join('TB_VEHICULOS_EMPRESA_GRUPO', function (JoinClause $join) {
+		    	$join->on('TB_VEHICULOS.ID_Vehiculo', '=', 'TB_VEHICULOS_EMPRESA_GRUPO.ID_Vehiculo');
+		    })
+		    ->where('TB_VEHICULOS_EMPRESA_GRUPO.ID_Empresa', $id)
+		    ->get();
+
 	    return view('app.empresa.vehicles', array(
-	    	'empresa'   =>  $empresa
+	    	'empresa'   =>  $empresa,
+		    'vehicles'  =>  $vehicles
 	    ));
     }
 
