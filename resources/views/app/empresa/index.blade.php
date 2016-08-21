@@ -37,18 +37,14 @@
 						<td>{{ $empresa->Dir_Empresa }}</td>
 						<td>{{ $empresa->Des_Empresa }}</td>
 						<td>
-							<div class="btn-group pull-right">
-								<a href="{{ route('app.reports.empresa.report', array('id' => $empresa->ID_Empresa)) }}" class="btn green btn-xs btn-outline">
-									<i class="fa fa-columns"></i>
-									Reporte
-								</a>
-							</div>
-							<div class="btn-group pull-right">
-								<a href="{{ route('app.reports.empresa.vehicles', array('id' => $empresa->ID_Empresa)) }}" class="btn green btn-xs btn-outline">
-									<i class="fa fa-columns"></i>
-									Vehículos
-								</a>
-							</div>
+							<a href="{{ route('app.reports.empresa.report', array('id' => $empresa->ID_Empresa)) }}" class="btn green-jungle btn-xs">
+								<i class="fa fa-columns"></i>
+								Reporte
+							</a>
+							<a href="{{ route('app.reports.empresa.vehicles', array('id' => $empresa->ID_Empresa)) }}" class="btn blue-soft btn-xs">
+								<i class="fa fa-truck"></i>
+								Vehículos
+							</a>
 						</td>
 					</tr>
 					@endforeach
