@@ -338,7 +338,7 @@
 
 			$scope.getVehicles();
 
-			setTimeout(function () {
+			setInterval(function () {
 				$scope.getVehicles();
 			}, 5000);
 		}]);
