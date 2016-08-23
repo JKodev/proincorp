@@ -60,13 +60,10 @@
 									<span class="fa fa-edit"></span>
 									Editar
 								</a>
-								<form action="{{ route('app.settings.users.destroy', array('id'=>$user->id)) }}">
-									<input type="hidden" name="_method" value="DELETE">
-									<button type="submit" class="btn red-thunderbird">
-										<span class="fa fa-trash"></span>
-										Eliminar
-									</button>
-								</form>
+								<a href="{{ route('app.settings.users.destroy', array('id'=>$user->id)) }}" type="submit" class="btn red-thunderbird">
+									<span class="fa fa-trash"></span>
+									Eliminar
+								</a>
 							</td>
 						</tr>
 					@endforeach

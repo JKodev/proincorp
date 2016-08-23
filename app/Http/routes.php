@@ -200,7 +200,7 @@ Route::group([
 					'uses'  =>  'UserController@update'
 				]);
 
-				Route::delete('/{id}', [
+				Route::get('/{id}/destroy', [
 					'as'    =>  'app.settings.users.destroy',
 					'uses'  =>  'UserController@destroy'
 				]);
