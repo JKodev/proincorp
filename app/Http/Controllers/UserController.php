@@ -146,8 +146,8 @@ class UserController extends Controller
 		$user = User::find($id);
 
 	    /** @var Role $role */
-        $role = $user->roles()->first();
-	    dd($role);
+        $role = $user->roles->first();
+
 	    if (!is_null($role)) {
 	    	$role->delete();
 
