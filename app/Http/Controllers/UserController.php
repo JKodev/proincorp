@@ -149,10 +149,10 @@ class UserController extends Controller
 
 	    foreach ($roles as $role) {
 	    	/** @var Role $rol */
-	    	$rol = Role::findOrFail($role->id);
-	    	$rol->users()->sync([]);
-		    $rol->perms()->sync([]);
-		    $rol->forceDelete();
+	    	//$rol = Role::findOrFail($role->id);
+		    $role->users()->sync([]);
+		    $role->perms()->sync([]);
+		    $role->forceDelete();
 	    }
 
 	    if (!is_null($user))
