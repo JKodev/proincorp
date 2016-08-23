@@ -199,6 +199,11 @@ Route::group([
 					'as'    =>  'app.settings.users.update',
 					'uses'  =>  'UserController@update'
 				]);
+
+				Route::delete('/{id}', [
+					'as'    =>  'app.settings.users.destroy',
+					'uses'  =>  'UserController@destroy'
+				]);
 			});
 		});
 });

@@ -140,4 +140,23 @@ class UserController extends Controller
 	    \Session::flash('message', "Usuario actualizado correctamente.");
 	    return \Redirect::route('app.settings.users.index');
     }
+
+    public function destroy($id)
+    {
+		$user = User::find($id);
+
+	    $roles = $user->roles()->get();
+
+	    foreach ($roles as $role) {
+	    	$role->users()->sync([]);
+		    $role->perms()->sync([]);
+		    $role->delete();
+	    }
+
+	    if (!is_null($user))
+	    	$user->delete();
+
+		\Session::flash('message', 'Se ha eliminado al usuario.');
+	    return redirect()->route('app.settings.users.index');
+    }
 }
