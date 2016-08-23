@@ -56,7 +56,7 @@
 								@endforeach
 							</td>
 							<td>
-								<a href="{{ route('app.settings.users.update', array('id'=>$user->id)) }}" class="btn green-jungle">
+								<a href="{{ route('app.settings.users.edit', array('id'=>$user->id)) }}" class="btn green-jungle">
 									<span class="fa fa-edit"></span>
 									Editar
 								</a>
