@@ -147,7 +147,7 @@ class UserController extends Controller
 
 	    /** @var Role $role */
         $role = $user->roles->first();
-
+		dd($role);
 	    if (!is_null($role)) {
 	    	$role->delete();
 
