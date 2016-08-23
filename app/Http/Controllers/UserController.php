@@ -149,7 +149,6 @@ class UserController extends Controller
 
 	    foreach ($roles as $role) {
 	    	\Debugbar::addMessage($role);
-	    	dd($role);
 	    	/** @var Role $rol */
 	    	$rol = Role::findOrFail($role->id);
 		    $rol->delete();
