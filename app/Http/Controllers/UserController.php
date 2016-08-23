@@ -145,7 +145,7 @@ class UserController extends Controller
     {
 		$user = User::find($id);
 
-	    $roles = $user->roles()->get();
+	    $roles = $user->roles();
 
 	    foreach ($roles as $role) {
 	    	$role->users()->sync([]);
