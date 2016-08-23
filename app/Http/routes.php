@@ -189,6 +189,16 @@ Route::group([
 					'as'    =>  'app.settings.users.store',
 					'uses'  =>  'UserController@store'
 				]);
+
+				Route::get('/{id}/edit', [
+					'as'    =>  'app.settings.users.edit',
+					'uses'  =>  'UserController@edit'
+				]);
+
+				Route::post('/{id}/', [
+					'as'    =>  'app.settings.users.update',
+					'uses'  =>  'UserController@update'
+				]);
 			});
 		});
 });

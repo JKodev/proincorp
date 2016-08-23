@@ -69,4 +69,75 @@ class UserController extends Controller
 	    }
 
     }
+
+    public function edit($id)
+    {
+		$user = User::find($id);
+
+	    if (is_null($user)) {
+	    	return redirect()->route('app.settings.users.index');
+	    }
+
+	    $permissions = Permission::all();
+
+	    return view('app.user.edit')->with(array(
+	    	'user'  =>  $user,
+		    'permissions'   =>  $permissions
+	    ));
+    }
+
+    public function update(Request $request, $id)
+    {
+	    $rules = array(
+		    'name'  =>  'required',
+		    'email' =>  'required|email'
+	    );
+
+	    $validator = Validator::make($request->all(), $rules);
+
+	    if ($validator->fails()) {
+		    return \Redirect::route('app.settings.users.update', array('id'=>$id))
+			    ->withErrors($validator)
+			    ->withInput($request->except('password'));
+	    }
+
+	    $user = User::find($id);
+
+	    if (is_null($user)) {
+		    return redirect()->route('app.settings.users.index');
+	    }
+
+        $user->name = $request->input('name');
+	    $user->email = $request->input('email');
+	    if (!empty($request->input('password'))) {
+	        $user->password = bcrypt($request->input('password'));
+	    }
+	    $user->save();
+
+	    $rol = $user->roles()->first();
+
+        $permissions = $request->input('permissions', []);
+
+	    if (is_null($rol)) {
+		    $rol = new Role();
+		    $rol->name = $user->name;
+		    $rol->display_name = $user->name;
+		    $rol->description = "Rol creado para ".$request->name;
+		    $rol->save();
+
+		    $user->attachRole($rol);
+	    }
+
+	    $rol->perms()->sync([]);
+
+	    if (count($permissions) > 0) {
+			foreach ($permissions as $permission) {
+				$perm = Permission::find($permission);
+				$rol->attachPermission($perm);
+			}
+	    }
+
+	    \Session::flash('message', "Usuario actualizado correctamente.");
+	    return \Redirect::route('app.settings.users.index');
+    }
 }
