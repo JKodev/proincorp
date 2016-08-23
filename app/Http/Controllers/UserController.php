@@ -145,7 +145,8 @@ class UserController extends Controller
     {
 		$user = User::find($id);
 
-	    $roles = $user->roles();
+	    $roles = $user->roles()->get();
+	    dd($roles);
 
 	    foreach ($roles as $role) {
 	    	dd($role);
