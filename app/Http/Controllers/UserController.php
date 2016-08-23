@@ -145,17 +145,16 @@ class UserController extends Controller
     {
 		$user = User::find($id);
 
-	    $roles = $user->roles()->get();
+	    /** @var Role $role */
+        $role = $user->roles()->first();
 
-	    foreach ($roles as $role) {
-	    	\Debugbar::addMessage($role);
-		    $role->delete();
-	    	/** @var Role $rol */
-	    	/*$rol = Role::findOrFail($role->id);
-		    $rol->delete();
-		    $rol->users()->sync([]);
-		    $rol->perms()->sync([]);
-		    $rol->forceDelete();*/
+	    if (!is_null($role)) {
+	    	$role->delete();
+
+		    $role->users()->sync([]);
+		    $role->perms()->sync([]);
+
+		    $role->forceDelete();
 	    }
 
 	    if (!is_null($user))
