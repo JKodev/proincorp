@@ -148,6 +148,7 @@ class UserController extends Controller
 	    $roles = $user->roles()->get();
 
 	    foreach ($roles as $role) {
+	    	\Debugbar::addMessage($role);
 	    	dd($role);
 	    	/** @var Role $rol */
 	    	$rol = Role::findOrFail($role->id);
