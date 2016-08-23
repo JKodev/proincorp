@@ -36,6 +36,7 @@
 						<th data-field="id" data-align="right" data-sortable="true">Usuario</th>
 						<th data-field="name" data-align="center" data-sortable="true">Email</th>
 						<th data-field="price" data-sortable="true" data-sorter="priceSorter">Rol</th>
+						<th></th>
 					</tr>
 					</thead>
 					<tbody>
@@ -49,8 +50,20 @@
 							</td>
 							<td>
 								@foreach($user->roles()->get() as $rol)
-								{{ $rol->display_name }},
+									@foreach($rol->perms() as $permission)
+										{{ $permission->display_name }},
+									@endforeach
 								@endforeach
+							</td>
+							<td>
+								<a href="{{ route('app.settings.users.update', array('id'=>$user->id)) }}" class="btn green-jungle">
+									<span class="fa fa-edit"></span>
+									Editar
+								</a>
+								<a href="" class="btn red-thunderbird">
+									<span class="fa fa-trash"></span>
+									Eliminar
+								</a>
 							</td>
 						</tr>
 					@endforeach
