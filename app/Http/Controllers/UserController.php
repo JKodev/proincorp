@@ -151,8 +151,8 @@ class UserController extends Controller
 	    foreach ($roles as $role) {
 	    	$role->delete();
 
-		    $role->users()->sync([]);
-		    $role->perms()->sync([]);
+		    $role->users->sync([]);
+		    $role->perms->sync([]);
 
 		    $role->forceDelete();
 	    }
