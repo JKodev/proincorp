@@ -147,6 +147,8 @@ class UserController extends Controller
 
 	    $roles = $user->roles();
 
+	    dd($roles);
+
 	    foreach ($roles as $role) {
 	    	$role->users()->sync([]);
 		    $role->perms()->sync([]);
