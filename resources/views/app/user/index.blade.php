@@ -50,7 +50,7 @@
 							</td>
 							<td>
 								@foreach($user->roles()->get() as $rol)
-									@foreach($rol->perms() as $permission)
+									@foreach($rol->perms()->get() as $permission)
 										{{ $permission->display_name }},
 									@endforeach
 								@endforeach
