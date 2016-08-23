@@ -148,9 +148,11 @@ class UserController extends Controller
 	    $roles = $user->roles()->get();
 
 	    foreach ($roles as $role) {
-	    	$role->users()->sync([]);
-		    $role->perms()->sync([]);
-		    $role->forceDelete();
+	    	/** @var Role $rol */
+	    	$rol = Role::findOrFail($role->id);
+	    	$rol->users()->sync([]);
+		    $rol->perms()->sync([]);
+		    $rol->forceDelete();
 	    }
 
 	    if (!is_null($user))
