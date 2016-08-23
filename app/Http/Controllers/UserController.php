@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Permission;
 use App\Models\Role;
 use App\User;
+use DB;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -143,18 +144,21 @@ class UserController extends Controller
 
     public function destroy($id)
     {
+    	/** @var User $user */
 		$user = User::find($id);
 
-	    /** @var Role $role */
-        $roles = $user->roles;
+	    $roles_user = DB::table('role_user')
+		    ->where('user_id', $id)->get();
 
-	    foreach ($roles as $role) {
-	    	$role->delete();
-
-		    $role->users->sync([]);
-		    $role->perms->sync([]);
-
-		    $role->forceDelete();
+	    foreach ($roles_user as $role_user) {
+	    	$role_id = $role_user->role_id;
+	    	DB::table('permission_role')
+			    ->where('role_id', $role_id)
+			    ->delete();
+			DB::table('role_user')
+				->where('role_id', $role_id)
+				->delete();
+		    DB::table('roles')->where('id', $role_id)->delete();
 	    }
 
 	    if (!is_null($user))
