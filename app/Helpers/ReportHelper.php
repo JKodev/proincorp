@@ -558,6 +558,31 @@ class ReportHelper
 		return $camara;
 	}
 
+	private static function getZoneFromLector($camera, $lector)
+	{
+		$lec_cam = DB::table('TB_LECTOR_CAMARA')
+			->where('id_lector_movimiento', $lector->id_lector_movimiento)
+			->where('id_camara', $camera->id)
+			->first();
+
+		if (is_null($lec_cam)) {
+			return null;
+		}
+
+		$route = $lec_cam->ruta;
+
+		$zon_cam = DB::table('TB_ZONAS_CAMARA')
+			->where('id_detector', $camera->id)
+			->where('nombre_zona', $route)
+			->first();
+
+		if (is_null($zon_cam)) {
+			return null;
+		}
+
+		return $zon_cam->is_zona;
+	}
+
 	/**
 	 * @param $lector Lector
 	 * @param $start_date DateTime
@@ -567,9 +592,11 @@ class ReportHelper
 	public static function totalCamaras($lector, $start_date, $end_date)
 	{
 		$detector = self::getCameraFromLector($lector->id_lector_movimiento);
+		$zone = self::getZoneFromLector($detector, $lector);
 		$query = DB::connection('sqlsrv')
 			->table('TB_DATOS_CAMARA')
 			->where('id_indicador', $detector->id)
+			->where('id_zona', $zone)
 			->whereBetween('hora', [$start_date, $end_date]);
 
 		$total = $query->sum('cantidad');
@@ -585,6 +612,7 @@ class ReportHelper
 	 */
 	public static function totalTags($lector, $start_date, $end_date)
 	{
+		/*
 		$camara = self::getCameraFromLector($lector->id_lector_movimiento);
 
 		$lectores = DB::connection('sqlsrv')
@@ -605,6 +633,13 @@ class ReportHelper
 		}
 
 		return $total;
+		*/
+		$registers = DB::connection('sqlsrv')
+			->table('TB_LECTURAS_FIN')
+			->where('ip_lector_movimiento', $lector->ip_lector_movimiento)
+			->whereBetween('fecha_hora_lectura', [$start_date, $end_date]);
+
+		return $registers->count();
 	}
 
 	public static function totalAllReports($lector_id, $start_date, $end_date)
@@ -618,7 +653,7 @@ class ReportHelper
 			'tags' => self::totalTags($lector, $start_date, $end_date)
 		);
 
-		$data['general'] = $data['camaras'] + $data['tags'];
+		$data['general'] = $data['camaras'];
 
 		return $data;
 	}
