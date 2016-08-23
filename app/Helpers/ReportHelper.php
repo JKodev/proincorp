@@ -580,7 +580,7 @@ class ReportHelper
 			return null;
 		}
 
-		return $zon_cam->is_zona;
+		return $zon_cam->id_zona;
 	}
 
 	/**
