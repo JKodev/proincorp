@@ -480,6 +480,21 @@
 				return false;
 			}
 		});
+		var resBreakpointMd = App.getResponsiveBreakpoint('md');
+		$(".page-header .menu-toggler").on("click", function(event) {
+			if (App.getViewPort().width < resBreakpointMd) {
+				var menu = $(".page-header .page-header-menu");
+				if (menu.is(":visible")) {
+					menu.slideUp(300);
+				} else {
+					menu.slideDown(300);
+				}
+
+				if ($('body').hasClass('page-header-top-fixed')) {
+					App.scrollTop();
+				}
+			}
+		});
 	});
 </script>
 @section('js_level_scripts')
