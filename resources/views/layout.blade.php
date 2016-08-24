@@ -196,7 +196,7 @@
 							</div>
 							<!-- END PAGE TITLE -->
 							<div class="page-toolbar">
-								<button type="button" class="btn btn-theme-panel blue-hoki dropdown dropdown-extended quick-sidebar-toggler">
+								<button type="button" style="margin-top: 15px" class="btn blue-hoki dropdown dropdown-extended quick-sidebar-toggler">
 									<span class="glyphicon glyphicon-road"></span>
 									Tiempo Real
 								</button>
