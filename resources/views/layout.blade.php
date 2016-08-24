@@ -97,8 +97,14 @@
 								</li>
 								<!-- END USER LOGIN DROPDOWN -->
 								<li class="dropdown dropdown-extended quick-sidebar-toggler">
+									<button type="button" class="btn blue-hoki">
+										<span class="glyphicon glyphicon-road"></span>
+										Flujo Vehicular Tiempo Real
+									</button>
+									<!--
 									<span class="sr-only">Ver Flujo Vehicular</span>
 									<i class="icon-logout"></i>
+									-->
 								</li>
 							</ul>
 						</div>
