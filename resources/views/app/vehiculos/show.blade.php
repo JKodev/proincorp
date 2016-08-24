@@ -9,6 +9,13 @@
 	      rel="stylesheet" type="text/css"/>
 	<link href="{{ asset('assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}"
 	      rel="stylesheet" type="text/css"/>
+	<link href="{{ asset('assets/global/plugins/fancybox/source/jquery.fancybox.css') }}"
+	      rel="stylesheet" type="text/css"/>
+	<link href="{{ asset('assets/global/plugins/fancybox/source/helpers/jquery.fancybox-buttons.css') }}"
+	      rel="stylesheet" type="text/css"/>
+	<link href="{{ asset('assets/global/plugins/fancybox/source/helpers/jquery.fancybox-thumbs.css') }}"
+	      rel="stylesheet" type="text/css"/>
+
 @endsection
 
 @section('breadcrumb')
@@ -35,7 +42,9 @@
 						<div class="profile-userpic">
 							@if ($registro)
 								@if($registro->Fot_Registro)
-									<img src="http://www.proincorp.com.pe/fotos/{{ $registro->Fot_Registro }}" class="img-responsive" alt="">
+									<a class="image-vehicle" href="http://www.proincorp.com.pe/fotos/{{ $registro->Fot_Registro }}">
+										<img src="http://www.proincorp.com.pe/fotos/{{ $registro->Fot_Registro }}" class="img-responsive" alt="">
+									</a>
 								@endif
 							@else
 								<img src="{{ asset('assets/pages/img/photo_default.png') }}" class="img-responsive" alt="">
@@ -172,6 +181,11 @@
 	<script src="{{ asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"
 	        type="text/javascript"></script>
 	<script src="{{ asset('assets/global/plugins/jquery.sparkline.min.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('assets/global/plugins/fancybox/lib/jquery.mousewheel-3.0.6.pack.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('assets/global/plugins/fancybox/source/jquery.fancybox.pack.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('assets/global/plugins/fancybox/source/helpers/jquery.fancybox-buttons.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('assets/global/plugins/fancybox/source/helpers/jquery.fancybox-media.js') }}" type="text/javascript"></script>
+	<script src="{{ asset('assets/global/plugins/fancybox/source/helpers/jquery.fancybox-thumbs.js') }}" type="text/javascript"></script>
 @endsection
 
 @section('js_level_scripts')
@@ -180,6 +194,8 @@
 	        type="text/javascript"></script>
 	<script>
 		jQuery(document).ready(function () {
+			$('.image-vehicle').fancybox();
+
 			$('.date-picker').datepicker({
 				rtl: App.isRTL(),
 				autoclose: true
