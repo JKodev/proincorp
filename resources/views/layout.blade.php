@@ -97,7 +97,7 @@
 								</li>
 								<!-- END USER LOGIN DROPDOWN -->
 								<li class="dropdown dropdown-extended quick-sidebar-toggler">
-									<button type="button" class="btn blue-hoki">
+									<button type="button" class="btn blue-hoki dropdown dropdown-extended quick-sidebar-toggler">
 										<span class="glyphicon glyphicon-road"></span>
 										Flujo Vehicular Tiempo Real
 									</button>
@@ -205,6 +205,12 @@
 								<h1>@yield('title') </h1>
 							</div>
 							<!-- END PAGE TITLE -->
+							<div class="page-toolbar">
+								<button type="button" class="btn blue-hoki dropdown dropdown-extended quick-sidebar-toggler">
+									<span class="glyphicon glyphicon-road"></span>
+									Tiempo Real
+								</button>
+							</div>
 						</div>
 					</div>
 					<!-- END PAGE HEAD-->
