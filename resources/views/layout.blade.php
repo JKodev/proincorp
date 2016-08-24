@@ -350,8 +350,9 @@
 
 @show
 <!-- BEGIN THEME GLOBAL SCRIPTS -->
+<script src="{{ asset('assets/global/scripts/app.js') }}" type="text/javascript"></script>
 @section('js_global')
-	<script src="{{ asset('assets/global/scripts/app.js') }}" type="text/javascript"></script>
+
 @show
 <!-- END THEME GLOBAL SCRIPTS -->
 <script>
