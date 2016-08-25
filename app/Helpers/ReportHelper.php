@@ -468,7 +468,7 @@ class ReportHelper
 
 				$position = intval(($timestamp - $unix_start_date) / 600)-1;
 				if ($position >= count($data)) {
-					dd($timestamp, $unix_start_date);
+					//dd($timestamp, $unix_start_date);
 				}
 				$data[$route_name][$position]['mount'] += 1;
 			}
