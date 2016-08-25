@@ -245,9 +245,7 @@ class ReportHelper
 		$e_date = DateTime::createFromFormat('Y-m-d H:i:s', $end_date);
 		$days = intval($e_date->diff($s_date)->format('%a'));
 
-		if ($days == 0) {
-			$days++;
-		}
+		$days++;
 
 		$length = intval((60 * 24) / $interval) * $days;
 
@@ -468,7 +466,7 @@ class ReportHelper
 
 				$position = intval(($timestamp - $unix_start_date) / 600)-1;
 				if ($position >= count($data[$route_name])) {
-					dd($timestamp, $unix_start_date);
+					//dd($timestamp, $unix_start_date);
 				}
 				$data[$route_name][$position]['mount'] += 1;
 			}
