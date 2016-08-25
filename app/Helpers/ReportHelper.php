@@ -456,7 +456,7 @@ class ReportHelper
 			$e_date = DateTime::createFromFormat('d/m/Y H:i:s', $end_date)->format('Y-m-d H:i:s');
 			self::generateSimpleIntervalDates($data, $route_name, 10, $s_date, $e_date);
 			Debugbar::info($data);
-			dd($data);
+			//dd($data);
 			$valid_format = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date);
 
 			$unix_start_date = $valid_format->getTimestamp();
@@ -467,7 +467,9 @@ class ReportHelper
 				$timestamp = $format_date->getTimestamp();
 
 				$position = intval(($timestamp - $unix_start_date) / 600)-1;
-
+				if ($position >= count($data)) {
+					dd($timestamp, $unix_start_date);
+				}
 				$data[$route_name][$position]['mount'] += 1;
 			}
 		}
