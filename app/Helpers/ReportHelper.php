@@ -348,7 +348,7 @@ class ReportHelper
 			->get();
 
 		$data = self::getZonesArray($zones);
-		$format_unix_date = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date)->format('Y-m-d');
+
 		$s_date = DateTime::createFromFormat('d/m/Y H:i:s', $start_date)->format('Y-m-d H:i:s');
 		$e_date = DateTime::createFromFormat('d/m/Y H:i:s', $end_date)->format('Y-m-d H:i:s');
 		self::generateCompleteIntervalDates($data, 10, $s_date, $e_date);
@@ -367,12 +367,6 @@ class ReportHelper
 			$zone_name = self::getZoneName($zones, $register->id_zona);
 
 			$data[$zone_name][$position]['mount'] += $register->cantidad;
-			/*$data[$zone_name][] = array(
-				'hour'  =>  $format_date->format('Y-m-d H:i:s'),
-				'mount' => $register->cantidad
-			);
-			*/
-
 		}
 
 		return $data;
@@ -457,12 +451,11 @@ class ReportHelper
 			$route_name = $lector->ruta;
 
 			$data[$route_name] = array();
-			$formar_unix_date = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date)->format('Y-m-d');
 
 			$s_date = DateTime::createFromFormat('d/m/Y H:i:s', $start_date)->format('Y-m-d H:i:s');
 			$e_date = DateTime::createFromFormat('d/m/Y H:i:s', $end_date)->format('Y-m-d H:i:s');
 			self::generateSimpleIntervalDates($data, $route_name, 10, $s_date, $e_date);
-
+			Debugbar::info($data);
 			$valid_format = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date);
 
 			$unix_start_date = $valid_format->getTimestamp();
