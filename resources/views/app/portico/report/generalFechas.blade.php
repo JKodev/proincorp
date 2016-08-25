@@ -282,8 +282,8 @@
 				toastr.info("Creando Gráfico con los datos...");
 				chart_aqp_cv.titles = [];
 				chart_cv_aqp.titles = [];
-				var title_aqp_cv = "Reporte flujo vehicular Sentido  Arequipa - CV " + $("#date").val();
-				var title_cv_aqp = "Reporte flujo vehicular Sentido  CV - Arequipa " + $("#date").val();
+				var title_aqp_cv = "Reporte flujo vehicular Sentido  Arequipa - CV del " + $("#from").val() + " al " + $('#to').val();
+				var title_cv_aqp = "Reporte flujo vehicular Sentido  CV - Arequipa del " + $("#from").val() + " al " + $('#to').val();
 				chart_aqp_cv.addTitle(title_aqp_cv, 15);
 				chart_cv_aqp.addTitle(title_cv_aqp, 15);
 				chart_aqp_cv.validateData();
