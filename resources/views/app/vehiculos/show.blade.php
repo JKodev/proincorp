@@ -41,7 +41,7 @@
 						<!-- SIDEBAR USERPIC -->
 						<div class="profile-userpic">
 							@if ($registro)
-								@if($registro->Fot_Registro)
+								@if($registro->Fot_Registro && $registro->Fot_Registro != 'NULL')
 									<a class="image-vehicle" href="http://www.proincorp.com.pe/fotos/{{ $registro->Fot_Registro }}">
 										<img src="http://www.proincorp.com.pe/fotos/{{ $registro->Fot_Registro }}" class="img-responsive" alt="">
 									</a>
