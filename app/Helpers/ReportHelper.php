@@ -464,7 +464,7 @@ class ReportHelper
 				$format_date = \DateTime::createFromFormat('Y-m-d H:i:s.u', $register_date);
 				$timestamp = $format_date->getTimestamp();
 
-				$position = intval(($timestamp - $unix_start_date) / 600)-1;
+				$position = intval(($timestamp - $unix_start_date) / 600);
 				if ($position >= count($data[$route_name])) {
 					//dd($timestamp, $unix_start_date);
 				}
