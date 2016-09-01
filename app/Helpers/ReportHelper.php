@@ -302,8 +302,11 @@ class ReportHelper
 			->get();
 
 		$data = self::getZonesArray($zones);
-		$format_unix_date = \DateTime::createFromFormat('d/m/Y', $date)->format('Y-m-d');
-		self::generateCompleteInterval($data, 10, $format_unix_date);
+		//$format_unix_date = \DateTime::createFromFormat('d/m/Y', $date)->format('Y-m-d');
+		//self::generateCompleteInterval($data, 10, $format_unix_date);
+		$s_date = DateTime::createFromFormat('d/m/Y H:i:s', $start_date)->format('Y-m-d H:i:s');
+		$e_date = DateTime::createFromFormat('d/m/Y H:i:s', $end_date)->format('Y-m-d H:i:s');
+		self::generateCompleteIntervalDates($data, 10, $s_date, $e_date);
 
 		$valid_format = \DateTime::createFromFormat('d/m/Y H:i:s', $start_date);
 
